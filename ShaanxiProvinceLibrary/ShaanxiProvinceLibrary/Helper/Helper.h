@@ -19,10 +19,16 @@
                      font: (UIFont *) font
             textAlignment: (NSTextAlignment) alignment;
 
++ (void) configurateLabel: (UILabel*) label
+                textColor: (UIColor*) color
+                     font: (UIFont *) font
+                   number: (NSUInteger) number
+                alignment: (NSTextAlignment) alignment;
+
 
 + (void) interceptStringWith: (NSString*) identify
                           in: (NSString*) original
-                resultString: (void(^)(NSString* formerString, NSString*        latterString)) resultString;
+                resultString: (void(^)(NSString* formerString, NSString* latterString)) resultString;
 + (NSString *) deleteSpaceAndCR: (NSString *) string;
 + (NSString *) addSpace: (NSString *) string
              withNumber: (NSUInteger) number;
@@ -30,5 +36,9 @@
 + (UIColor *) setColorWithRed: (NSUInteger) red
                        green: (NSUInteger) green
                         blue: (NSUInteger) blue;
+
+
++ (void) addViewController: (id) childController
+          toViewController: (UIViewController *) parentController;
 
 @end

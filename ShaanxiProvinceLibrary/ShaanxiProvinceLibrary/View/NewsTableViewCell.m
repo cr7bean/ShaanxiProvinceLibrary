@@ -26,6 +26,7 @@
     self = [super initWithStyle: style reuseIdentifier: reuseIdentifier];
     if (self) {
         [self initSubView];
+        [self setConstraint];
     }
     return self;
 }
@@ -33,8 +34,13 @@
 - (void) initSubView
 {
      _newsView = [UIView new];
-    
     _titleLabel = [UILabel new];
+    [Helper configurateLabel: _titleLabel
+                   textColor: [UIColor blackColor]
+                        font: [UIFont systemFontOfSize: 17]
+                      number: 0
+                   alignment: NSTextAlignmentLeft];
+    
     [self.contentView addSubview: _newsView];
     [_newsView addSubview: _titleLabel];
     self.separatorInset = UIEdgeInsetsMake(0, 20, 0, 0);
@@ -42,47 +48,33 @@
 
 }
 
-- (void) layoutSubviews
+- (void) setConstraint
 {
+    [_newsView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 0, 0));
+    }];
     
-    [super layoutSubviews];
-    [self.contentView setNeedsLayout];
-    [self.contentView layoutIfNeeded];
-    CGSize screenSize = [UIScreen mainScreen].bounds.size;
-    _titleLabel.preferredMaxLayoutWidth = screenSize.width - 20 - 15;
-
-    CGSize titleSize = _titleLabel.intrinsicContentSize;
-    self.Height = _titleLabel.frame.origin.y + titleSize.height+15;
-
+    _titleLabel.preferredMaxLayoutWidth = [UIScreen mainScreen].bounds.size.width - 30;
+    [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.mas_equalTo(20);
+        make.right.mas_equalTo(-10);
+        make.top.mas_equalTo(18);
+        make.bottom.mas_equalTo(-18).priority(749);
+    }];
 }
 
 #pragma mark - configurate content and layout
 
 - (void) configurateNewsView: (NewsModel*) news
 {
-    [_newsView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 0, 0));
-    }];
-    
-
-    [Helper configurateLabel: _titleLabel text: news.title textColor: [UIColor blackColor] font: [UIFont systemFontOfSize: 17] textAlignment:(NSTextAlignmentLeft)];
-
+    _titleLabel.text = news.title;
     if (news.isCued) {
         
         _titleLabel.textColor = [UIColor redColor];
     }else{
         _titleLabel.textColor = [UIColor blackColor];
     }
-
-    [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-
-        make.left.mas_equalTo(20);
-        make.right.mas_equalTo(-10);
-        make.top.mas_equalTo(15);
-        make.bottom.mas_equalTo(-15);
-    }];
-    [_titleLabel setContentHuggingPriority: UILayoutPriorityRequired forAxis: UILayoutConstraintAxisVertical];
-    
 }
 
 @end

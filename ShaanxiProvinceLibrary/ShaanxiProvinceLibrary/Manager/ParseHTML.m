@@ -10,6 +10,7 @@
 #import "Helper.h"
 #import <TFHpple.h>
 #import "NewsModel.h"
+#import "DoubanBookModel.h"
 
 #import "RecommendedBookModel.h"
 #import "BookListModel.h"
@@ -46,8 +47,6 @@
             }];
             break;
         }
-        default:
-            break;
     }
 }
 
@@ -335,6 +334,9 @@
         NSArray *isbnNodes = [booksParse searchWithXPathQuery: isbnXpath];
         if (isbnNodes.count == 2) {
             NSString *isbnNumber = [isbnNodes[1] text];
+            if (isbnNumber) {
+                isbnNumber = [@"ISBN: " stringByAppendingString: isbnNumber];
+            }
             [bookRightInfoArray addObject: isbnNumber];
         }
     }
@@ -350,13 +352,16 @@
         
         //正常情况是4，有些书籍的借阅号在 HTML 中显示了2次
         if (count == 4 || count == 5) {
+            NSString *callNumber = [locationNodes[0] text];
             
-            NSString *bookCallNumber = [locationNodes[0] text];
+//            NSString *bookCallNumber = [locationNodes[0] text];
             NSString *bookNumber = [locationNodes[1] text];
             NSString *bookType = [locationNodes[2] text];
             NSString *bookLocation;
             NSString *combineString;
-         
+            
+            NSAttributedString *bookCallNumber = [[NSAttributedString alloc] initWithString: callNumber attributes: @{NSForegroundColorAttributeName: [Helper setColorWithRed:0 green:175 blue:240]}];
+            
             bookNumber = [Helper addSpace: bookNumber withNumber: 1];
             bookType = [Helper deleteSpaceAndCR: bookType];
             bookType = [Helper addSpace: bookType withNumber: 1];
@@ -382,6 +387,8 @@
     bookTotalInfo = @{@"bookRightInfo": bookRightInfoArray,
                       @"bookLocation": bookLocationArray,
                       @"bookSummary": bookSummaryArray};
+    
+    
     bookContent(bookTotalInfo);
 }
 
@@ -422,8 +429,11 @@
             NSString *authorAndTitle = [bookNodes[3] text];
             NSString *libraryHoldings = [bookNodes[4] text];
             
+            
             number = [number stringByReplacingOccurrencesOfString: @"#" withString: @""];
             libraryHoldings = [Helper deleteSpaceAndCR: libraryHoldings];
+            libraryHoldings = [libraryHoldings stringByReplacingOccurrencesOfString: @"\n" withString: @""];
+            libraryHoldings = [libraryHoldings stringByReplacingOccurrencesOfString: @"   " withString: @""];
             
             BookListModel *books = [BookListModel initWithNumber: number callNumber: callNumber publicationDate: publicationDate authorAndTitle: authorAndTitle libraryHoldings: libraryHoldings];
             [booklistArray addObject: books];
@@ -442,6 +452,7 @@
                     @"booklistArray": booklistArray,
                     @"firstHitNumber": firstHitNumber,
                     @"lastHitNumber": lastHitNumber};
+    booklist(booklistDic);
 }
 
 + (NSString *) correctLocationString: (NSString *) string
@@ -454,12 +465,89 @@
 }
 
 
++ (void) booksNumberIsMoreNextPage: (NSString *) urlString
+                         paraments: (NSDictionary *) paraments
+                          success: (void(^)(NSDictionary *booklist)) success
+                           failure: (requestFailurerBlock) failure
+{
+    [self requestWithUrl: urlString
+               paraments: paraments
+              methodType:(requestMethodTypePost)
+                 success:^(NSURLSessionDataTask *task, id responseObject) {
+        TFHpple *booksParse = [TFHpple hppleWithHTMLData: responseObject];
+        [self booksNumberIsMore: booksParse booklist:^(NSDictionary *booklist) {
+            success(booklist);
+        }];
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failure(task, error);
+    }];
+}
+
++ (void) booksNumberIsOneNextPage: (NSString *) urlString
+                        paraments: (NSDictionary *) paraments
+                          success: (void(^)(NSDictionary *bookContent)) success
+                          failure: (requestFailurerBlock) failure
+{
+    
+    [self requestWithUrl: urlString
+               paraments: paraments
+              methodType: requestMethodTypePost
+                 success:^(NSURLSessionDataTask *task, id responseObject) {
+                     TFHpple *booksParse = [TFHpple hppleWithHTMLData: responseObject];
+                     [self booksNumberIsOne: booksParse bookContent:^(NSDictionary *bookContent) {
+                         success(bookContent);
+                     }];
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failure(task, error);
+    }];
+}
 
 
+#pragma mark  - bookContent from Douban
 
-
-
-
++ (void) bookContentFromDouban: (NSString *) urlString
+                       success: (void(^)(DoubanBookModel *book)) success
+                       failure: (requestFailurerBlock) failure
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    [manager.requestSerializer setTimeoutInterval: 20];
+    [AFJSONResponseSerializer serializer].removesKeysWithNullValues = YES;
+    [manager GET: urlString parameters: nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        DoubanBookModel *bookModel = [DoubanBookModel new];
+        bookModel.title = responseObject[@"title"];
+        bookModel.originalTitle = responseObject[@"origin_title"];
+        bookModel.publisher = responseObject[@"publisher"];
+        bookModel.pubdate = responseObject[@"pubdate"];
+        bookModel.pages = responseObject[@"pages"];
+        bookModel.price = responseObject[@"price"];
+        bookModel.binding = responseObject[@"binding"];
+        bookModel.idString = responseObject[@"id"];
+        bookModel.authorIntro = responseObject[@"author_intro"];
+        bookModel.catalog = responseObject[@"catalog"];
+        bookModel.summary = responseObject[@"summary"];
+        bookModel.rating = [responseObject[@"rating"] objectForKey: @"average"];
+        
+        bookModel.catalog = [Helper deleteSpaceAndCR: bookModel.catalog];
+        
+        if ([responseObject[@"author"] count]) {
+          bookModel.author  = responseObject[@"author"][0];
+        }
+        NSString *image = responseObject[@"image"];
+        NSDictionary *images = responseObject[@"images"];
+        if (images[@"large"]) {
+            bookModel.imageString = images[@"large"];
+        }else if (image){
+            bookModel.imageString = image;
+        }
+        success(bookModel);
+        
+     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+         failure(task, error);
+    }];
+   
+}
 
 
 

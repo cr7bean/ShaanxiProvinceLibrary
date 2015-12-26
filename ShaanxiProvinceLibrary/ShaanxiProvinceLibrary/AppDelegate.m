@@ -41,13 +41,7 @@
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     
     UITabBarController *tabController = (UITabBarController*)self.window.rootViewController;
-//    NSUInteger index;
-//    index = tabController.selectedIndex;
-//    if (index == 1) {
-//        [tabController setSelectedIndex: 0];
-//    }
-    
-    UINavigationController *controller= tabController.viewControllers[0];
+    UINavigationController *controller= tabController.viewControllers[1];
     if (controller.viewControllers.count > 1) {
         [controller popToRootViewControllerAnimated: NO];
     }

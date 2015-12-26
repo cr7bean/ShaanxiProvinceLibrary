@@ -8,13 +8,14 @@
 
 #import "SearchBooksViewController.h"
 #import "ParseHTML.h"
+#import "ShowBooksMainViewController.h"
+
 
 
 
 @interface SearchBooksViewController ()<UITabBarControllerDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UISearchBar *searchbar;
-
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end
@@ -35,49 +36,25 @@
     _searchbar.delegate = self;
     _hotSearchingBooks = [NSMutableArray new];
     
-    NSString *urlString = [NSString stringWithFormat: @"http://61.185.242.108/uhtbin/cgisirsi/0/%@/0/123", @"陕西省馆"];
-    urlString = [urlString stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
-    NSDictionary *parameters = @{
-                                 @"srchfield1": @"TI^TITLE^SERIES^Title Processing^题名",
-                                 @"searchdata1": @"ios",
-                                 @"library": @"陕西省馆",
-                                 @"sort_by": @"ANY"
-                                 };
-    
-    [ParseHTML parseBooksListWithString: urlString dictionary: parameters success:^(searchBookState searchState, NSDictionary *searchBook) {
-        switch (searchState) {
-            case searchBookStateServeBusy: {
-                
-                break;
-            }
-            case searchBookStateZero: {
-                
-                break;
-            }
-            case searchBookStateOne: {
-                
-                break;
-            }
-            case searchBookStateMore: {
-                
-                break;
-            }
-        }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
-    }];
-    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: YES];
     [ParseHTML parseHotSearchingBookSuccess:^(NSMutableArray *hotSearchingBooks) {
+        
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
         _hotSearchingBooks = hotSearchingBooks;
         [_tableView reloadData];
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
         if(error.code == -1001){
             NSLog(@"请求超时");
         }else{
             NSLog(@"请检查您的网络");
         }
     }];
+    
+//    _searchbar.tintColor = [UIColor colorWithRed:0.029 green:0.029 blue:0.031 alpha:0.8];
+    
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -85,6 +62,7 @@
     [super viewWillAppear: animated];
     self.navigationController.navigationBar.hidden = YES;
 }
+
 
 - (void) viewWillDisappear:(BOOL)animated
 {
@@ -115,6 +93,22 @@
 }
 
 #pragma mark - searchBar delegate
+
+- (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    NSString *searchBookName = searchBar.text;
+    NSDictionary *parameters = @{
+                                 @"srchfield1": @"TI^TITLE^SERIES^Title Processing^题名",
+                                 @"searchdata1": searchBookName,
+                                 @"library": @"陕西省馆",
+                                 @"sort_by": @"ANY"
+                                 };
+    
+    ShowBooksMainViewController *controller = [[ShowBooksMainViewController alloc] initWithDictionary: parameters];
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController: controller animated: YES];
+    [searchBar resignFirstResponder];
+}
 
 #pragma mark - tableView delegate
 
@@ -149,5 +143,9 @@
     [tableView deselectRowAtIndexPath: indexPath animated: NO];
     _searchbar.text = _hotSearchingBooks[indexPath.row];
     [_searchbar becomeFirstResponder];
+    
 }
+
+
+
 @end

@@ -69,9 +69,11 @@
         make.bottom.mas_equalTo(0);
         make.top.mas_equalTo(0);
     }];
-
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: YES];
    
     [ParseHTML parseMottoAndImage:^(MottoModel *motto) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
         
         [self configurateHeaderView: motto];
         
@@ -87,8 +89,6 @@
     [_headerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(0);
         make.width.mas_equalTo(view.mas_width);
-//        make.left.mas_equalTo(0);
-//        make.right.mas_equalTo(0);
         make.height.mas_equalTo(_headerView.mas_width).multipliedBy(IMAGE_SCALE);
     }];
 
@@ -111,8 +111,20 @@
 
 - (void) configurateHeaderView: (MottoModel*) motto
 {
-    [Helper configurateLabel: _sayingLabel text: motto.saying textColor: [UIColor whiteColor] font: [UIFont systemFontOfSize: 13] textAlignment:(NSTextAlignmentLeft)];
-    [Helper configurateLabel: _personageLabel text: motto.personage textColor: [UIColor whiteColor] font: [UIFont systemFontOfSize: 13] textAlignment:(NSTextAlignmentRight)];
+    _sayingLabel.text = motto.saying;
+    _personageLabel.text = motto.personage;
+    
+    [Helper configurateLabel: _sayingLabel
+                   textColor: [UIColor whiteColor]
+                        font: [UIFont systemFontOfSize: 13]
+                      number: 0
+                   alignment: NSTextAlignmentLeft];
+    
+    [Helper configurateLabel: _personageLabel
+                   textColor: [UIColor whiteColor]
+                        font: [UIFont systemFontOfSize: 13]
+                      number: 1
+                   alignment: NSTextAlignmentRight];
 
     [_headerView setImageWithURL: [NSURL URLWithString: motto.imageName] placeholderImage: [UIImage imageNamed: @"1"]];
     

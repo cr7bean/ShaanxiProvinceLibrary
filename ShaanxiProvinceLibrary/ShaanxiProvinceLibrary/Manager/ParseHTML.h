@@ -12,6 +12,8 @@
 #import <AFNetworking.h>
 #import "MottoModel.h"
 
+@class DoubanBookModel;
+
 typedef NS_ENUM(NSInteger, requestMethodType) {
     requestMethodTypeGet = 1,
     requestMethodTypePost,
@@ -41,5 +43,19 @@ typedef void(^requestFailurerBlock)(NSURLSessionDataTask *task, NSError *error);
                        dictionary: (NSDictionary *) dictionary
                           success: (void(^)(searchBookState searchState, NSDictionary *searchBook)) success
                           failure: (requestFailurerBlock) failure;
+
++ (void) booksNumberIsMoreNextPage: (NSString *) urlString
+                         paraments: (NSDictionary *) paraments
+                           success: (void(^)(NSDictionary *booklist)) success
+                           failure: (requestFailurerBlock) failure;
+
++ (void) booksNumberIsOneNextPage: (NSString *) urlString
+                        paraments: (NSDictionary *) paraments
+                          success: (void(^)(NSDictionary *bookContent)) success
+                          failure: (requestFailurerBlock) failure;
+
++ (void) bookContentFromDouban: (NSString *) urlString
+                       success: (void(^)(DoubanBookModel *book)) success
+                       failure: (requestFailurerBlock) failure;
 
 @end

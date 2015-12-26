@@ -15,9 +15,10 @@
 #import <UINavigationBar+Awesome.h>
 #import "Helper.h"
 #import <Masonry.h>
+#import <UITableView+FDTemplateLayoutCell.h>
 
 #import "DetailNewsViewController.h"
-#import <SVWebViewController.h>
+
 
 
 # define OFFSET_Y -100
@@ -51,7 +52,6 @@
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"查找新闻失败");
     }];
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -81,75 +81,51 @@
 - (void) addNewsTableView
 {
     _newsTableView = [[NewsView alloc] init];
-    
     [_newsTableView.tableView registerClass: [NewsTableViewCell class] forCellReuseIdentifier: @"newsCell"];
     [_newsTableView.tableView registerClass: [UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier: @"headerView"];
     [_newsTableView layoutTableView: self.view];
     
-//    _newsTableView.tableView.delegate = self;
     _newsTableView.tableView.dataSource = self;
-   
-    _newsTableView.tableView.estimatedRowHeight = 100;
     _newsTableView.tableView.sectionFooterHeight = 0;
 }
 
-#pragma mark - tableView DataSource
+#pragma mark - UITableViewDataSource
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
-//    return 4;
     return _newsContentArray.count;
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    return 7;
+
     return [_newsContentArray[section] count];
 }
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NewsTableViewCell *cell = (NewsTableViewCell*)[tableView dequeueReusableHeaderFooterViewWithIdentifier: @"newsCell"];
-    if (!cell) {
-        cell = [[NewsTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier: @"newsCell"];
-    }
-    NewsModel *news = [NewsModel new];
-    NSMutableArray *partNews = _newsContentArray[indexPath.section];
-    news = partNews[indexPath.row];
-    [cell configurateNewsView: news];
-    
- 
-//    [cell setNeedsLayout];
-//    [cell layoutIfNeeded];
-////    CGFloat newHeight = [cell.contentView systemLayoutSizeFittingSize: UILayoutFittingCompressedSize].height + 1;
-//    [_cellHeightDic setObject: @(cell.Height) forKey: [NSString stringWithFormat: @"%ld", (long)indexPath.row]];
-    
-    //判断行高缓存
-    CGFloat oldHeight = [[_cellHeightDic objectForKey: [NSString stringWithFormat: @"%ld%ld", (long)indexPath.section, (long)indexPath.row]] floatValue];
-    if (!oldHeight) {
-        
-        [cell setNeedsLayout];
-        [cell layoutIfNeeded];
-        CGFloat newHeight = [cell.contentView systemLayoutSizeFittingSize: UILayoutFittingCompressedSize].height + 1;
-        [_cellHeightDic setObject: @(newHeight) forKey: [NSString stringWithFormat: @"%ld%ld", (long)indexPath.section, (long)indexPath.row]];
-        }
-    
-    
+    NewsTableViewCell *cell = (NewsTableViewCell*)[tableView dequeueReusableCellWithIdentifier: @"newsCell"];
+    [self configuteCell: cell atIndexPath: indexPath];
     return cell;
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat cellHeight = [[_cellHeightDic objectForKey: [NSString stringWithFormat: @"%ld%ld", (long)indexPath.section, (long)indexPath.row]] floatValue];
-    if (cellHeight) {
-          return cellHeight;
-    }else
-    return 100;
+    return [tableView fd_heightForCellWithIdentifier: @"newsCell" cacheByIndexPath: indexPath configuration:^(id cell) {
+        [self configuteCell: cell atIndexPath: indexPath];
+    }];
+}
+
+- (void) configuteCell: (NewsTableViewCell *) cell atIndexPath: (NSIndexPath *) indexPath
+{
+    NewsModel *news = [NewsModel new];
+    NSMutableArray *partNews = _newsContentArray[indexPath.section];
+    news = partNews[indexPath.row];
+    [cell configurateNewsView: news];
 }
 
 - (UIView*) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-//     UITableViewHeaderFooterView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier: @"headerView"];
     UITableViewHeaderFooterView *headerView = [UITableViewHeaderFooterView new];
      UILabel *headerLabel = [UILabel new];
      NSArray *headerTitle = @[@"公告通知", @"陕图动态", @"陕图讲坛", @"少儿活动"];
@@ -160,25 +136,12 @@
         make.top.mas_equalTo(5);
     }];
 
-//    if (!headerLabel) {
-//        headerLabel = [UILabel new];
-//        [headerView.contentView addSubview: headerLabel];
-//        [headerLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.left.mas_equalTo(25);
-//            make.top.mas_equalTo(5);
-//        }];
-//    }
-     headerLabel.text = nil;
-     [Helper configurateLabel: headerLabel text: headerTitle[section] textColor: [UIColor whiteColor] font: [UIFont systemFontOfSize: 18] textAlignment: NSTextAlignmentLeft];
-    
-    
-//            make.right.mas_equalTo(-15);
-//            make.bottom.mas_equalTo(-5);
-    
-//        [HeaderLabel setContentHuggingPriority: UILayoutPriorityRequired forAxis: UILayoutConstraintAxisVertical];
-//        CGFloat headerHeight = [headerView.contentView systemLayoutSizeFittingSize: UILayoutFittingCompressedSize].height;
-//        NSLog(@"%f", headerHeight);
-//    }
+    headerLabel.text = headerTitle[section];
+    [Helper configurateLabel: headerLabel
+                   textColor: [UIColor whiteColor]
+                        font: [UIFont systemFontOfSize: 18]
+                      number: 0
+                   alignment: NSTextAlignmentLeft];
     
     headerView.contentView.backgroundColor = [Helper setColorWithRed: 0 green: 175 blue: 240];
     return headerView;
@@ -188,6 +151,8 @@
 {
     return 31.5;
 }
+
+#pragma mark - UITableViewDelegate
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -199,13 +164,8 @@
 
     DetailNewsViewController *webController = [[DetailNewsViewController alloc] initWithAddress: news.detailUrl];
     webController.hidesBottomBarWhenPushed = YES;
-
-//    SVWebViewController *webController = [[SVWebViewController alloc] initWithAddress: news.detailUrl];
-    
-    
     [self.navigationController pushViewController: webController animated: YES];
   
-    
 }
 
 

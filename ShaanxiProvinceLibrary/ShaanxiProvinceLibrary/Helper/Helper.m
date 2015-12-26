@@ -30,7 +30,17 @@
     label.textAlignment = alignment;
 }
 
-
++ (void) configurateLabel: (UILabel*) label
+                textColor: (UIColor*) color
+                     font: (UIFont *) font
+                   number: (NSUInteger) number
+                alignment: (NSTextAlignment) alignment
+{
+    label.textColor = color;
+    label.font = font;
+    label.numberOfLines = number;
+    label.textAlignment = alignment;
+}
 
 #pragma mark - NSString
 
@@ -81,7 +91,17 @@
     return colour;
 }
 
+#pragma mark - ViewController
 
++ (void) addViewController: (id) childController
+          toViewController: (UIViewController *) parentController
+{
+    [parentController addChildViewController: childController];
+//    [[(UIViewController *)childController view] setFrame: CGRectMake(0, 0, 375, 667+64+44)];
+    [[(UIViewController *)childController view] setFrame: [UIScreen mainScreen].bounds];       
+    [parentController.view addSubview: [childController view]];
+    [childController didMoveToParentViewController: parentController];
+}
 
 
 

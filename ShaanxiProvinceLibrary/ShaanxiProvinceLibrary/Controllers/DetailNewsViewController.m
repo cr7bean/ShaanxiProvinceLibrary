@@ -40,8 +40,6 @@
     _progressProxy.webViewProxyDelegate = self;
     _progressProxy.progressDelegate = self;
     
-    
-    
     CGFloat height = 2.0f;
     CGRect barBounds = self.navigationController.navigationBar.bounds;
     CGRect barFrame = CGRectMake(0, barBounds.size.height - height, barBounds.size.width, height);

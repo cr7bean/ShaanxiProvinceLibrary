@@ -22,7 +22,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="awp-Uo-Bsx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="733" y="-331"/>
+            <point key="canvasLocation" x="402" y="-1672"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ejD-dQ-rgX">
@@ -41,7 +41,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D8x-1y-LDs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-107" y="-114"/>
+            <point key="canvasLocation" x="-523" y="-1010"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ynU-Wz-tsP">
@@ -63,7 +63,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wjz-WG-uvG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="308" y="-325"/>
+            <point key="canvasLocation" x="-44" y="-1686"/>
         </scene>
         <!--Search Books View Controller-->
         <scene sceneID="ZUi-pK-yLs">
@@ -77,15 +77,15 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yy2-R7-lNN">
-                                <rect key="frame" x="40" y="128" width="240" height="128"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yy2-R7-lNN">
+                                <rect key="frame" x="0.0" y="68" width="320" height="387"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellIdentify" id="QZa-cw-lD7">
-                                        <rect key="frame" x="0.0" y="28" width="240" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QZa-cw-lD7" id="d0c-FK-JdW">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -124,7 +124,94 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sbe-RC-li2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="657" y="302"/>
+            <point key="canvasLocation" x="402" y="-1010"/>
+        </scene>
+        <!--Suggestion Page View Controller-->
+        <scene sceneID="9SY-PU-QK6">
+            <objects>
+                <viewController storyboardIdentifier="SuggestionPageViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2YK-1W-eym" customClass="SuggestionPageViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LCp-Vc-ZYm"/>
+                        <viewControllerLayoutGuide type="bottom" id="w6H-tJ-p1h"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jkT-Zs-0jF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qSb-S9-NGk">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="lmD-RM-BUb"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="荐购图书" id="wmW-O6-SmC"/>
+                                </items>
+                            </navigationBar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="姓名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9ao-mc-f7B">
+                                <rect key="frame" x="15" y="86" width="290" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="fhA-80-hIb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="邮箱" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1zK-4e-ZHZ">
+                                <rect key="frame" x="15" y="152" width="290" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="jfS-Nr-hnn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="联系电话" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L63-ob-qOf">
+                                <rect key="frame" x="15" y="218" width="290" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="EGL-JY-JLh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="标题" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gDs-uT-OCP">
+                                <rect key="frame" x="15" y="284" width="290" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="4TG-68-yRk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="tRg-7S-w75">
+                                <rect key="frame" x="15" y="350" width="290" height="186"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="tRg-7S-w75" secondAttribute="trailing" constant="15" id="1Nk-06-QKc"/>
+                            <constraint firstAttribute="trailing" secondItem="gDs-uT-OCP" secondAttribute="trailing" constant="15" id="61M-Cr-tZI"/>
+                            <constraint firstItem="L63-ob-qOf" firstAttribute="top" secondItem="1zK-4e-ZHZ" secondAttribute="bottom" constant="22" id="8Y9-a1-yV6"/>
+                            <constraint firstAttribute="trailing" secondItem="1zK-4e-ZHZ" secondAttribute="trailing" constant="15" id="C2e-R4-lGI"/>
+                            <constraint firstItem="9ao-mc-f7B" firstAttribute="leading" secondItem="jkT-Zs-0jF" secondAttribute="leading" constant="15" id="I5O-cw-7G2"/>
+                            <constraint firstItem="9ao-mc-f7B" firstAttribute="top" secondItem="qSb-S9-NGk" secondAttribute="bottom" constant="22" id="JKj-2B-Cc1"/>
+                            <constraint firstItem="1zK-4e-ZHZ" firstAttribute="leading" secondItem="jkT-Zs-0jF" secondAttribute="leading" constant="15" id="Mfq-74-WNv"/>
+                            <constraint firstAttribute="trailing" secondItem="L63-ob-qOf" secondAttribute="trailing" constant="15" id="Oly-hA-sc2"/>
+                            <constraint firstItem="1zK-4e-ZHZ" firstAttribute="top" secondItem="9ao-mc-f7B" secondAttribute="bottom" constant="22" id="Rjn-NY-ygL"/>
+                            <constraint firstItem="tRg-7S-w75" firstAttribute="top" secondItem="gDs-uT-OCP" secondAttribute="bottom" constant="22" id="ZCc-r2-1z5"/>
+                            <constraint firstAttribute="trailing" secondItem="9ao-mc-f7B" secondAttribute="trailing" constant="15" id="bd8-Yp-8d8"/>
+                            <constraint firstItem="gDs-uT-OCP" firstAttribute="leading" secondItem="jkT-Zs-0jF" secondAttribute="leading" constant="15" id="cpp-Y2-yXb"/>
+                            <constraint firstItem="w6H-tJ-p1h" firstAttribute="top" secondItem="tRg-7S-w75" secondAttribute="bottom" constant="32" id="dMY-Rc-MsE"/>
+                            <constraint firstItem="L63-ob-qOf" firstAttribute="leading" secondItem="jkT-Zs-0jF" secondAttribute="leading" constant="15" id="gc7-LV-xaV"/>
+                            <constraint firstAttribute="trailing" secondItem="qSb-S9-NGk" secondAttribute="trailing" id="hLQ-0N-DYa"/>
+                            <constraint firstItem="qSb-S9-NGk" firstAttribute="leading" secondItem="jkT-Zs-0jF" secondAttribute="leading" id="nZs-0o-PPB"/>
+                            <constraint firstItem="gDs-uT-OCP" firstAttribute="top" secondItem="L63-ob-qOf" secondAttribute="bottom" constant="22" id="rCa-UA-UEf"/>
+                            <constraint firstItem="tRg-7S-w75" firstAttribute="leading" secondItem="jkT-Zs-0jF" secondAttribute="leading" constant="15" id="rp9-ih-a1X"/>
+                            <constraint firstItem="qSb-S9-NGk" firstAttribute="top" secondItem="jkT-Zs-0jF" secondAttribute="top" id="vCQ-AI-7f2"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yVy-vh-8kS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1115" y="-1686"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zsE-rw-z0n">
@@ -143,7 +230,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xOU-gv-GXR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="287" y="302"/>
+            <point key="canvasLocation" x="-44" y="-1010"/>
         </scene>
     </scenes>
 </document>
