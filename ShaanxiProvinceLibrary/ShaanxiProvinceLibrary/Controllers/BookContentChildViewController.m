@@ -37,8 +37,14 @@
     NSString *isbnString;
     NSMutableArray *_DoubanTitleArray;
     NSMutableArray *_DoubanContentArray;
+    
+    NSMutableArray *_shortContent;
+    NSMutableArray *_longContent;
+    NSMutableArray *_lengthState;
 
     BOOL isCheckInDouban;
+    
+    
 }
 
 #pragma mark - lifeCycle
@@ -152,6 +158,9 @@
 {
     _DoubanTitleArray = [NSMutableArray new];
     _DoubanContentArray = [NSMutableArray new];
+    _shortContent = [NSMutableArray new];
+    _longContent = [NSMutableArray new];
+    _lengthState = [NSMutableArray new];
  
     [_DoubanTitleArray addObject: @"基本信息"];
     
@@ -161,15 +170,29 @@
     
     if (authorIntro.length) {
         [_DoubanTitleArray addObject: @"作者简介"];
-        [_DoubanContentArray addObject: authorIntro];
+        [self subStringFrom: authorIntro];
     }
     if (summary.length) {
         [_DoubanTitleArray addObject: @"简介"];
-        [_DoubanContentArray addObject: summary];
+        [self subStringFrom: summary];
     }if (catalog.length) {
         [_DoubanTitleArray addObject: @"目录"];
-        [_DoubanContentArray addObject: catalog];
+        [self subStringFrom: catalog];
     }
+    _DoubanContentArray = [_shortContent mutableCopy];
+}
+- (void) subStringFrom: (NSString *) string
+{
+    BOOL isLength;
+    [_longContent addObject: string];
+    if (string.length > 50) {
+        [_shortContent addObject: [string substringToIndex: 50]];
+        isLength = YES;
+    }else{
+        [_shortContent addObject: string];
+        isLength = NO;
+    }
+    [_lengthState addObject: [NSNumber numberWithBool: isLength]];
 }
 
 #pragma mark - getter
@@ -314,8 +337,10 @@
             return titleCell;
         }else{
             DoubanContentTableViewCell *summaryCell = [tableView dequeueReusableCellWithIdentifier: @"summaryCell"];
-            [summaryCell summaryCell: _DoubanContentArray[indexPath.section - 1]];
+//            [summaryCell summaryCell: _DoubanContentArray[indexPath.section - 1]];
+            [self configureSummaryCell: summaryCell atIndexPath: indexPath];
             summaryCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
             return summaryCell;
         }
     }
@@ -335,7 +360,9 @@
             
         }else{
            return [tableView fd_heightForCellWithIdentifier: @"summaryCell" cacheByIndexPath: indexPath configuration:^(id cell) {
-               [cell summaryCell: _DoubanContentArray[indexPath.section - 1]];
+               
+//               [cell summaryCell: _DoubanContentArray[indexPath.section - 1]];
+               [self configureSummaryCell: cell atIndexPath: indexPath];
            }];
         }
     }
@@ -345,6 +372,12 @@
            atIndexPath: (NSIndexPath *) indexPath
 {
     [cell configureCell: self.bookContentDic atIndexPath: indexPath];
+}
+
+- (void) configureSummaryCell: (DoubanContentTableViewCell *) cell
+                  atIndexPath: (NSIndexPath *) indexPath
+{
+    [cell summaryCell: _DoubanContentArray[indexPath.section - 1]];
 }
 
 
@@ -359,6 +392,20 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (tableView == self.DoubanTableView) {
+        if (indexPath.section) {
+            NSUInteger index = indexPath.section - 1;
+            BOOL isLength = [_lengthState[index] boolValue];
+            if (isLength) {
+                [_DoubanContentArray replaceObjectAtIndex: index withObject: _longContent[index]];
+            }else{
+                [_DoubanContentArray replaceObjectAtIndex: index withObject: _shortContent[index]];
+            }
+            [_lengthState replaceObjectAtIndex: index withObject: [NSNumber numberWithBool: !isLength]];
+            NSLog(@"第%lu节的状态是%d",(long)indexPath.section, isLength);
+            [self.DoubanTableView reloadSections: [NSIndexSet indexSetWithIndex: indexPath.section] withRowAnimation: UITableViewRowAnimationAutomatic];
+        }
+    }
 }
 
 

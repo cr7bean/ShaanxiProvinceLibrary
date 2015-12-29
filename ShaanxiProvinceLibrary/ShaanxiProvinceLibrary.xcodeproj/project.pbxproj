@@ -11,6 +11,7 @@
 		FD0828521C0749CA006669BF /* DetailNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD0828511C0749CA006669BF /* DetailNewsViewController.m */; settings = {ASSET_TAGS = (); }; };
 		FD1A32241BF8C68E00A8B6A7 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1A32231BF8C68E00A8B6A7 /* NewsViewController.m */; };
 		FD4AF02D1C1C679F00F2D7D0 /* ShowBooksMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4AF02C1C1C679F00F2D7D0 /* ShowBooksMainViewController.m */; settings = {ASSET_TAGS = (); }; };
+		FD4F589A1C32D83D0080C283 /* BookTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4F58991C32D83D0080C283 /* BookTagViewController.m */; settings = {ASSET_TAGS = (); }; };
 		FD5853461C0C862500F4C5AF /* BookListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5853451C0C862500F4C5AF /* BookListModel.m */; settings = {ASSET_TAGS = (); }; };
 		FD5853491C0C86A300F4C5AF /* RecommendedBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5853481C0C86A300F4C5AF /* RecommendedBookModel.m */; settings = {ASSET_TAGS = (); }; };
 		FD6B6AD71C2BCCC100EE517C /* DoubanBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6B6AD61C2BCCC100EE517C /* DoubanBookModel.m */; settings = {ASSET_TAGS = (); }; };
@@ -21,7 +22,6 @@
 		FDF287131C1D4A6900A48ACF /* BookListChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF287121C1D4A6900A48ACF /* BookListChildViewController.m */; settings = {ASSET_TAGS = (); }; };
 		FDF287161C1D4AA600A48ACF /* BookContentChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF287151C1D4AA600A48ACF /* BookContentChildViewController.m */; settings = {ASSET_TAGS = (); }; };
 		FDF287191C1D7DB000A48ACF /* RecommendBookChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF287181C1D7DB000A48ACF /* RecommendBookChildViewController.m */; settings = {ASSET_TAGS = (); }; };
-		FDF2871D1C1DA03600A48ACF /* SuggestionPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF2871C1C1DA03600A48ACF /* SuggestionPageViewController.m */; settings = {ASSET_TAGS = (); }; };
 		FDF4D3B81C019C6B00C27381 /* NewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF4D3B71C019C6B00C27381 /* NewsTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		FDF4D3BB1C01A5E400C27381 /* NewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF4D3BA1C01A5E400C27381 /* NewsModel.m */; settings = {ASSET_TAGS = (); }; };
 		FDF769741BFD56E300734ECA /* ParseHTML.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF769731BFD56E300734ECA /* ParseHTML.m */; settings = {ASSET_TAGS = (); }; };
@@ -57,6 +57,8 @@
 		FD1A32231BF8C68E00A8B6A7 /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsViewController.m; path = Controllers/NewsViewController.m; sourceTree = "<group>"; };
 		FD4AF02B1C1C679F00F2D7D0 /* ShowBooksMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShowBooksMainViewController.h; path = Controllers/ShowBooksMainViewController.h; sourceTree = "<group>"; };
 		FD4AF02C1C1C679F00F2D7D0 /* ShowBooksMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShowBooksMainViewController.m; path = Controllers/ShowBooksMainViewController.m; sourceTree = "<group>"; };
+		FD4F58981C32D83D0080C283 /* BookTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookTagViewController.h; path = Controllers/BookTagViewController.h; sourceTree = "<group>"; };
+		FD4F58991C32D83D0080C283 /* BookTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookTagViewController.m; path = Controllers/BookTagViewController.m; sourceTree = "<group>"; };
 		FD5853441C0C862500F4C5AF /* BookListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookListModel.h; path = Model/BookListModel.h; sourceTree = "<group>"; };
 		FD5853451C0C862500F4C5AF /* BookListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookListModel.m; path = Model/BookListModel.m; sourceTree = "<group>"; };
 		FD5853471C0C86A300F4C5AF /* RecommendedBookModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecommendedBookModel.h; path = Model/RecommendedBookModel.h; sourceTree = "<group>"; };
@@ -77,8 +79,6 @@
 		FDF287151C1D4AA600A48ACF /* BookContentChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookContentChildViewController.m; path = Controllers/BookContentChildViewController.m; sourceTree = "<group>"; };
 		FDF287171C1D7DB000A48ACF /* RecommendBookChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecommendBookChildViewController.h; path = Controllers/RecommendBookChildViewController.h; sourceTree = "<group>"; };
 		FDF287181C1D7DB000A48ACF /* RecommendBookChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecommendBookChildViewController.m; path = Controllers/RecommendBookChildViewController.m; sourceTree = "<group>"; };
-		FDF2871B1C1DA03600A48ACF /* SuggestionPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SuggestionPageViewController.h; path = Controllers/SuggestionPageViewController.h; sourceTree = "<group>"; };
-		FDF2871C1C1DA03600A48ACF /* SuggestionPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SuggestionPageViewController.m; path = Controllers/SuggestionPageViewController.m; sourceTree = "<group>"; };
 		FDF4D3B61C019C6B00C27381 /* NewsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsTableViewCell.h; path = View/NewsTableViewCell.h; sourceTree = "<group>"; };
 		FDF4D3B71C019C6B00C27381 /* NewsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsTableViewCell.m; path = View/NewsTableViewCell.m; sourceTree = "<group>"; };
 		FDF4D3B91C01A5E400C27381 /* NewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsModel.h; path = Model/NewsModel.h; sourceTree = "<group>"; };
@@ -146,6 +146,7 @@
 		FD1A321D1BF8C55C00A8B6A7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				FD4F58971C32D7940080C283 /* bookTag */,
 				FDF2871A1C1D9FD400A48ACF /* Suggestion */,
 				FDFE0A991C089A3A008AE8FC /* SearchBooks */,
 				FDFE0A981C089A25008AE8FC /* News */,
@@ -205,11 +206,18 @@
 			name = Helper;
 			sourceTree = "<group>";
 		};
+		FD4F58971C32D7940080C283 /* bookTag */ = {
+			isa = PBXGroup;
+			children = (
+				FD4F58981C32D83D0080C283 /* BookTagViewController.h */,
+				FD4F58991C32D83D0080C283 /* BookTagViewController.m */,
+			);
+			name = bookTag;
+			sourceTree = "<group>";
+		};
 		FDF2871A1C1D9FD400A48ACF /* Suggestion */ = {
 			isa = PBXGroup;
 			children = (
-				FDF2871B1C1DA03600A48ACF /* SuggestionPageViewController.h */,
-				FDF2871C1C1DA03600A48ACF /* SuggestionPageViewController.m */,
 			);
 			name = Suggestion;
 			sourceTree = "<group>";
@@ -441,6 +449,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD4F589A1C32D83D0080C283 /* BookTagViewController.m in Sources */,
 				FDFBB8921BFB5AF50072CC8A /* MottoModel.m in Sources */,
 				FDEE5BE41BFCAA7C00AA0171 /* Helper.m in Sources */,
 				FDEDC5C01C26CEE300B93B9C /* BookContentTableViewCell.m in Sources */,
@@ -458,7 +467,6 @@
 				FDF287161C1D4AA600A48ACF /* BookContentChildViewController.m in Sources */,
 				FD5853461C0C862500F4C5AF /* BookListModel.m in Sources */,
 				FD0828521C0749CA006669BF /* DetailNewsViewController.m in Sources */,
-				FDF2871D1C1DA03600A48ACF /* SuggestionPageViewController.m in Sources */,
 				FDFE0A9C1C089A7A008AE8FC /* SearchBooksViewController.m in Sources */,
 				FD5853491C0C86A300F4C5AF /* RecommendedBookModel.m in Sources */,
 				FDF9CCD21BF8708B0070907D /* main.m in Sources */,

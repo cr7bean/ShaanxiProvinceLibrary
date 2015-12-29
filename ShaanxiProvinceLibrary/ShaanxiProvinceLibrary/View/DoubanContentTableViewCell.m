@@ -32,7 +32,8 @@ static const CGFloat kInner = 10.0f;
     UILabel *_ratingLabel;
     UIImageView *_coverImage;
     
-    UILabel *_summaryLabel;
+//    UILabel *_summaryLabel;
+    UITextView *_summaryTextView;
 
 }
 
@@ -64,6 +65,7 @@ static const CGFloat kInner = 10.0f;
     _coverImage = [UIImageView new];
     
     _summaryLabel = [UILabel new];
+    _summaryTextView = [UITextView new];
     
     _authorLabel.font = [UIFont systemFontOfSize: 13];
     _publisherLabel.font = [UIFont systemFontOfSize: 13];
@@ -76,6 +78,8 @@ static const CGFloat kInner = 10.0f;
     
     _titleLabel.preferredMaxLayoutWidth = maxWidth;
     _summaryLabel.preferredMaxLayoutWidth = maxWidth;
+    _summaryTextView.font = [UIFont systemFontOfSize: 15];
+    _summaryTextView.editable = NO;
     
     [Helper configurateLabel: _titleLabel
                    textColor: [UIColor blackColor]
@@ -91,6 +95,7 @@ static const CGFloat kInner = 10.0f;
     
     [self.contentView addSubview: _summaryLabel];
     [self.contentView addSubview: _titleView];
+    [self.contentView addSubview: _summaryTextView];
     
     
     [_titleView addSubview: _titleLabel];
@@ -124,6 +129,10 @@ static const CGFloat kInner = 10.0f;
     }
     if (bookmodel.publisher) {
         publisher = [publisher stringByAppendingString: bookmodel.publisher];
+        NSRange range = [publisher rangeOfString: @","];
+        if (range.length) {
+           publisher = [publisher substringToIndex: range.location];
+        }
     }
     if (bookmodel.pubdate) {
         pubdate = [pubdate stringByAppendingString: bookmodel.pubdate];
@@ -201,9 +210,10 @@ static const CGFloat kInner = 10.0f;
     [_coverImage mas_makeConstraints:^(MASConstraintMaker *make) {
         if (_publisherLabel.text.length < _authorLabel.text.length) {
             make.top.mas_equalTo(_authorLabel.mas_bottom).offset(kInner);
-        }else{
+        } else {
             make.top.mas_equalTo(_titleLabel.mas_bottom).offset(kInner);
         }
+
         if (_publisherLabel.text.length == 6) {
             make.width.mas_equalTo(130);
         }else{

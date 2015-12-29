@@ -16,6 +16,7 @@
 #import "Helper.h"
 #import <Masonry.h>
 #import <UITableView+FDTemplateLayoutCell.h>
+#import <MBProgressHUD.h>
 
 #import "DetailNewsViewController.h"
 
@@ -30,7 +31,6 @@
 @implementation NewsViewController
 {
     NewsView *_newsTableView;
-    NSMutableDictionary *_cellHeightDic;
     NSMutableArray *_newsContentArray;
 }
 
@@ -41,11 +41,9 @@
     [super viewDidLoad];
     [self addNewsTableView];
     [self.navigationController.navigationBar lt_setBackgroundColor: [UIColor clearColor]];
-    
-    _cellHeightDic = [NSMutableDictionary new];
+
     _newsContentArray = [NSMutableArray new];
    
-    
     [ParseHTML parseNewsContentSuccess:^(NSMutableArray *newsContent) {
         _newsContentArray = newsContent;
         [_newsTableView.tableView reloadData];
@@ -84,10 +82,11 @@
     [_newsTableView.tableView registerClass: [NewsTableViewCell class] forCellReuseIdentifier: @"newsCell"];
     [_newsTableView.tableView registerClass: [UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier: @"headerView"];
     [_newsTableView layoutTableView: self.view];
-    
+
     _newsTableView.tableView.dataSource = self;
     _newsTableView.tableView.sectionFooterHeight = 0;
 }
+
 
 #pragma mark - UITableViewDataSource
 

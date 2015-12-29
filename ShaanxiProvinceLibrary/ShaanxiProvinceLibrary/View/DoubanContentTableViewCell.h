@@ -15,4 +15,6 @@
 - (void) titleCell: (DoubanBookModel *) bookmodel;
 - (void) summaryCell: (NSString *) content;
 
+@property (nonatomic, strong) UILabel *summaryLabel;
+
 @end
