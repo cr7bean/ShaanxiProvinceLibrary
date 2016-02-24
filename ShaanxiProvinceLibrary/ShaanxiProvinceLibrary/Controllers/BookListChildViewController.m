@@ -30,15 +30,9 @@
 @property (nonatomic, assign) NSUInteger firstHitNumber;
 @property (nonatomic, assign) NSUInteger lastHitNumber;
 
-
-
-
 @end
 
 @implementation BookListChildViewController
-{
-    
-}
 
 - (void) loadView
 {
@@ -47,13 +41,14 @@
     self.view.backgroundColor = [UIColor redColor];
 }
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"馆藏信息";
     [self assignWithDictionary: self.booklistDic];
-    
-    [self.tableView reloadData];
-    
+// 因为 tableView 用的是懒加载，上一个版本必须要添加如下代码。
+// 下午运行的时候第一次计算高度变成了0.5。手动刷新之后又正常。这次去掉以下代码又正常了。
+//    [self.tableView reloadData];
     [self updateNextPageBooklist];
     
 }
@@ -111,7 +106,6 @@
 - (void) configureCell: (BooklistTableViewCell *) cell atIndexPath: (NSIndexPath *) indexPath
 {
     BookListModel *bookModel = self.booklistArray[indexPath.row];
-
     cell.booklistModel = bookModel;
    
 }
@@ -209,7 +203,7 @@
 {
     __weak BookListChildViewController *weakSelf = self;
     [self.tableView addInfiniteScrollingWithActionHandler:^{
-        if (!(_lastHitNumber % 20)) {
+        if (_lastHitNumber < [_totalNumberString integerValue]) {
             [weakSelf nextPageBooklist];
         }else{
             [weakSelf.tableView.infiniteScrollingView stopAnimating];

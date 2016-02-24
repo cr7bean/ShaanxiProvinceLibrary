@@ -8,6 +8,12 @@
 
 #import "BookTagViewController.h"
 #import <CSStickyHeaderFlowLayout.h>
+#import "BookTagCollectionViewCell.h"
+#import "BookTagCollectionReusableView.h"
+#import <Masonry.h>
+#import "ParseHTML.h"
+#import "BookTagListViewController.h"
+
 
 @interface BookTagViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
@@ -16,12 +22,21 @@
 @end
 
 @implementation BookTagViewController
+{
+    NSMutableArray *_booktagsArray;
+    NSArray *_titleArray;
+}
 
 # pragma mark - lifeCycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    _booktagsArray = [NSMutableArray new];
+    _titleArray = @[@"我的收藏",@"图书销售榜单",@"文学",@"流行", @"文化", @"生活", @"经管", @"科技"];
+    _booktagsArray = [NSMutableArray arrayWithContentsOfFile: [[NSBundle mainBundle] pathForResource: @"tags" ofType: @"plist"]];
+    [self.collectionView reloadData];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -35,35 +50,120 @@
 - (UICollectionView *) collectionView
 {
     if (!_collectionView) {
-        _collectionView = [UICollectionView new];
+        CSStickyHeaderFlowLayout *layout = [CSStickyHeaderFlowLayout new];
+        layout.minimumLineSpacing = 15;
+        layout.minimumInteritemSpacing = 15;
+        layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+        
+        _collectionView = [[UICollectionView alloc] initWithFrame: CGRectZero collectionViewLayout: layout];
+        [self.view addSubview: _collectionView];
+        [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.mas_equalTo(0);
+            make.top.mas_equalTo(self.mas_topLayoutGuide);
+            make.bottom.mas_equalTo(self.mas_bottomLayoutGuide);
+            
+            
+        }];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
-        CSStickyHeaderFlowLayout *layout = [CSStickyHeaderFlowLayout new];
-        layout.sectionInset = UIEdgeInsetsMake(15, 15, 15, 15);
-        layout.minimumLineSpacing = 10;
-        layout.minimumInteritemSpacing = 10;
-        layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        _collectionView.collectionViewLayout = layout;
+    
+        _collectionView.backgroundColor = [UIColor whiteColor];
+        
+
+        [_collectionView registerClass: [BookTagCollectionViewCell class] forCellWithReuseIdentifier: @"cell"];
+        [_collectionView registerClass: [BookTagCollectionReusableView class] forSupplementaryViewOfKind: UICollectionElementKindSectionHeader withReuseIdentifier: @"header"];
     }
     return _collectionView;
 }
 
-# pragma mark - UICollectionView DataSource
+# pragma mark - UICollectionViewDataSource
 
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 10;
+    return _booktagsArray.count;
 }
 
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 10;
+    return [_booktagsArray[section] count];
+
 }
 
-//- (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return <#expression#>;
-//}
+- (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    BookTagCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: @"cell" forIndexPath: indexPath];
 
+    cell.bookTagName = [_booktagsArray[indexPath.section] objectAtIndex: indexPath.item];
+    return cell;
+}
+
+- (UICollectionReusableView *) collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    if (kind == UICollectionElementKindSectionHeader) {
+        BookTagCollectionReusableView *header = [collectionView dequeueReusableSupplementaryViewOfKind: UICollectionElementKindSectionHeader withReuseIdentifier: @"header" forIndexPath: indexPath];
+        header.backgroundColor = [UIColor colorWithRed:0.980 green:0.980 blue:0.980 alpha:1.0];
+        header.title = _titleArray[indexPath.section];
+        return header;
+    }
+    return nil;
+}
+
+# pragma mark - UICollectionViewDelegate
+
+- (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *tag = [_booktagsArray[indexPath.section] objectAtIndex: indexPath.item];
+    contentType type;
+    if ([tag isEqualToString: @"亚马逊图书"]) {
+        type = contentTypeAmazon;
+    }else if ([tag isEqualToString: @"京东图书"]){
+        type = contentTypeJD;
+    }else if ([tag isEqualToString: @"当当图书"]){
+        type = contentTypeDD;
+    }else{
+        type = contentTypeDoubanTag;
+    }
+    
+    BookTagListViewController *controller = [[BookTagListViewController alloc] initWithTagName: tag contentType: type];
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController: controller animated: YES];
+}
+
+- (void) collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    BookTagCollectionViewCell *cell = (BookTagCollectionViewCell*)[collectionView cellForItemAtIndexPath: indexPath];
+    cell.contentView.backgroundColor = [UIColor colorWithRed:0/255.0 green:175/255.0 blue:240/255.0 alpha:1];
+    cell.label.textColor = [UIColor whiteColor];
+}
+
+- (void) collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    BookTagCollectionViewCell *cell = (BookTagCollectionViewCell*)[collectionView cellForItemAtIndexPath: indexPath];
+    cell.contentView.backgroundColor = nil;
+    cell.label.textColor = nil;
+}
+
+# pragma mark - UICollectionViewDelegateFlowLayout
+
+- (CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+
+    NSString *tag = [_booktagsArray[indexPath.section] objectAtIndex: indexPath.item];
+    return [tag sizeWithAttributes: @{NSFontAttributeName: [UIFont systemFontOfSize: 16]}];
+}
+
+- (CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+{
+    return CGSizeMake(200, 30);
+}
+
+- (UIEdgeInsets) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    if (![_booktagsArray[section] count]) {
+        return UIEdgeInsetsMake(0, 0, 0, 0);
+    }else{
+        return  UIEdgeInsetsMake(15, 15, 15, 25);
+    }
+}
 
 @end

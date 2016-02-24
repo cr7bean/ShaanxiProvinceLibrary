@@ -1,4 +1,4 @@
-//
+                                                                                                                                                                                                                                                             //
 //  ParseHTML.m
 //  ShaanxiProvinceLibrary
 //
@@ -549,14 +549,303 @@
    
 }
 
+# pragma mark - bookTags
+
++ (void) bookTags: (NSString *) urlString
+         successs: (void(^)(NSMutableArray *tagsArray)) success
+          failure: (requestFailurerBlock) failure
+{
+    NSMutableArray *totalTagsArray = [NSMutableArray new];
+    
+    
+    [self requestWithUrl: urlString paraments: nil methodType: requestMethodTypeGet success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        TFHpple *parse = [TFHpple hppleWithHTMLData: responseObject];
+        NSArray *nodes = [parse searchWithXPathQuery: @"//table[@class='tagCol']/tbody"];
+        for (TFHppleElement *element in nodes) {
+            TFHpple *tagParse = [TFHpple hppleWithHTMLData: [element.raw dataUsingEncoding: NSUTF8StringEncoding]];
+            NSArray *tagNodes = [tagParse searchWithXPathQuery: @"//a[@class='tag']"];
+            NSMutableArray *tags = [NSMutableArray new];
+            for (TFHppleElement *tag in tagNodes) {
+               
+                NSString *tagName = [tag.children[0] content];
+                [tags addObject: tagName];
+            }
+            [totalTagsArray addObject: tags];
+        }
+        success(totalTagsArray);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failure(task, error);
+    }];
+}
+
+# pragma mark - searching Content with tag
+
++ (void) searchBookWithTagInUrl: (NSString *) urlString
+                       paraments: (NSDictionary *) paraments
+                       successs: (void(^)(NSMutableArray *bookArray)) success
+                        failure: (requestFailurerBlock) failure
+{
+    NSMutableArray *bookArray = [NSMutableArray new];
+    
+    [self requestWithUrl: urlString paraments: paraments methodType: requestMethodTypePost success:^(NSURLSessionDataTask *task, id responseObject) {
+
+        NSString *htmlString = [[NSString alloc] initWithData: responseObject encoding: NSUTF8StringEncoding];
+        if (!htmlString) {
+            responseObject = [Helper UTF8Data: responseObject];
+        }
+        [self searchBookInData: responseObject addInArray: bookArray];
+        success(bookArray);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failure(task, error);
+    }];
+}
 
 
++ (void) searchBookInData: (NSData *) responseObject
+               addInArray: (NSMutableArray *) bookArray
+{
+    TFHpple *parse = [TFHpple hppleWithHTMLData: responseObject];
+    NSArray *nodes = [parse searchWithXPathQuery: @"//li[@class='subject-item']"];
+    if (nodes.count) {
+        
+        for (TFHppleElement *element in nodes) {
+            TFHpple *bookParse = [TFHpple hppleWithHTMLData: [element.raw dataUsingEncoding: NSUTF8StringEncoding]];
+            NSString *xpath = @"//img|//h2/a|//div[@class='pub']|//span[@class='pl']";
+            NSArray *bookNodes = [bookParse searchWithXPathQuery: xpath];
+            NSArray *ratingNodes = [bookParse searchWithXPathQuery: @"//span[@class='rating_nums']|//p"];
+            DoubanBookModel *bookModel = [DoubanBookModel new];
+            
+            [self configureBookContent: bookNodes ratingArray: ratingNodes withModel:bookModel];
+            [bookArray addObject: bookModel];
+            
+//            NSLog(@"%@\n", bookModel.title);
+        }
+    }
+}
 
 
++ (void) configureBookContent: (NSArray *) bookNodes
+                  ratingArray: (NSArray *) ratingNodes
+             withModel: (DoubanBookModel *) bookModel
+{
+    NSUInteger bookCount = bookNodes.count;
+    if (bookCount == 4) {
+        bookModel.imageString = [bookNodes[0] objectForKey: @"src"];
+        bookModel.imageString = [bookModel.imageString stringByReplacingOccurrencesOfString: @"mpic" withString: @"lpic"];
+        bookModel.title = [bookNodes[1] objectForKey: @"title"];
+        bookModel.rating = [Helper deleteSpaceAndCR: [bookNodes[3] text]];
+        
+        NSString *bookIdString = [bookNodes[1] objectForKey: @"href"];
+        bookIdString = [bookIdString stringByReplacingOccurrencesOfString: @"http://book.douban.com/subject/" withString: @""];
+        NSRange range = [bookIdString rangeOfString: @"/"];
+        bookModel.idString = [bookIdString substringToIndex: range.location];
+        
+        NSString *basicInfo = [bookNodes[2] text];
+        basicInfo = [Helper deleteSpaceAndCR: basicInfo];
+        NSArray *basicInfoArray = [basicInfo componentsSeparatedByString: @"/"];
+        NSUInteger index = basicInfoArray.count;
+        if (index == 4 || index >= 5) {
+            if (index == 4) {
+                bookModel.author = basicInfoArray[0];
+            }else{
+                NSString *translator = [Helper deleteSpaceAndCR: basicInfoArray[1]];
+                bookModel.author = [basicInfoArray[0] stringByAppendingFormat: @"(%@)", translator];
+            }
+            bookModel.publisher = basicInfoArray[index - 3];
+            bookModel.publisher = [Helper deleteSpaceAndCR: bookModel.publisher];
+            bookModel.pubdate = basicInfoArray[index - 2];
+            bookModel.pubdate = [Helper deleteSpaceAndCR: bookModel.pubdate];
+            bookModel.price = basicInfoArray[index - 1];
+        }
+    }
+    
+    NSUInteger ratingCount = ratingNodes.count;
+    if (ratingCount == 1) {
+        if ([[ratingNodes[0] text] length] > 5) {
+            bookModel.summary = [ratingNodes[0] text];
+        }else{
+            bookModel.rating = [[ratingNodes[0] text] stringByAppendingString: bookModel.rating];
+        }
+    }else if (ratingCount == 2){
+        bookModel.rating = [[ratingNodes[0] text] stringByAppendingString: bookModel.rating];
+        bookModel.summary = [ratingNodes[1] text];
+    }
+    bookModel.summary = [Helper deleteSpaceAndCR: bookModel.summary];
+    
+}
 
 
+# pragma mark - Amazon book
+
++ (void) amazonBooksWithUrl: (NSString *) urlString
+                  paraments: (NSDictionary *) paraments
+                   successs: (void(^)(NSMutableArray *amazonBookArray, NSUInteger pageNumber)) success
+                    failure: (requestFailurerBlock) failure
+{
+    [self requestWithUrl: urlString paraments: paraments methodType: requestMethodTypePost success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        NSMutableArray *bookArray = [NSMutableArray new];
+        NSUInteger pageCount = 0;
+        
+        TFHpple *parse = [TFHpple hppleWithHTMLData: responseObject];
+        
+        //总页码数
+        NSArray *pageNodes = [parse searchWithXPathQuery: @"//li[@class='zg_page']"];
+        pageCount = pageNodes.count + 1;
+        
+        //书籍列表,有些书没有评分，所以把评分这一项单独来写
+        NSArray *nodes = [parse searchWithXPathQuery: @"//div[@class='zg_item_normal']"];
+        for (TFHppleElement *element in nodes) {
+            TFHpple *bookParse = [TFHpple hppleWithHTMLData: [element.raw dataUsingEncoding: NSUTF8StringEncoding]];
+            NSString *xpath = @"//img|//div[@class='zg_byline']|//div[@class='zg_bindingPlatform']|//strong[@class='price']";
+            NSArray *bookNodes = [bookParse searchWithXPathQuery: xpath];
+            DoubanBookModel *bookModel = [DoubanBookModel new];
+            if (bookNodes.count == 4) {
+                bookModel.imageString = [bookNodes[0] objectForKey: @"src"];
+                bookModel.title = [bookNodes[0] objectForKey: @"title"];
+                bookModel.author = [[Helper deleteSpaceAndCR: [bookNodes[1] text]] stringByReplacingOccurrencesOfString: @"~" withString: @""];
+//                bookModel.rating = [bookNodes[2] text];
+                bookModel.binding = [bookNodes[2] text];
+                bookModel.price = [bookNodes[3] text];
+                
+                NSRange range = [bookModel.title rangeOfString: @"("];
+                if (range.length) {
+                    bookModel.shortTitle = [bookModel.title substringToIndex: range.location];
+                }else{
+                    bookModel.shortTitle = bookModel.title;
+                }
+                
+            }
+            
+            NSArray *ratingNodes = [bookParse searchWithXPathQuery: @"//span[@class='a-icon-alt']"];
+            if (ratingNodes.count) {
+                bookModel.rating = [ratingNodes[0] text];
+            }
+            
+            NSLog(@"%@", bookModel.title);
+            [bookArray addObject: bookModel];
+        }
+        success(bookArray, pageCount);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failure(task, error);
+    }];
+}
 
 
+# pragma mark - JDBook
 
++ (void) JDBooksWithUrl: (NSString *) urlString
+               successs: (void(^)(NSMutableArray *JDBookArray, NSUInteger pageNumber)) success
+                failure: (requestFailurerBlock) failure
+{
+    [self requestWithUrl: urlString paraments: nil methodType: requestMethodTypeGet
+                 success:^(NSURLSessionDataTask *task, id responseObject) {
+                     
+        NSMutableArray *bookArray = [NSMutableArray new];
+        NSUInteger pageCount = 0;
+
+        TFHpple *parse = [TFHpple hppleWithHTMLData: responseObject];
+        NSArray *nodes = [parse searchWithXPathQuery: @"//ul[@class='clearfix']/li"];
+        for (TFHppleElement *element in nodes) {
+            
+            TFHpple *bookParse = [TFHpple hppleWithHTMLData: [element.raw dataUsingEncoding: NSUTF8StringEncoding]];
+            NSString *xpath = @"//img|//div[@class='p-detail']/a|//div[@class='p-detail']/dl[2]/dd/a";
+            NSArray *bookNodes = [bookParse searchWithXPathQuery: xpath];
+            NSArray *titleNodes = [bookParse searchWithXPathQuery: @"//div[@class='p-detail']/dl[1]/dd//text()"];
+            DoubanBookModel *bookModel = [DoubanBookModel new];
+            
+            // 封面图片，书名，出版社，
+            if (bookNodes.count == 3) {
+                
+                //可以把图片链接中的 n3 换为 n1 则为高清图片
+                bookModel.imageString = [bookNodes[0] objectForKey: @"data-lazy-img"];
+                bookModel.title = [bookNodes[1] text];
+                bookModel.publisher = [bookNodes[2] text];
+                
+                //去掉标题中的括号
+                NSRange range = [bookModel.title rangeOfString: @"("];
+                if (range.length) {
+                    bookModel.shortTitle = [bookModel.title substringToIndex: range.location];
+                }else{
+                    bookModel.shortTitle = bookModel.title;
+                }
+            }
+            
+            //拼接作者和翻译者
+            __block NSMutableString *titleString;
+            if (titleNodes.count) {
+                [titleNodes enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    NSString *subTitle = [Helper deleteSpaceAndCR: [obj content]];
+                    if ([subTitle isEqualToString: @"著"]) {
+                        subTitle = @" 著 ";
+                    }
+                    if ([subTitle isEqualToString: @"译"]) {
+                        subTitle = @" 译 ";
+                    }
+                    if (subTitle) {
+                        if (idx == 0) {
+                            titleString = [subTitle mutableCopy];
+                        }else{
+                            [titleString appendString: subTitle];
+                        }
+                    }
+                }];
+                bookModel.author = [titleString mutableCopy];
+            }
+            [bookArray addObject: bookModel];
+        }
+        
+        success(bookArray, pageCount);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failure(task, error);
+    }];
+}
+
+
+# pragma mark - DDBook
+
+//当当书籍
++ (void) DDBooksWithUrl: (NSString *) urlString
+               successs: (void(^)(NSMutableArray *DDBookArray, NSUInteger pageNumber)) success
+                failure: (requestFailurerBlock) failure
+{
+    [self requestWithUrl: urlString paraments: nil methodType: requestMethodTypeGet success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        NSMutableArray *bookArray = [NSMutableArray new];
+        NSUInteger pageCount = 0;
+        
+        TFHpple *parse = [TFHpple hppleWithHTMLData: responseObject];
+        NSArray *nodes = [parse searchWithXPathQuery: @"//ul[@class='bang_list clearfix bang_list_mode']/li"];
+        for (TFHppleElement *element in nodes) {
+            TFHpple *bookParse = [TFHpple hppleWithHTMLData: [element.raw dataUsingEncoding: NSUTF8StringEncoding]];
+            NSString *xpath = @"//div[@class='pic']//img|//div[@class='publisher_info']//a[1]|//span[@class='price_n'][1]";
+            NSArray *bookNodes = [bookParse searchWithXPathQuery: xpath];
+            
+            DoubanBookModel *bookModel = [DoubanBookModel new];
+            if (bookNodes.count >= 4) {
+                bookModel.imageString = [bookNodes[0] objectForKey: @"src"];
+                bookModel.title = [bookNodes[0] objectForKey: @"title"];
+                bookModel.author = [bookNodes[1] objectForKey: @"title"];
+                bookModel.publisher = [bookNodes[2] text];
+                bookModel.price = [bookNodes[3] text];
+                
+                //去掉标题中的括号
+                NSRange range = [bookModel.title rangeOfString: @"（"];
+                if (range.length) {
+                    bookModel.shortTitle = [bookModel.title substringToIndex: range.location];
+                }else{
+                    bookModel.shortTitle = bookModel.title;
+                }
+                
+                [bookArray addObject: bookModel];
+            }
+        }
+        success(bookArray, pageCount);
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failure(task, error);
+    }];
+}
 
 @end

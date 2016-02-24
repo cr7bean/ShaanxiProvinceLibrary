@@ -105,6 +105,8 @@
             break;
         }
         case transtionTypeListController: {
+            self.DoubanTableView.hidden = YES;
+            self.libraryTableView.hidden = NO;
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo: self.view animated: YES];
             hud.yOffset = -32;
             hud.labelText = @"加载中...";
@@ -402,7 +404,7 @@
                 [_DoubanContentArray replaceObjectAtIndex: index withObject: _shortContent[index]];
             }
             [_lengthState replaceObjectAtIndex: index withObject: [NSNumber numberWithBool: !isLength]];
-            NSLog(@"第%lu节的状态是%d",(long)indexPath.section, isLength);
+            
             [self.DoubanTableView reloadSections: [NSIndexSet indexSetWithIndex: indexPath.section] withRowAnimation: UITableViewRowAnimationAutomatic];
         }
     }

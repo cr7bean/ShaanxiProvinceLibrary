@@ -58,4 +58,26 @@ typedef void(^requestFailurerBlock)(NSURLSessionDataTask *task, NSError *error);
                        success: (void(^)(DoubanBookModel *book)) success
                        failure: (requestFailurerBlock) failure;
 
++ (void) bookTags: (NSString *) urlString
+         successs: (void(^)(NSMutableArray *tagsArray)) success
+          failure: (requestFailurerBlock) failure;
+
++ (void) searchBookWithTagInUrl: (NSString *) urlString
+                      paraments: (NSDictionary *) paraments
+                       successs: (void(^)(NSMutableArray *bookArray)) success
+                        failure: (requestFailurerBlock) failure;
+
++ (void) amazonBooksWithUrl: (NSString *) urlString
+                  paraments: (NSDictionary *) paraments
+                   successs: (void(^)(NSMutableArray *amazonBookArray, NSUInteger pageNumber)) success
+                    failure: (requestFailurerBlock) failure;
+
++ (void) JDBooksWithUrl: (NSString *) urlString
+               successs: (void(^)(NSMutableArray *JDBookArray, NSUInteger pageNumber)) success
+                failure: (requestFailurerBlock) failure;
+
++ (void) DDBooksWithUrl: (NSString *) urlString
+               successs: (void(^)(NSMutableArray *DDBookArray, NSUInteger pageNumber)) success
+                failure: (requestFailurerBlock) failure;
+
 @end

@@ -127,7 +127,7 @@
             </objects>
             <point key="canvasLocation" x="402" y="-1010"/>
         </scene>
-        <!--Book Tag View Controller-->
+        <!--书城-->
         <scene sceneID="5Uh-Km-xIo">
             <objects>
                 <viewController id="M3b-Rk-bzz" customClass="BookTagViewController" sceneMemberID="viewController">
@@ -140,7 +140,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="mll-5M-0Hp"/>
+                    <navigationItem key="navigationItem" title="书城" id="mll-5M-0Hp"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lgp-yU-khD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -261,6 +261,9 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="QG9-50-EUi">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

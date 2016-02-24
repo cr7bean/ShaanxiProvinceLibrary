@@ -10,18 +10,22 @@
 		FC4413043EDDD1D8CB54F6D8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BC332BFDBCCAACB72850117 /* libPods.a */; };
 		FD0828521C0749CA006669BF /* DetailNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD0828511C0749CA006669BF /* DetailNewsViewController.m */; settings = {ASSET_TAGS = (); }; };
 		FD1A32241BF8C68E00A8B6A7 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1A32231BF8C68E00A8B6A7 /* NewsViewController.m */; };
+		FD4195521C4D1CEF007D442B /* BookTagListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4195511C4D1CEF007D442B /* BookTagListViewController.m */; settings = {ASSET_TAGS = (); }; };
 		FD4AF02D1C1C679F00F2D7D0 /* ShowBooksMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4AF02C1C1C679F00F2D7D0 /* ShowBooksMainViewController.m */; settings = {ASSET_TAGS = (); }; };
 		FD4F589A1C32D83D0080C283 /* BookTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4F58991C32D83D0080C283 /* BookTagViewController.m */; settings = {ASSET_TAGS = (); }; };
 		FD5853461C0C862500F4C5AF /* BookListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5853451C0C862500F4C5AF /* BookListModel.m */; settings = {ASSET_TAGS = (); }; };
 		FD5853491C0C86A300F4C5AF /* RecommendedBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5853481C0C86A300F4C5AF /* RecommendedBookModel.m */; settings = {ASSET_TAGS = (); }; };
 		FD6B6AD71C2BCCC100EE517C /* DoubanBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6B6AD61C2BCCC100EE517C /* DoubanBookModel.m */; settings = {ASSET_TAGS = (); }; };
 		FD6B6ADA1C2C38C600EE517C /* DoubanContentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6B6AD91C2C38C600EE517C /* DoubanContentTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		FDB434A91C3AAB500040DDE1 /* tags.plist in Resources */ = {isa = PBXBuildFile; fileRef = FDB434A81C3AAB500040DDE1 /* tags.plist */; settings = {ASSET_TAGS = (); }; };
 		FDE50B731C1E88D0001683E2 /* BooklistTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE50B721C1E88D0001683E2 /* BooklistTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		FDEDC5C01C26CEE300B93B9C /* BookContentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEDC5BF1C26CEE300B93B9C /* BookContentTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		FDEE5BE41BFCAA7C00AA0171 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEE5BE31BFCAA7C00AA0171 /* Helper.m */; settings = {ASSET_TAGS = (); }; };
 		FDF287131C1D4A6900A48ACF /* BookListChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF287121C1D4A6900A48ACF /* BookListChildViewController.m */; settings = {ASSET_TAGS = (); }; };
 		FDF287161C1D4AA600A48ACF /* BookContentChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF287151C1D4AA600A48ACF /* BookContentChildViewController.m */; settings = {ASSET_TAGS = (); }; };
 		FDF287191C1D7DB000A48ACF /* RecommendBookChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF287181C1D7DB000A48ACF /* RecommendBookChildViewController.m */; settings = {ASSET_TAGS = (); }; };
+		FDF2C8B61C33624B0071E241 /* BookTagCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF2C8B51C33624B0071E241 /* BookTagCollectionViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		FDF2C8B91C3369610071E241 /* BookTagCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF2C8B81C3369610071E241 /* BookTagCollectionReusableView.m */; settings = {ASSET_TAGS = (); }; };
 		FDF4D3B81C019C6B00C27381 /* NewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF4D3B71C019C6B00C27381 /* NewsTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		FDF4D3BB1C01A5E400C27381 /* NewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF4D3BA1C01A5E400C27381 /* NewsModel.m */; settings = {ASSET_TAGS = (); }; };
 		FDF769741BFD56E300734ECA /* ParseHTML.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF769731BFD56E300734ECA /* ParseHTML.m */; settings = {ASSET_TAGS = (); }; };
@@ -55,6 +59,8 @@
 		FD0828511C0749CA006669BF /* DetailNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailNewsViewController.m; path = Controllers/DetailNewsViewController.m; sourceTree = "<group>"; };
 		FD1A32221BF8C68E00A8B6A7 /* NewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsViewController.h; path = Controllers/NewsViewController.h; sourceTree = "<group>"; };
 		FD1A32231BF8C68E00A8B6A7 /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsViewController.m; path = Controllers/NewsViewController.m; sourceTree = "<group>"; };
+		FD4195501C4D1CEF007D442B /* BookTagListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookTagListViewController.h; path = Controllers/BookTagListViewController.h; sourceTree = "<group>"; };
+		FD4195511C4D1CEF007D442B /* BookTagListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookTagListViewController.m; path = Controllers/BookTagListViewController.m; sourceTree = "<group>"; };
 		FD4AF02B1C1C679F00F2D7D0 /* ShowBooksMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShowBooksMainViewController.h; path = Controllers/ShowBooksMainViewController.h; sourceTree = "<group>"; };
 		FD4AF02C1C1C679F00F2D7D0 /* ShowBooksMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShowBooksMainViewController.m; path = Controllers/ShowBooksMainViewController.m; sourceTree = "<group>"; };
 		FD4F58981C32D83D0080C283 /* BookTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookTagViewController.h; path = Controllers/BookTagViewController.h; sourceTree = "<group>"; };
@@ -67,6 +73,7 @@
 		FD6B6AD61C2BCCC100EE517C /* DoubanBookModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DoubanBookModel.m; path = Model/DoubanBookModel.m; sourceTree = "<group>"; };
 		FD6B6AD81C2C38C600EE517C /* DoubanContentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DoubanContentTableViewCell.h; path = View/DoubanContentTableViewCell.h; sourceTree = "<group>"; };
 		FD6B6AD91C2C38C600EE517C /* DoubanContentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DoubanContentTableViewCell.m; path = View/DoubanContentTableViewCell.m; sourceTree = "<group>"; };
+		FDB434A81C3AAB500040DDE1 /* tags.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = tags.plist; path = Resource/tags.plist; sourceTree = "<group>"; };
 		FDE50B711C1E88D0001683E2 /* BooklistTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BooklistTableViewCell.h; path = View/BooklistTableViewCell.h; sourceTree = "<group>"; };
 		FDE50B721C1E88D0001683E2 /* BooklistTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BooklistTableViewCell.m; path = View/BooklistTableViewCell.m; sourceTree = "<group>"; };
 		FDEDC5BE1C26CEE300B93B9C /* BookContentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookContentTableViewCell.h; path = View/BookContentTableViewCell.h; sourceTree = "<group>"; };
@@ -79,6 +86,10 @@
 		FDF287151C1D4AA600A48ACF /* BookContentChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookContentChildViewController.m; path = Controllers/BookContentChildViewController.m; sourceTree = "<group>"; };
 		FDF287171C1D7DB000A48ACF /* RecommendBookChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecommendBookChildViewController.h; path = Controllers/RecommendBookChildViewController.h; sourceTree = "<group>"; };
 		FDF287181C1D7DB000A48ACF /* RecommendBookChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecommendBookChildViewController.m; path = Controllers/RecommendBookChildViewController.m; sourceTree = "<group>"; };
+		FDF2C8B41C33624B0071E241 /* BookTagCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookTagCollectionViewCell.h; path = View/BookTagCollectionViewCell.h; sourceTree = "<group>"; };
+		FDF2C8B51C33624B0071E241 /* BookTagCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookTagCollectionViewCell.m; path = View/BookTagCollectionViewCell.m; sourceTree = "<group>"; };
+		FDF2C8B71C3369610071E241 /* BookTagCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookTagCollectionReusableView.h; path = View/BookTagCollectionReusableView.h; sourceTree = "<group>"; };
+		FDF2C8B81C3369610071E241 /* BookTagCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookTagCollectionReusableView.m; path = View/BookTagCollectionReusableView.m; sourceTree = "<group>"; };
 		FDF4D3B61C019C6B00C27381 /* NewsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsTableViewCell.h; path = View/NewsTableViewCell.h; sourceTree = "<group>"; };
 		FDF4D3B71C019C6B00C27381 /* NewsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsTableViewCell.m; path = View/NewsTableViewCell.m; sourceTree = "<group>"; };
 		FDF4D3B91C01A5E400C27381 /* NewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsModel.h; path = Model/NewsModel.h; sourceTree = "<group>"; };
@@ -174,16 +185,9 @@
 		FD1A321F1BF8C57A00A8B6A7 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				FDFBB88D1BFB57E30072CC8A /* NewsView.h */,
-				FDFBB88E1BFB57E30072CC8A /* NewsView.m */,
-				FDF4D3B61C019C6B00C27381 /* NewsTableViewCell.h */,
-				FDF4D3B71C019C6B00C27381 /* NewsTableViewCell.m */,
-				FDE50B711C1E88D0001683E2 /* BooklistTableViewCell.h */,
-				FDE50B721C1E88D0001683E2 /* BooklistTableViewCell.m */,
-				FDEDC5BE1C26CEE300B93B9C /* BookContentTableViewCell.h */,
-				FDEDC5BF1C26CEE300B93B9C /* BookContentTableViewCell.m */,
-				FD6B6AD81C2C38C600EE517C /* DoubanContentTableViewCell.h */,
-				FD6B6AD91C2C38C600EE517C /* DoubanContentTableViewCell.m */,
+				FDF2C8B31C3361840071E241 /* BookTag */,
+				FDF2C8B21C33616F0071E241 /* SearchBooks */,
+				FDF2C8B11C33615D0071E241 /* News */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -211,6 +215,8 @@
 			children = (
 				FD4F58981C32D83D0080C283 /* BookTagViewController.h */,
 				FD4F58991C32D83D0080C283 /* BookTagViewController.m */,
+				FD4195501C4D1CEF007D442B /* BookTagListViewController.h */,
+				FD4195511C4D1CEF007D442B /* BookTagListViewController.m */,
 			);
 			name = bookTag;
 			sourceTree = "<group>";
@@ -220,6 +226,49 @@
 			children = (
 			);
 			name = Suggestion;
+			sourceTree = "<group>";
+		};
+		FDF2C8B11C33615D0071E241 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				FDFBB88D1BFB57E30072CC8A /* NewsView.h */,
+				FDFBB88E1BFB57E30072CC8A /* NewsView.m */,
+				FDF4D3B61C019C6B00C27381 /* NewsTableViewCell.h */,
+				FDF4D3B71C019C6B00C27381 /* NewsTableViewCell.m */,
+			);
+			name = News;
+			sourceTree = "<group>";
+		};
+		FDF2C8B21C33616F0071E241 /* SearchBooks */ = {
+			isa = PBXGroup;
+			children = (
+				FDE50B711C1E88D0001683E2 /* BooklistTableViewCell.h */,
+				FDE50B721C1E88D0001683E2 /* BooklistTableViewCell.m */,
+				FDEDC5BE1C26CEE300B93B9C /* BookContentTableViewCell.h */,
+				FDEDC5BF1C26CEE300B93B9C /* BookContentTableViewCell.m */,
+				FD6B6AD81C2C38C600EE517C /* DoubanContentTableViewCell.h */,
+				FD6B6AD91C2C38C600EE517C /* DoubanContentTableViewCell.m */,
+			);
+			name = SearchBooks;
+			sourceTree = "<group>";
+		};
+		FDF2C8B31C3361840071E241 /* BookTag */ = {
+			isa = PBXGroup;
+			children = (
+				FDF2C8B41C33624B0071E241 /* BookTagCollectionViewCell.h */,
+				FDF2C8B51C33624B0071E241 /* BookTagCollectionViewCell.m */,
+				FDF2C8B71C3369610071E241 /* BookTagCollectionReusableView.h */,
+				FDF2C8B81C3369610071E241 /* BookTagCollectionReusableView.m */,
+			);
+			name = BookTag;
+			sourceTree = "<group>";
+		};
+		FDF907F61C355AE400ACC2DA /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				FDB434A81C3AAB500040DDE1 /* tags.plist */,
+			);
+			name = Resource;
 			sourceTree = "<group>";
 		};
 		FDF9CCC31BF8708B0070907D = {
@@ -255,6 +304,7 @@
 				FDF9CCD91BF8708B0070907D /* Main.storyboard */,
 				FDF9CCDC1BF8708B0070907D /* Images.xcassets */,
 				FDF9CCDE1BF8708C0070907D /* LaunchScreen.xib */,
+				FDF907F61C355AE400ACC2DA /* Resource */,
 				FDF9CCCF1BF8708B0070907D /* Supporting Files */,
 			);
 			path = ShaanxiProvinceLibrary;
@@ -399,6 +449,7 @@
 				FDF9CCDB1BF8708B0070907D /* Main.storyboard in Resources */,
 				FDF9CCE01BF8708C0070907D /* LaunchScreen.xib in Resources */,
 				FDF9CCDD1BF8708B0070907D /* Images.xcassets in Resources */,
+				FDB434A91C3AAB500040DDE1 /* tags.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,12 +504,15 @@
 				FDFBB8921BFB5AF50072CC8A /* MottoModel.m in Sources */,
 				FDEE5BE41BFCAA7C00AA0171 /* Helper.m in Sources */,
 				FDEDC5C01C26CEE300B93B9C /* BookContentTableViewCell.m in Sources */,
+				FDF2C8B61C33624B0071E241 /* BookTagCollectionViewCell.m in Sources */,
+				FD4195521C4D1CEF007D442B /* BookTagListViewController.m in Sources */,
 				FDF287131C1D4A6900A48ACF /* BookListChildViewController.m in Sources */,
 				FDF769741BFD56E300734ECA /* ParseHTML.m in Sources */,
 				FDF287191C1D7DB000A48ACF /* RecommendBookChildViewController.m in Sources */,
 				FD6B6ADA1C2C38C600EE517C /* DoubanContentTableViewCell.m in Sources */,
 				FD1A32241BF8C68E00A8B6A7 /* NewsViewController.m in Sources */,
 				FDF4D3BB1C01A5E400C27381 /* NewsModel.m in Sources */,
+				FDF2C8B91C3369610071E241 /* BookTagCollectionReusableView.m in Sources */,
 				FDE50B731C1E88D0001683E2 /* BooklistTableViewCell.m in Sources */,
 				FDFBB88F1BFB57E30072CC8A /* NewsView.m in Sources */,
 				FDF9CCD51BF8708B0070907D /* AppDelegate.m in Sources */,

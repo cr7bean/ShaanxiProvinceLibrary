@@ -14,6 +14,7 @@
 
 - (void) titleCell: (DoubanBookModel *) bookmodel;
 - (void) summaryCell: (NSString *) content;
+- (void) configurateBookTagListCell: (DoubanBookModel *) bookModel;
 
 @property (nonatomic, strong) UILabel *summaryLabel;
 

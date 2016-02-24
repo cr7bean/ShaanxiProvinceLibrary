@@ -33,6 +33,8 @@
 + (NSString *) addSpace: (NSString *) string
              withNumber: (NSUInteger) number;
 
++ (NSData *)UTF8Data: (NSData *) data;
+
 + (UIColor *) setColorWithRed: (NSUInteger) red
                        green: (NSUInteger) green
                         blue: (NSUInteger) blue;

@@ -11,11 +11,14 @@
 #import "DoubanBookModel.h"
 #import <Masonry.h>
 #import <UIImageView+AFNetworking.h>
+#import <UIView+FDCollapsibleConstraints.h>
+
 
 static const CGFloat KTopAndBottom = 15.0f;
 static const CGFloat kLeft = 15.0f;
 static const CGFloat kRight = 10.0f;
 static const CGFloat kInner = 10.0f;
+
 
 @implementation DoubanContentTableViewCell
 {
@@ -33,7 +36,7 @@ static const CGFloat kInner = 10.0f;
     UIImageView *_coverImage;
     
 //    UILabel *_summaryLabel;
-    UITextView *_summaryTextView;
+    
 
 }
 
@@ -44,9 +47,16 @@ static const CGFloat kInner = 10.0f;
     self = [super initWithStyle: style reuseIdentifier: reuseIdentifier];
     if (self) {
         [self initSubView];
+        self.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
     }
     return self;
 }
+
+- (UIEdgeInsets) layoutMargins
+{
+    return UIEdgeInsetsZero;
+}
+
 
 - (void) initSubView
 {
@@ -65,7 +75,7 @@ static const CGFloat kInner = 10.0f;
     _coverImage = [UIImageView new];
     
     _summaryLabel = [UILabel new];
-    _summaryTextView = [UITextView new];
+    
     
     _authorLabel.font = [UIFont systemFontOfSize: 13];
     _publisherLabel.font = [UIFont systemFontOfSize: 13];
@@ -78,9 +88,7 @@ static const CGFloat kInner = 10.0f;
     
     _titleLabel.preferredMaxLayoutWidth = maxWidth;
     _summaryLabel.preferredMaxLayoutWidth = maxWidth;
-    _summaryTextView.font = [UIFont systemFontOfSize: 15];
-    _summaryTextView.editable = NO;
-    
+   
     [Helper configurateLabel: _titleLabel
                    textColor: [UIColor blackColor]
                         font: [UIFont boldSystemFontOfSize: 17]
@@ -95,7 +103,6 @@ static const CGFloat kInner = 10.0f;
     
     [self.contentView addSubview: _summaryLabel];
     [self.contentView addSubview: _titleView];
-    [self.contentView addSubview: _summaryTextView];
     
     
     [_titleView addSubview: _titleLabel];
@@ -213,7 +220,7 @@ static const CGFloat kInner = 10.0f;
         } else {
             make.top.mas_equalTo(_titleLabel.mas_bottom).offset(kInner);
         }
-
+    
         if (_publisherLabel.text.length == 6) {
             make.width.mas_equalTo(130);
         }else{
@@ -258,6 +265,92 @@ static const CGFloat kInner = 10.0f;
 }
 
 
+# pragma mark - bookTagListCell
 
+- (void) configurateBookTagListCell: (DoubanBookModel *) bookModel
+{
+    static CGFloat kHorizontalInner = 10.0f;
+    static CGFloat kVerticalInner = 5.0f;
+    
+    //setTextColor
+    _authorLabel.textColor = [UIColor grayColor];
+    _publisherLabel.textColor = [UIColor grayColor];
+    _pubdateLabel.textColor = [UIColor grayColor];
+    _summaryLabel.textColor = [UIColor grayColor];
+    _summaryLabel.font = [UIFont systemFontOfSize: 11];
+    
+    //setMaxWidth
+    CGFloat maxWidth = [UIScreen mainScreen].bounds.size.width - 112.5 - kLeft - kInner - kRight;
+    _titleLabel.preferredMaxLayoutWidth = maxWidth;
+    _authorLabel.preferredMaxLayoutWidth = maxWidth;
+    _publisherLabel.preferredMaxLayoutWidth = maxWidth;
+    _summaryLabel.preferredMaxLayoutWidth = maxWidth;
+    
+    _authorLabel.numberOfLines = 0;
+    _publisherLabel.numberOfLines = 0;
+    
+    //setContent
+    [_coverImage setImageWithURL: [NSURL URLWithString: bookModel.imageString]];
+    _titleLabel.text = bookModel.title;
+    _authorLabel.text = bookModel.author;
+    _publisherLabel.text = bookModel.publisher;
+    _pubdateLabel.text = bookModel.pubdate;
+    _summaryLabel.text = bookModel.summary;
+
+    //setConstraints
+    [_titleView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.contentView);
+    }];
+    
+    [_coverImage mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(KTopAndBottom);
+        make.left.mas_equalTo(kLeft);
+        make.width.mas_equalTo(112.5);
+        make.height.mas_equalTo(160);
+        make.bottom.mas_equalTo(-KTopAndBottom);
+    }];
+    [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(KTopAndBottom);
+        make.left.equalTo(_coverImage.mas_right).offset(kHorizontalInner);
+        make.right.mas_equalTo(-kRight);
+    }];
+    [_authorLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_titleLabel.mas_bottom).offset(kVerticalInner);
+        make.left.equalTo(_coverImage.mas_right).offset(kHorizontalInner);
+        make.right.mas_equalTo(-kRight).priority(749);
+    }];
+    [_publisherLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(_authorLabel.mas_bottom).offset(kVerticalInner);
+        make.left.equalTo(_coverImage.mas_right).offset(kHorizontalInner);
+        make.right.mas_equalTo(-kRight);
+        make.bottom.mas_equalTo(-KTopAndBottom).priorityLow();
+    }];
+    [_pubdateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_publisherLabel.mas_bottom).offset(kVerticalInner);
+        make.left.equalTo(_coverImage.mas_right).offset(kHorizontalInner);
+    }];
+    [_summaryLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_pubdateLabel.mas_bottom).offset(kVerticalInner);
+        make.left.equalTo(_coverImage.mas_right).offset(kHorizontalInner);
+        make.right.mas_equalTo(-kRight);
+        make.bottom.mas_equalTo(-KTopAndBottom);
+    }];
+    
+//    _titleView.backgroundColor = [UIColor redColor];
+//    self.contentView.backgroundColor = [UIColor greenColor];
+    
+//    _coverImage.backgroundColor = [UIColor grayColor];
+//    _titleLabel.backgroundColor = [UIColor grayColor];
+//    _authorLabel.backgroundColor = [UIColor greenColor];
+//    _publisherLabel.backgroundColor = [UIColor redColor];
+//    _pubdateLabel.backgroundColor = [UIColor blueColor];
+//    _summaryLabel.backgroundColor = [UIColor lightGrayColor];
+    
+    [self setVerticalContentHugging: _titleLabel];
+    [self setVerticalContentHugging: _authorLabel];
+    [self setVerticalContentHugging: _publisherLabel];
+    [self setVerticalContentHugging: _pubdateLabel];
+    [self setVerticalContentHugging: _summaryLabel];
+}
 
 @end

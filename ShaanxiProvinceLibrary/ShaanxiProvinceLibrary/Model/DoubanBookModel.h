@@ -11,6 +11,7 @@
 @interface DoubanBookModel : NSObject
 
 @property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *shortTitle;
 @property (nonatomic, copy) NSString *originalTitle;
 @property (nonatomic, copy) NSString *author;
 @property (nonatomic, copy) NSString *publisher;

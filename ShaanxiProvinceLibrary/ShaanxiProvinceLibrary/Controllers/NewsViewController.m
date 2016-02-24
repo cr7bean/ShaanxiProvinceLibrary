@@ -181,6 +181,6 @@
         [self.navigationController.navigationBar lt_setBackgroundColor: [color colorWithAlphaComponent: 0]];
     }
     
-                                                                                                                               }
+}
 
 @end
