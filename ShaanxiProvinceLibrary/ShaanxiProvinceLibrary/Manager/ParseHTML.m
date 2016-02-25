@@ -672,6 +672,11 @@
         bookModel.summary = [ratingNodes[1] text];
     }
     bookModel.summary = [Helper deleteSpaceAndCR: bookModel.summary];
+    // 截取 summary
+//    NSLog(@"%@", bookModel.summary);
+//    if (bookModel.summary.length > 50){
+//        bookModel.summary = [bookModel.summary substringToIndex: 50];
+//    }
     
 }
 

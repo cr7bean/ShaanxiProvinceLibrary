@@ -291,11 +291,13 @@ static const CGFloat kInner = 10.0f;
     
     //setContent
     [_coverImage setImageWithURL: [NSURL URLWithString: bookModel.imageString]];
+    
     _titleLabel.text = bookModel.title;
     _authorLabel.text = bookModel.author;
     _publisherLabel.text = bookModel.publisher;
     _pubdateLabel.text = bookModel.pubdate;
     _summaryLabel.text = bookModel.summary;
+    
 
     //setConstraints
     [_titleView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -333,7 +335,7 @@ static const CGFloat kInner = 10.0f;
         make.top.equalTo(_pubdateLabel.mas_bottom).offset(kVerticalInner);
         make.left.equalTo(_coverImage.mas_right).offset(kHorizontalInner);
         make.right.mas_equalTo(-kRight);
-        make.bottom.mas_equalTo(-KTopAndBottom);
+        make.bottom.mas_equalTo(-KTopAndBottom).priority(751);
     }];
     
 //    _titleView.backgroundColor = [UIColor redColor];
@@ -350,7 +352,9 @@ static const CGFloat kInner = 10.0f;
     [self setVerticalContentHugging: _authorLabel];
     [self setVerticalContentHugging: _publisherLabel];
     [self setVerticalContentHugging: _pubdateLabel];
+    
     [self setVerticalContentHugging: _summaryLabel];
+    [_summaryLabel setContentCompressionResistancePriority: UILayoutPriorityDefaultLow forAxis: UILayoutConstraintAxisVertical];
 }
 
 @end
