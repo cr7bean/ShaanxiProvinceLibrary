@@ -17,6 +17,7 @@
 		FD5853491C0C86A300F4C5AF /* RecommendedBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5853481C0C86A300F4C5AF /* RecommendedBookModel.m */; settings = {ASSET_TAGS = (); }; };
 		FD6B6AD71C2BCCC100EE517C /* DoubanBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6B6AD61C2BCCC100EE517C /* DoubanBookModel.m */; settings = {ASSET_TAGS = (); }; };
 		FD6B6ADA1C2C38C600EE517C /* DoubanContentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6B6AD91C2C38C600EE517C /* DoubanContentTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		FD6EAE501C8160910030D641 /* BookTagSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6EAE4F1C8160910030D641 /* BookTagSearchView.m */; settings = {ASSET_TAGS = (); }; };
 		FDB434A91C3AAB500040DDE1 /* tags.plist in Resources */ = {isa = PBXBuildFile; fileRef = FDB434A81C3AAB500040DDE1 /* tags.plist */; settings = {ASSET_TAGS = (); }; };
 		FDE50B731C1E88D0001683E2 /* BooklistTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE50B721C1E88D0001683E2 /* BooklistTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		FDEDC5C01C26CEE300B93B9C /* BookContentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEDC5BF1C26CEE300B93B9C /* BookContentTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
@@ -73,6 +74,8 @@
 		FD6B6AD61C2BCCC100EE517C /* DoubanBookModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DoubanBookModel.m; path = Model/DoubanBookModel.m; sourceTree = "<group>"; };
 		FD6B6AD81C2C38C600EE517C /* DoubanContentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DoubanContentTableViewCell.h; path = View/DoubanContentTableViewCell.h; sourceTree = "<group>"; };
 		FD6B6AD91C2C38C600EE517C /* DoubanContentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DoubanContentTableViewCell.m; path = View/DoubanContentTableViewCell.m; sourceTree = "<group>"; };
+		FD6EAE4E1C8160910030D641 /* BookTagSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookTagSearchView.h; path = View/BookTagSearchView.h; sourceTree = "<group>"; };
+		FD6EAE4F1C8160910030D641 /* BookTagSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookTagSearchView.m; path = View/BookTagSearchView.m; sourceTree = "<group>"; };
 		FDB434A81C3AAB500040DDE1 /* tags.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = tags.plist; path = Resource/tags.plist; sourceTree = "<group>"; };
 		FDE50B711C1E88D0001683E2 /* BooklistTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BooklistTableViewCell.h; path = View/BooklistTableViewCell.h; sourceTree = "<group>"; };
 		FDE50B721C1E88D0001683E2 /* BooklistTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BooklistTableViewCell.m; path = View/BooklistTableViewCell.m; sourceTree = "<group>"; };
@@ -259,6 +262,8 @@
 				FDF2C8B51C33624B0071E241 /* BookTagCollectionViewCell.m */,
 				FDF2C8B71C3369610071E241 /* BookTagCollectionReusableView.h */,
 				FDF2C8B81C3369610071E241 /* BookTagCollectionReusableView.m */,
+				FD6EAE4E1C8160910030D641 /* BookTagSearchView.h */,
+				FD6EAE4F1C8160910030D641 /* BookTagSearchView.m */,
 			);
 			name = BookTag;
 			sourceTree = "<group>";
@@ -518,6 +523,7 @@
 				FDF9CCD51BF8708B0070907D /* AppDelegate.m in Sources */,
 				FDF4D3B81C019C6B00C27381 /* NewsTableViewCell.m in Sources */,
 				FD6B6AD71C2BCCC100EE517C /* DoubanBookModel.m in Sources */,
+				FD6EAE501C8160910030D641 /* BookTagSearchView.m in Sources */,
 				FDF287161C1D4AA600A48ACF /* BookContentChildViewController.m in Sources */,
 				FD5853461C0C862500F4C5AF /* BookListModel.m in Sources */,
 				FD0828521C0749CA006669BF /* DetailNewsViewController.m in Sources */,

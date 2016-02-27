@@ -166,12 +166,9 @@
     CGFloat height = [tableView fd_heightForCellWithIdentifier: @"tagListCell" cacheByIndexPath: indexPath configuration:^(id cell) {
         [self configurateCell: cell atIndexPath: indexPath];
     }];
-    NSLog(@"%f", height);
+//    NSLog(@"%f", height);
     return height;
 
-//    return [tableView fd_heightForCellWithIdentifier: @"tagListCell" cacheByIndexPath: indexPath configuration:^(id cell) {
-//        [self configurateCell: cell atIndexPath: indexPath];
-//    }];
 }
 
 - (void) configurateCell: (DoubanContentTableViewCell *) cell

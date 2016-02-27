@@ -13,11 +13,13 @@
 #import <Masonry.h>
 #import "ParseHTML.h"
 #import "BookTagListViewController.h"
+#import "BookTagSearchView.h"
 
 
-@interface BookTagViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface BookTagViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, strong) BookTagSearchView *tagSearchView;
 
 @end
 
@@ -28,6 +30,20 @@
 }
 
 # pragma mark - lifeCycle
+
+- (IBAction)showViews:(id)sender
+{
+    self.tagSearchView.hidden = NO;
+    [UIView animateWithDuration: 0.2
+                          delay: 0
+                        options: UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         self.tagSearchView.titleView.frame = CGRectMake(0, 0, _tagSearchView.screenWidth, _tagSearchView.viewHeight);
+                     } completion:^(BOOL finished) {
+                         [self.tagSearchView.searchBar becomeFirstResponder];
+                     }];
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -74,6 +90,18 @@
         [_collectionView registerClass: [BookTagCollectionReusableView class] forSupplementaryViewOfKind: UICollectionElementKindSectionHeader withReuseIdentifier: @"header"];
     }
     return _collectionView;
+}
+
+- (BookTagSearchView *) tagSearchView
+{
+    if (!_tagSearchView) {
+        _tagSearchView = [[BookTagSearchView alloc] initWithFrame: [UIScreen mainScreen].bounds];
+        _tagSearchView.backgroundColor = [UIColor colorWithRed:63.5/255.0 green: 63.5/255.0 blue:63.5/255.0 alpha: 0.7];
+        [self.navigationController.view addSubview: _tagSearchView];
+        _tagSearchView.hidden = YES;
+        _tagSearchView.searchBar.delegate = self;
+    }
+    return _tagSearchView;
 }
 
 # pragma mark - UICollectionViewDataSource
@@ -165,5 +193,39 @@
         return  UIEdgeInsetsMake(15, 15, 15, 25);
     }
 }
+
+
+# pragma mark - UISearchBarDelegate
+
+- (void) searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    
+    [UIView animateWithDuration: 0.2
+                          delay: 0
+                        options: UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.tagSearchView.titleView.frame = CGRectMake(0, -_tagSearchView.viewHeight, _tagSearchView.screenWidth, _tagSearchView.viewHeight);
+//                         [self.tagSearchView.searchBar resignFirstResponder];
+//                         self.tagSearchView.hidden = YES;
+                     } completion:^(BOOL finished) {
+                         [self.tagSearchView.searchBar resignFirstResponder];
+                         self.tagSearchView.hidden = YES;
+                     }];
+    
+}
+
+- (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    self.tagSearchView.titleView.frame = CGRectMake(0, -_tagSearchView.viewHeight, _tagSearchView.screenWidth, _tagSearchView.viewHeight);
+    [self.tagSearchView.searchBar resignFirstResponder];
+    self.tagSearchView.hidden = YES;
+    
+    contentType type = contentTypeDoubanTag;
+    BookTagListViewController *controller = [[BookTagListViewController alloc] initWithTagName: searchBar.text contentType: type];
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController: controller animated: YES];
+}
+
+
 
 @end

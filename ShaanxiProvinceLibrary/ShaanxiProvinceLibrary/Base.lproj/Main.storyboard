@@ -141,7 +141,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="书城" id="mll-5M-0Hp">
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="fus-KE-Xhd"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="fus-KE-Xhd">
+                            <connections>
+                                <action selector="showViews:" destination="M3b-Rk-bzz" id="Yaz-dB-71C"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lgp-yU-khD" userLabel="First Responder" sceneMemberID="firstResponder"/>
