@@ -38,15 +38,15 @@
     
 //    self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     
-    _tableView = [[UITableView alloc] initWithFrame: CGRectZero style: UITableViewStylePlain];
-    _tableView.delegate = self;
-    _tableView.dataSource = self;
-    _tableView.tableFooterView = [UIView new];
-    [self.view addSubview: _tableView];
-    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(0);
-    }];
-    [_tableView registerClass: [DoubanContentTableViewCell class] forCellReuseIdentifier: @"tagListCell"];
+//    _tableView = [[UITableView alloc] initWithFrame: CGRectZero style: UITableViewStylePlain];
+//    _tableView.delegate = self;
+//    _tableView.dataSource = self;
+//    _tableView.tableFooterView = [UIView new];
+//    [self.view addSubview: _tableView];
+//    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.edges.mas_equalTo(0);
+//    }];
+    [self.tableView registerClass: [DoubanContentTableViewCell class] forCellReuseIdentifier: @"tagListCell"];
     
 
     self.title = _tagName;
@@ -71,22 +71,23 @@
 
 #pragma mark - getter
 
-//- (UITableView *) tableView
-//{
-//    if (!_tableView) {
-//        _tableView = [[UITableView alloc] initWithFrame: CGRectZero style: UITableViewStylePlain];
-//        _tableView.delegate = self;
-//        _tableView.dataSource = self;
-//        [self.view addSubview: _tableView];
-//        [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-////            make.left.right.bottom.mas_equalTo(0);
-////            make.top.mas_equalTo(self.mas_topLayoutGuide);
-//            make.edges.mas_equalTo(0);
-//        }];
+- (UITableView *) tableView
+{
+    if (!_tableView) {
+        _tableView = [[UITableView alloc] initWithFrame: CGRectZero style: UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.tableFooterView = [UIView new];
+        [self.view addSubview: _tableView];
+        [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.right.bottom.mas_equalTo(0);
+//            make.top.mas_equalTo(self.mas_topLayoutGuide);
+            make.edges.mas_equalTo(0);
+        }];
 //        [_tableView registerClass: [DoubanContentTableViewCell class] forCellReuseIdentifier: @"tagListCell"];
-//    }
-//    return _tableView;
-//}
+    }
+    return _tableView;
+}
 
 - (NSMutableArray *) bookListArray
 {
@@ -132,9 +133,9 @@
     [ParseHTML searchBookWithTagInUrl: urlString paraments: paraments successs:^(NSMutableArray *bookArray) {
         [self.bookListArray addObjectsFromArray: bookArray];
         [self.tableView reloadData];
-        
+//        NSLog(@"%lu", (unsigned long)bookArray.count);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
+//        NSLog(@"error");
     }];
 }
 
@@ -150,7 +151,6 @@
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return _bookListArray.count;
-//    return 5;
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -166,7 +166,6 @@
     CGFloat height = [tableView fd_heightForCellWithIdentifier: @"tagListCell" cacheByIndexPath: indexPath configuration:^(id cell) {
         [self configurateCell: cell atIndexPath: indexPath];
     }];
-//    NSLog(@"%f", height);
     return height;
 
 }

@@ -34,13 +34,14 @@
 - (IBAction)showViews:(id)sender
 {
     self.tagSearchView.hidden = NO;
+    [self.tagSearchView.searchBar becomeFirstResponder];
     [UIView animateWithDuration: 0.2
                           delay: 0
                         options: UIViewAnimationOptionCurveEaseIn
                      animations:^{
                          self.tagSearchView.titleView.frame = CGRectMake(0, 0, _tagSearchView.screenWidth, _tagSearchView.viewHeight);
                      } completion:^(BOOL finished) {
-                         [self.tagSearchView.searchBar becomeFirstResponder];
+//                         [self.tagSearchView.searchBar becomeFirstResponder];
                      }];
     
 }
