@@ -28,21 +28,25 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager.requestSerializer setTimeoutInterval: 20];
-    
+    [Helper setNetworkIndicator: YES];
 
     switch (methodType) {
         case requestMethodTypeGet:{
             [manager GET: url parameters: nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                [Helper setNetworkIndicator: NO];
                 success(task, responseObject);
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                [Helper setNetworkIndicator: NO];
                 failure(task, error);
             }];
             break;
         }
         case requestMethodTypePost:{
             [manager POST: url parameters: paraments success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                [Helper setNetworkIndicator: NO];
                 success(task, responseObject);
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                [Helper setNetworkIndicator: NO];
                 failure(task, error);
             }];
             break;
@@ -52,6 +56,10 @@
 
 
 #pragma mark -  motto and image
+/**
+ *  获取首页名言和图片
+ *
+ */
 
 + (void) parseMottoAndImage: (void(^)(MottoModel *motto)) success
                     failure: (requestFailurerBlock) failure
@@ -85,6 +93,9 @@
 
 
 #pragma mark - news content
+/**
+ *  首页新闻数据
+ */
 
 + (void) parseNewsContentSuccess: (void(^)(NSMutableArray *newsContent)) success
                          failure: (requestFailurerBlock) failure
@@ -124,6 +135,10 @@
     }];
 }
 
+/**
+ *  有些新闻页面的 URL 前缀不同，需要单独设置
+ *
+ */
 + (NSString *) correctNewsDetailUrl: (NSString *) url
 {
     NSRange findRange = [url rangeOfString: @"http"];
@@ -136,6 +151,10 @@
     return url;
 }
 
+/**
+ *  去掉陕图讲坛板块新闻的前缀
+ *
+ */
 + (NSString *) correctNewsTitle: (NSString *) title
 {
     NSRange range = [title rangeOfString: @"【陕图讲坛】"];
@@ -147,6 +166,10 @@
 
 #pragma mark - hot searching books
 
+/**
+ *  图书馆热门搜索书籍
+ *
+ */
 + (void) parseHotSearchingBookSuccess: (void(^)(NSMutableArray *hotSearchingBooks)) success
                               failure: (requestFailurerBlock) failure
 {
@@ -181,6 +204,12 @@
 
 #pragma mark - search books
 
+/**
+ *  搜索图书馆书籍
+ *
+ *  @param urlSstring 网络地址
+ *  @param dictionary post 请求参数
+ */
 + (void) parseBooksListWithString: (NSString *) urlSstring
                        dictionary: (NSDictionary *) dictionary
                           success: (void(^)(searchBookState searchState, NSDictionary *searchBook)) success
@@ -258,6 +287,11 @@
     }];
 }
 
+/**
+ *  图书馆搜索结果为零
+ *
+ *  @param recommendedBooks 搜索结果为零时，获取推荐的书籍。
+ */
 + (void) booksNumberIsZero: (TFHpple *) booksParse
           recommendedBooks: (void(^)(NSDictionary *recommendedBooks)) recommendedBooks
 {
@@ -283,6 +317,11 @@
     recommendedBooks(suggestedBooks);
 }
 
+/**
+ *  图书馆搜索结果为 1，直接跳转到图书详情页面。
+ *
+ *  @param bookContent 图书详细信息。
+ */
 + (void) booksNumberIsOne: (TFHpple *) booksParse
               bookContent: (void(^)(NSDictionary *bookContent)) bookContent
 {
@@ -392,6 +431,11 @@
     bookContent(bookTotalInfo);
 }
 
+/**
+ *  图书搜索结果有多个。
+ *
+ *  @param booklist   多个图书列表
+ */
 + (void) booksNumberIsMore: (TFHpple *) booksParse
               booklist: (void(^)(NSDictionary *booklist)) booklist
 {
@@ -455,6 +499,10 @@
     booklist(booklistDic);
 }
 
+/**
+ *  修正图书馆藏地址
+ *
+ */
 + (NSString *) correctLocationString: (NSString *) string
 {
     NSRange rangeOne = [string rangeOfString:@"'"];
@@ -464,7 +512,10 @@
     return string;
 }
 
-
+/**
+ *  图书搜索结果有多个，查看下一页图书。
+ *
+ */
 + (void) booksNumberIsMoreNextPage: (NSString *) urlString
                          paraments: (NSDictionary *) paraments
                           success: (void(^)(NSDictionary *booklist)) success
@@ -483,6 +534,10 @@
     }];
 }
 
+/**
+ *  图书搜索结果为多个时，点击图书列表时，获取图书详细内容。
+ *
+ */
 + (void) booksNumberIsOneNextPage: (NSString *) urlString
                         paraments: (NSDictionary *) paraments
                           success: (void(^)(NSDictionary *bookContent)) success
@@ -505,15 +560,21 @@
 
 
 #pragma mark  - bookContent from Douban
-
+/**
+ *  获取图书在豆瓣的信息
+ *
+ */
 + (void) bookContentFromDouban: (NSString *) urlString
                        success: (void(^)(DoubanBookModel *book)) success
                        failure: (requestFailurerBlock) failure
 {
+    [Helper setNetworkIndicator: YES];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager.requestSerializer setTimeoutInterval: 20];
     [AFJSONResponseSerializer serializer].removesKeysWithNullValues = YES;
     [manager GET: urlString parameters: nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        [Helper setNetworkIndicator: NO];
         
         DoubanBookModel *bookModel = [DoubanBookModel new];
         bookModel.title = responseObject[@"title"];
@@ -544,6 +605,7 @@
         success(bookModel);
         
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+         [Helper setNetworkIndicator: NO];
          failure(task, error);
     }];
    
@@ -551,6 +613,9 @@
 
 # pragma mark - bookTags
 
+/**
+ *  豆瓣热门标签，获取来之后保存到了 plist 文件中。以后不再调用该方法。
+ */
 + (void) bookTags: (NSString *) urlString
          successs: (void(^)(NSMutableArray *tagsArray)) success
           failure: (requestFailurerBlock) failure
@@ -581,6 +646,10 @@
 
 # pragma mark - searching Content with tag
 
+/**
+ *  用标签在豆瓣图书中搜索内容
+ *
+ */
 + (void) searchBookWithTagInUrl: (NSString *) urlString
                        paraments: (NSDictionary *) paraments
                        successs: (void(^)(NSMutableArray *bookArray)) success
@@ -601,7 +670,10 @@
     }];
 }
 
-
+/**
+ *  解析标签搜索内容网页
+ *
+ */
 + (void) searchBookInData: (NSData *) responseObject
                addInArray: (NSMutableArray *) bookArray
 {
@@ -624,7 +696,10 @@
     }
 }
 
-
+/**
+ *  整理标签搜索内容
+ *
+ */
 + (void) configureBookContent: (NSArray *) bookNodes
                   ratingArray: (NSArray *) ratingNodes
              withModel: (DoubanBookModel *) bookModel
@@ -683,6 +758,10 @@
 
 # pragma mark - Amazon book
 
+/**
+ *  亚马逊图书榜单
+ *
+ */
 + (void) amazonBooksWithUrl: (NSString *) urlString
                   paraments: (NSDictionary *) paraments
                    successs: (void(^)(NSMutableArray *amazonBookArray, NSUInteger pageNumber)) success
@@ -728,7 +807,7 @@
                 bookModel.rating = [ratingNodes[0] text];
             }
             
-            NSLog(@"%@", bookModel.title);
+//            NSLog(@"%@", bookModel.shortTitle);
             [bookArray addObject: bookModel];
         }
         success(bookArray, pageCount);
@@ -740,6 +819,11 @@
 
 # pragma mark - JDBook
 
+
+/**
+ *  京东图书榜单
+ *
+ */
 + (void) JDBooksWithUrl: (NSString *) urlString
                successs: (void(^)(NSMutableArray *JDBookArray, NSUInteger pageNumber)) success
                 failure: (requestFailurerBlock) failure
@@ -767,6 +851,11 @@
                 bookModel.imageString = [bookNodes[0] objectForKey: @"data-lazy-img"];
                 bookModel.title = [bookNodes[1] text];
                 bookModel.publisher = [bookNodes[2] text];
+                
+                if (bookModel.imageString) {
+                    bookModel.imageString = [bookModel.imageString stringByReplacingOccurrencesOfString: @"n3" withString: @"n1"];
+                    bookModel.imageString = [@"http:" stringByAppendingPathComponent: bookModel.imageString];
+                }
                 
                 //去掉标题中的括号
                 NSRange range = [bookModel.title rangeOfString: @"("];
@@ -810,7 +899,10 @@
 
 # pragma mark - DDBook
 
-//当当书籍
+/**
+ *  当当图书榜单
+ *
+ */
 + (void) DDBooksWithUrl: (NSString *) urlString
                successs: (void(^)(NSMutableArray *DDBookArray, NSUInteger pageNumber)) success
                 failure: (requestFailurerBlock) failure

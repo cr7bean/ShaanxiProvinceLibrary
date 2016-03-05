@@ -43,4 +43,6 @@
 + (void) addViewController: (id) childController
           toViewController: (UIViewController *) parentController;
 
++ (void) setNetworkIndicator: (BOOL) show;
+
 @end

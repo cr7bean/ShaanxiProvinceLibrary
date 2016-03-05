@@ -186,7 +186,7 @@
 
 
 #pragma mark - setNetworkIndicator
-- (void) setNetworkIndicator: (BOOL) show
++ (void) setNetworkIndicator: (BOOL) show
 {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: show];
 }

@@ -20,6 +20,7 @@ static const CGFloat kRight = 10.0f;
 static const CGFloat kInner = 10.0f;
 
 
+
 @implementation DoubanContentTableViewCell
 {
     
@@ -35,9 +36,7 @@ static const CGFloat kInner = 10.0f;
     UILabel *_ratingLabel;
     UIImageView *_coverImage;
     
-//    UILabel *_summaryLabel;
-    
-
+    CGFloat _imageHeight;
 }
 
 #pragma mark - init
@@ -268,6 +267,7 @@ static const CGFloat kInner = 10.0f;
 # pragma mark - bookTagListCell
 
 - (void) configurateBookTagListCell: (DoubanBookModel *) bookModel
+                        contentType: (NSUInteger) typeIndex
 {
     static CGFloat kHorizontalInner = 10.0f;
     static CGFloat kVerticalInner = 5.0f;
@@ -291,12 +291,31 @@ static const CGFloat kInner = 10.0f;
     
     //setContent
     [_coverImage setImageWithURL: [NSURL URLWithString: bookModel.imageString]];
-    
     _titleLabel.text = bookModel.title;
     _authorLabel.text = bookModel.author;
-    _publisherLabel.text = bookModel.publisher;
-    _pubdateLabel.text = bookModel.pubdate;
-    _summaryLabel.text = bookModel.summary;
+    
+    switch (typeIndex) {
+        case 1:{
+            _publisherLabel.text = bookModel.publisher;
+            _pubdateLabel.text = bookModel.pubdate;
+            _summaryLabel.text = bookModel.summary;
+            _imageHeight = 160;
+            break;
+        }
+        case 2:{
+            _publisherLabel.text = bookModel.binding;
+            _pubdateLabel.text = bookModel.price;
+            _imageHeight = 160;
+            break;
+        }
+        case 3:
+        case 4:{
+            _publisherLabel.text = bookModel.publisher;
+            _pubdateLabel.text = bookModel.price;
+            _imageHeight = 112.5;
+            break;
+        }
+    }
     
 
     //setConstraints
@@ -308,7 +327,7 @@ static const CGFloat kInner = 10.0f;
         make.top.mas_equalTo(KTopAndBottom);
         make.left.mas_equalTo(kLeft);
         make.width.mas_equalTo(112.5);
-        make.height.mas_equalTo(160);
+        make.height.mas_equalTo(_imageHeight);
         make.bottom.mas_equalTo(-KTopAndBottom);
     }];
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -337,16 +356,6 @@ static const CGFloat kInner = 10.0f;
         make.right.mas_equalTo(-kRight);
         make.bottom.mas_equalTo(-KTopAndBottom).priority(751);
     }];
-    
-//    _titleView.backgroundColor = [UIColor redColor];
-//    self.contentView.backgroundColor = [UIColor greenColor];
-    
-//    _coverImage.backgroundColor = [UIColor grayColor];
-//    _titleLabel.backgroundColor = [UIColor grayColor];
-//    _authorLabel.backgroundColor = [UIColor greenColor];
-//    _publisherLabel.backgroundColor = [UIColor redColor];
-//    _pubdateLabel.backgroundColor = [UIColor blueColor];
-//    _summaryLabel.backgroundColor = [UIColor lightGrayColor];
     
     [self setVerticalContentHugging: _titleLabel];
     [self setVerticalContentHugging: _authorLabel];

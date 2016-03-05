@@ -100,9 +100,6 @@
 
 - (void) searchBook
 {
-
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: YES];
-
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo: self.view animated: YES];
     hud.yOffset = -32;
     hud.labelText = @"加载中...";
@@ -114,7 +111,6 @@
     [ParseHTML parseBooksListWithString: urlString dictionary: _dictionary success:^(searchBookState searchState, NSDictionary *searchBook) {
         
         [hud hide: YES];
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
      
         switch (searchState) {
             case searchBookStateServeBusy: {
@@ -134,8 +130,6 @@
             }
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
         hud.mode = MBProgressHUDModeText;
         hud.labelText = @"请检查您的网络";
         

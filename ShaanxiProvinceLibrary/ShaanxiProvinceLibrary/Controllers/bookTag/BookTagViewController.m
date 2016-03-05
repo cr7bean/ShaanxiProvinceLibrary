@@ -41,7 +41,6 @@
                      animations:^{
                          self.tagSearchView.titleView.frame = CGRectMake(0, 0, _tagSearchView.screenWidth, _tagSearchView.viewHeight);
                      } completion:^(BOOL finished) {
-//                         [self.tagSearchView.searchBar becomeFirstResponder];
                      }];
     
 }
@@ -58,7 +57,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
@@ -83,10 +81,7 @@
         }];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
-    
         _collectionView.backgroundColor = [UIColor whiteColor];
-        
-
         [_collectionView registerClass: [BookTagCollectionViewCell class] forCellWithReuseIdentifier: @"cell"];
         [_collectionView registerClass: [BookTagCollectionReusableView class] forSupplementaryViewOfKind: UICollectionElementKindSectionHeader withReuseIdentifier: @"header"];
     }
@@ -152,7 +147,6 @@
     }else{
         type = contentTypeDoubanTag;
     }
-    
     BookTagListViewController *controller = [[BookTagListViewController alloc] initWithTagName: tag contentType: type];
     controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController: controller animated: YES];
@@ -206,8 +200,6 @@
                         options: UIViewAnimationOptionCurveEaseOut
                      animations:^{
                          self.tagSearchView.titleView.frame = CGRectMake(0, -_tagSearchView.viewHeight, _tagSearchView.screenWidth, _tagSearchView.viewHeight);
-//                         [self.tagSearchView.searchBar resignFirstResponder];
-//                         self.tagSearchView.hidden = YES;
                      } completion:^(BOOL finished) {
                          [self.tagSearchView.searchBar resignFirstResponder];
                          self.tagSearchView.hidden = YES;

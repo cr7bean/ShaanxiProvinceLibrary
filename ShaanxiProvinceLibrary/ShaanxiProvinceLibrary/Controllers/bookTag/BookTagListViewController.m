@@ -11,6 +11,7 @@
 #import "ParseHTML.h"
 #import "DoubanBookModel.h"
 #import "DoubanContentTableViewCell.h"
+#import "Helper.h"
 #import <UITableView+FDTemplateLayoutCell.h>
 
 @interface BookTagListViewController ()<UITableViewDelegate, UITableViewDataSource>
@@ -35,20 +36,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-//    self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    
-//    _tableView = [[UITableView alloc] initWithFrame: CGRectZero style: UITableViewStylePlain];
-//    _tableView.delegate = self;
-//    _tableView.dataSource = self;
-//    _tableView.tableFooterView = [UIView new];
-//    [self.view addSubview: _tableView];
-//    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.edges.mas_equalTo(0);
-//    }];
     [self.tableView registerClass: [DoubanContentTableViewCell class] forCellReuseIdentifier: @"tagListCell"];
-    
-
     self.title = _tagName;
     [self loadBooklistContent];
 }
@@ -80,11 +68,8 @@
         _tableView.tableFooterView = [UIView new];
         [self.view addSubview: _tableView];
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.left.right.bottom.mas_equalTo(0);
-//            make.top.mas_equalTo(self.mas_topLayoutGuide);
             make.edges.mas_equalTo(0);
         }];
-//        [_tableView registerClass: [DoubanContentTableViewCell class] forCellReuseIdentifier: @"tagListCell"];
     }
     return _tableView;
 }
@@ -101,6 +86,7 @@
 
 - (void) loadBooklistContent
 {
+    
     switch (_contentType) {
         case contentTypeDoubanTag: {
             [self DoubanContent: 0 type: @"T"];
@@ -108,20 +94,27 @@
             break;
         }
         case contentTypeAmazon: {
-            
+            [self AmazonContent: 1];
             break;
         }
         case contentTypeJD: {
-            
+            [self JDContent: 1];
             break;
         }
         case contentTypeDD: {
-            
+            [self DDContent: 1];
             break;
         }
     }
 }
 
+
+/**
+ *  豆瓣标签对应的书籍
+ *
+ *  @param startNumber 网络请求时的起始页码
+ *  @param typeName 书排序类型（综合排序：T,出版日期排序：R，评价排序：S）
+ */
 - (void) DoubanContent: (NSUInteger) startNumber
                   type: (NSString *) typeName
 {
@@ -133,12 +126,63 @@
     [ParseHTML searchBookWithTagInUrl: urlString paraments: paraments successs:^(NSMutableArray *bookArray) {
         [self.bookListArray addObjectsFromArray: bookArray];
         [self.tableView reloadData];
-//        NSLog(@"%lu", (unsigned long)bookArray.count);
+        
+
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//        NSLog(@"error");
+
     }];
 }
 
+/**
+ *  亚马逊图书榜单
+ *
+ *  @param page 页码
+ */
+- (void) AmazonContent: (NSUInteger) page
+{
+    NSString *urlString = @"http://www.amazon.cn/gp/bestsellers/books/ref=zg_bs_books_pg_2";
+    NSDictionary *parameter = @{@"ie": @"UTF8",
+                                @"pg": [NSNumber numberWithInteger: page],
+                                @"ajax": @0};
+    [ParseHTML amazonBooksWithUrl: urlString paraments: parameter successs:^(NSMutableArray *amazonBookArray, NSUInteger pageNumber) {
+        [self.bookListArray addObjectsFromArray: amazonBookArray];
+        [self.tableView reloadData];
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+    }];
+}
+
+/**
+ *  京东图书榜单
+ *
+ *  @param page 页码
+ */
+- (void) JDContent: (NSUInteger) page
+{
+    NSString *urlString = [NSString stringWithFormat: @"http://book.jd.com/booktop/0-0-0.html?category=1713-0-0-0-10003-%lu#comfort", (unsigned long)page];
+    [ParseHTML JDBooksWithUrl: urlString successs:^(NSMutableArray *JDBookArray, NSUInteger pageNumber) {
+        [self.bookListArray addObjectsFromArray: JDBookArray];
+        [self.tableView reloadData];
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+    }];
+}
+
+/**
+ *  当当图书榜单
+ *
+ *  @param page 页码
+ */
+- (void) DDContent: (NSUInteger) page
+{
+    NSString *urlString = [NSString stringWithFormat: @"http://bang.dangdang.com/books/bestsellers/01.00.00.00.00.00-recent30-0-0-1-%lu", (unsigned long)page];
+    [ParseHTML DDBooksWithUrl: urlString successs:^(NSMutableArray *DDBookArray, NSUInteger pageNumber) {
+        [self.bookListArray addObjectsFromArray: DDBookArray];
+        [self.tableView reloadData];
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+    }];
+}
 
 
 #pragma mark - UITableViewDataSource
@@ -174,7 +218,7 @@
              atIndexPath: (NSIndexPath *) indexPath
 {
     DoubanBookModel *bookModel = self.bookListArray[indexPath.row];
-    [cell configurateBookTagListCell: bookModel];
+    [cell configurateBookTagListCell: bookModel contentType: _contentType];
 }
 
 

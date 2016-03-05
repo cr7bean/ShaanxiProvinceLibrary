@@ -36,16 +36,13 @@
     _searchbar.delegate = self;
     _hotSearchingBooks = [NSMutableArray new];
     
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: YES];
     [ParseHTML parseHotSearchingBookSuccess:^(NSMutableArray *hotSearchingBooks) {
         
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
         _hotSearchingBooks = hotSearchingBooks;
         [_tableView reloadData];
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
         if(error.code == -1001){
             NSLog(@"请求超时");
         }else{
