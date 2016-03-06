@@ -11,7 +11,7 @@
 #import "DoubanBookModel.h"
 #import <Masonry.h>
 #import <UIImageView+AFNetworking.h>
-#import <UIView+FDCollapsibleConstraints.h>
+
 
 
 static const CGFloat KTopAndBottom = 15.0f;

@@ -466,18 +466,33 @@
     for (TFHppleElement *element in nodes) {
         TFHpple *book = [TFHpple hppleWithHTMLData: [element.raw dataUsingEncoding: NSUTF8StringEncoding]];
         NSArray *bookNodes = [book searchWithXPathQuery: @"//strong|//p"];
-        if (bookNodes.count == 5) {
-            NSString *number = [bookNodes[0] text];
-            NSString *callNumber = [bookNodes[1] text];
-            NSString *publicationDate = [bookNodes[2] text];
-            NSString *authorAndTitle = [bookNodes[3] text];
-            NSString *libraryHoldings = [bookNodes[4] text];
-            
-            
+        
+        //搜 朝花夕拾 的时候发现最后一本书没有出版日期，所以添加节点为4的情况。
+        if (bookNodes.count == 5 || bookNodes.count == 4) {
+            NSString *number;
+            NSString *callNumber;
+            NSString *publicationDate;
+            NSString *authorAndTitle;
+            NSString *libraryHoldings;
+            if (bookNodes.count == 5) {
+                number = [bookNodes[0] text];
+                callNumber = [bookNodes[1] text];
+                publicationDate = [bookNodes[2] text];
+                authorAndTitle = [bookNodes[3] text];
+                libraryHoldings = [bookNodes[4] text];
+            }else{
+                number = [bookNodes[0] text];
+                callNumber = [bookNodes[1] text];
+//                publicationDate = [bookNodes[2] text];
+                authorAndTitle = [bookNodes[2] text];
+                libraryHoldings = [bookNodes[3] text];
+            }
+        
             number = [number stringByReplacingOccurrencesOfString: @"#" withString: @""];
             libraryHoldings = [Helper deleteSpaceAndCR: libraryHoldings];
             libraryHoldings = [libraryHoldings stringByReplacingOccurrencesOfString: @"\n" withString: @""];
             libraryHoldings = [libraryHoldings stringByReplacingOccurrencesOfString: @"   " withString: @""];
+            libraryHoldings = [libraryHoldings stringByReplacingOccurrencesOfString: @"\t \t\t" withString: @""];
             
             BookListModel *books = [BookListModel initWithNumber: number callNumber: callNumber publicationDate: publicationDate authorAndTitle: authorAndTitle libraryHoldings: libraryHoldings];
             [booklistArray addObject: books];

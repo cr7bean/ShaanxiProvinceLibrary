@@ -17,6 +17,8 @@ static const CGFloat kRight = 10.0f;
 static const CGFloat kInner = 10.0f;
 static const CGFloat kOffset = 5.0f;
 
+#define kMaxLength [UIScreen mainScreen].bounds.size.width - 55
+
 
 
 @implementation BooklistTableViewCell
@@ -69,25 +71,26 @@ static const CGFloat kOffset = 5.0f;
                         font: [UIFont boldSystemFontOfSize: 17]
                       number: 0
                    alignment: NSTextAlignmentLeft];
-    _authorAndTitle.preferredMaxLayoutWidth = [UIScreen mainScreen].bounds.size.width - 55;
+    _authorAndTitle.preferredMaxLayoutWidth = kMaxLength;
+    _libraryHoldings.preferredMaxLayoutWidth = kMaxLength - 30;
     
     [Helper configurateLabel: _callNumber
                    textColor: [UIColor grayColor]
                         font: [UIFont systemFontOfSize: 13]
                       number: 1
-                   alignment: NSTextAlignmentRight];
+                   alignment: NSTextAlignmentLeft];
     
     [Helper configurateLabel: _publicationDate
                    textColor: [UIColor grayColor]
                         font: [UIFont systemFontOfSize: 13]
                       number: 1
-                   alignment: NSTextAlignmentRight];
+                   alignment: NSTextAlignmentLeft];
     
     [Helper configurateLabel: _libraryHoldings
                    textColor: [UIColor grayColor]
                         font: [UIFont systemFontOfSize: 13]
-                      number: 1
-                   alignment: NSTextAlignmentRight];
+                      number: 0
+                   alignment: NSTextAlignmentLeft];
 }
 
 - (void) setConstraint

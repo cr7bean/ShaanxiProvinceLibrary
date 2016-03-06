@@ -10,4 +10,7 @@
 
 @implementation GVUserDefaults (library)
 
+@dynamic libraryName;
+@dynamic libraryShortName;
+
 @end

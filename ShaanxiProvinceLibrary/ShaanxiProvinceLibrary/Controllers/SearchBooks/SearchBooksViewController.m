@@ -9,6 +9,7 @@
 #import "SearchBooksViewController.h"
 #import "ParseHTML.h"
 #import "ShowBooksMainViewController.h"
+#import "GVUserDefaults+library.h"
 
 
 
@@ -17,6 +18,7 @@
 
 @property (strong, nonatomic) IBOutlet UISearchBar *searchbar;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, copy) NSString *searchType;
 
 @end
 
@@ -49,9 +51,6 @@
             NSLog(@"请检查您的网络");
         }
     }];
-    
-//    _searchbar.tintColor = [UIColor colorWithRed:0.029 green:0.029 blue:0.031 alpha:0.8];
-    
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -94,10 +93,16 @@
 - (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     NSString *searchBookName = searchBar.text;
+    NSArray *typeArray = @[@"TI^TITLE^SERIES^Title Processing^题名",
+                           @"AU^AUTHOR^AUTHORS^Author Processing^著者",
+                           @"SU^SUBJECT^SUBJECTS^^主题",
+                           @"PER^PERTITLE^SERIES^Title Processing^期刊名"];
+    self.searchType = typeArray[searchBar.selectedScopeButtonIndex];
+
     NSDictionary *parameters = @{
-                                 @"srchfield1": @"TI^TITLE^SERIES^Title Processing^题名",
+                                 @"srchfield1": self.searchType,
                                  @"searchdata1": searchBookName,
-                                 @"library": @"陕西省馆",
+                                 @"library": [GVUserDefaults standardUserDefaults].libraryShortName,
                                  @"sort_by": @"ANY"
                                  };
     

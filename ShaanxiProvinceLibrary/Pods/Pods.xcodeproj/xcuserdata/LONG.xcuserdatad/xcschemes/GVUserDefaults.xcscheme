@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9DB63EA9C1E95047777BB67F"
-               BuildableName = "libSVPullToRefresh.a"
-               BlueprintName = "SVPullToRefresh"
+               BlueprintIdentifier = "93EC78C494EEDCE29722AB7D"
+               BuildableName = "libGVUserDefaults.a"
+               BlueprintName = "GVUserDefaults"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

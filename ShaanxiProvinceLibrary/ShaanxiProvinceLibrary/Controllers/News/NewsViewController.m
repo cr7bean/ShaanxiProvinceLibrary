@@ -17,14 +17,17 @@
 #import <Masonry.h>
 #import <UITableView+FDTemplateLayoutCell.h>
 #import <MBProgressHUD.h>
-
+#import "ChooseLibraryViewController.h"
 #import "DetailNewsViewController.h"
+#import "GVUserDefaults+library.h"
+
 
 
 
 # define OFFSET_Y -100
 
 @interface NewsViewController ()<UITableViewDelegate, UITableViewDataSource>
+@property (strong, nonatomic) IBOutlet UIButton *chooseLibraryButton;
 
 @end
 
@@ -40,8 +43,8 @@
 {
     [super viewDidLoad];
     [self addNewsTableView];
+    [self setLibraryName];
     [self.navigationController.navigationBar lt_setBackgroundColor: [UIColor clearColor]];
-
     _newsContentArray = [NSMutableArray new];
    
     [ParseHTML parseNewsContentSuccess:^(NSMutableArray *newsContent) {
@@ -61,6 +64,7 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear: animated];
+    [self setLibraryName];
     _newsTableView.tableView.delegate = self;
     [self scrollViewDidScroll: _newsTableView.tableView];
     [self.navigationController.navigationBar setShadowImage: [UIImage new]];
@@ -85,7 +89,28 @@
 
     _newsTableView.tableView.dataSource = self;
     _newsTableView.tableView.sectionFooterHeight = 0;
+    
 }
+
+# pragma mark chooseLibrary
+
+- (void) setLibraryName
+{
+    if (![GVUserDefaults standardUserDefaults].libraryName) {
+        [GVUserDefaults standardUserDefaults].libraryName = @"陕西省图书馆";
+    }
+    [self.chooseLibraryButton setTitle: [GVUserDefaults standardUserDefaults].libraryName forState: UIControlStateNormal];
+    [GVUserDefaults standardUserDefaults].libraryShortName = [[GVUserDefaults standardUserDefaults].libraryName stringByReplacingOccurrencesOfString: @"图书" withString: @""];
+}
+
+
+- (IBAction)chooseLibrary:(UIButton *)sender
+{
+    ChooseLibraryViewController *controller = [ChooseLibraryViewController new];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController: controller];
+    [self presentViewController: navigationController animated: YES completion: nil];
+}
+
 
 
 #pragma mark - UITableViewDataSource

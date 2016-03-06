@@ -27,10 +27,6 @@
 @end
 
 @implementation ShowBooksMainViewController
-{
-    
-
-}
 
 #pragma lifeCycle
 

@@ -14,7 +14,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>HexColors.xcscheme</key>
+		<key>GVUserDefaults.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -44,37 +44,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>RKSwipeBetweenViewControllers.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>SDWebImage.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>SVPullToRefresh.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>TSMessages.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>TTTAttributedLabel.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>UITableView+FDTemplateLayoutCell.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>UIView+FDCollapsibleConstraints.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -87,17 +62,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>03D3290FDBE6F8E7DC067DE1C1C68D23</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>18A4BA8BFD66F76A5A3AE5290D46B994</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>356FAD24AE7B2867BF4D6038D5A9ED33</key>
+		<key>42501F1F13DBB364B83C1996BBC1E9BF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -107,27 +72,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5352D432641F0656C90741034E32F31E</key>
+		<key>8391F15291749F983443BB46FA83A433</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>55E3BAD594CAB8A0672DDE1E423B67E8</key>
+		<key>92E6258F7DE3E20B20EB28922DEBB656</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>57FCC7E645EFBE44E40692F886CAD70B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>705C285B6804792B57A3FE6315F9E21B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B022D8FB769D85D6082B96B545481197</key>
+		<key>AB78350FEC7ABBDC5FD3C10456984EBC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -137,7 +92,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C6F54AE0AE9A86B4F0522AA4C0E62567</key>
+		<key>BDE2B70E0B9366EC65EFC9D62F60894C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -147,22 +102,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D7E1A9CAA854A197D801005475DFFEB8</key>
+		<key>E5C822592A6BF1240973D82E3A13B523</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E21476A735C1A96A07CFC45024C0F533</key>
+		<key>EB8A8D5AC7D357E4BC4FA57935296357</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FCCABC8A1E2FD84B9157F182EAFE0C0E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FF22B2DD140896074BB035C4F6780273</key>
+		<key>F3CB543888D67AF92C703F235FE56E35</key>
 		<dict>
 			<key>primary</key>
 			<true/>

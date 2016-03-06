@@ -204,6 +204,7 @@
     __weak BookListChildViewController *weakSelf = self;
     [self.tableView addInfiniteScrollingWithActionHandler:^{
         if (_lastHitNumber < [_totalNumberString integerValue]) {
+//            NSLog(@"%lu, %lu", (unsigned long)weakSelf.lastHitNumber, (unsigned long)weakSelf.booklistArray.count);
             [weakSelf nextPageBooklist];
         }else{
             [weakSelf.tableView.infiniteScrollingView stopAnimating];

@@ -10,6 +10,7 @@
 #import <Masonry.h>
 #import "RecommendedBookModel.h"
 #import "ShowBooksMainViewController.h"
+#import "GVUserDefaults+library.h"
 
 @interface RecommendBookChildViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -113,15 +114,20 @@
     [tableView deselectRowAtIndexPath: indexPath animated: YES];
     RecommendedBookModel *bookModel = self.recommendedBook[indexPath.row];
     NSDictionary *parameters = @{
-                                 @"srchfield1": @"TI^TITLE^SERIES^Title Processing^题名",
+                                 @"srchfield1": @"GENERAL^SUBJECT^GENERAL^^所有字段",
                                  @"searchdata1": bookModel.name,
-                                 @"library": @"陕西省馆",
+                                 @"library": [GVUserDefaults standardUserDefaults].libraryShortName,
                                  @"sort_by": @"ANY"
                                  };
     ShowBooksMainViewController *controller = [[ShowBooksMainViewController alloc] initWithDictionary: parameters];
     controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController: controller animated: YES];
     
+}
+
+- (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return @"没找到您想要的书，或许下面的书会对您有帮助";
 }
 
 @end

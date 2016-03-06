@@ -10,4 +10,7 @@
 
 @interface GVUserDefaults (library)
 
+@property (nonatomic, copy) NSString *libraryName;
+@property (nonatomic, copy) NSString *libraryShortName;
+
 @end
