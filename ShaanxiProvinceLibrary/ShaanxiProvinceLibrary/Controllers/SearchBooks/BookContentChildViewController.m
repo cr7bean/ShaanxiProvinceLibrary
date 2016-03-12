@@ -24,7 +24,7 @@
 @property (nonatomic, strong) UISegmentedControl *segmentControl;
 @property (nonatomic, assign) transtionType transtionType;
 @property (nonatomic, strong) NSDictionary *bookContentDic;
-@property (nonatomic, strong) NSMutableDictionary *paraments;
+@property (nonatomic, strong) NSMutableDictionary *parameter;
 @property (nonatomic, strong) DoubanBookModel *bookModel;
 
 @end
@@ -78,7 +78,7 @@
                 break;
             }
             case transtionTypeListController: {
-                self.paraments = [NSMutableDictionary dictionaryWithDictionary: dictionary];
+                self.parameter = [NSMutableDictionary dictionaryWithDictionary: dictionary];
                 self.navigationItem.titleView = self.segmentControl;
                 break;
             }
@@ -92,8 +92,8 @@
 
 - (void) updateBookContent
 {
-    NSString *urlString = self.paraments[@"urlString"];
-    [self.paraments removeObjectForKey: @"urlString"];
+    NSString *urlString = self.parameter[@"urlString"];
+    [self.parameter removeObjectForKey: @"urlString"];
     
     switch (self.transtionType) {
         case transtionTypeMainController: {
@@ -112,7 +112,7 @@
             hud.labelText = @"加载中...";
             hud.opacity = 0.5;
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: YES];
-            [ParseHTML booksNumberIsOneNextPage: urlString paraments: self.paraments success:^(NSDictionary *bookContent) {
+            [ParseHTML booksNumberIsOneNextPage: urlString parameter: self.parameter success:^(NSDictionary *bookContent) {
                 hud.hidden = YES;
                 [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
                 self.bookContentDic = bookContent;

@@ -26,7 +26,7 @@
 
 # define OFFSET_Y -100
 
-@interface NewsViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface NewsViewController ()<UITableViewDelegate, UITableViewDataSource, MBProgressHUDDelegate>
 @property (strong, nonatomic) IBOutlet UIButton *chooseLibraryButton;
 
 @end
@@ -47,11 +47,20 @@
     [self.navigationController.navigationBar lt_setBackgroundColor: [UIColor clearColor]];
     _newsContentArray = [NSMutableArray new];
    
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo: self.view animated: YES];
+    hud.hidden = YES;
+    hud.delegate = self;
+//    hud.yOffset = -32;
+    hud.mode = MBProgressHUDModeText;
+    hud.opacity = 0.5;
     [ParseHTML parseNewsContentSuccess:^(NSMutableArray *newsContent) {
         _newsContentArray = newsContent;
         [_newsTableView.tableView reloadData];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"查找新闻失败");
+        hud.hidden = NO;
+        hud.labelText = @"请检查您的网络";
+        [hud hide: NO afterDelay: 5];
     }];
 }
 

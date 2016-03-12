@@ -20,7 +20,7 @@
 
 #pragma mark - basical request
 + (void) requestWithUrl: (NSString *) url
-              paraments: (NSDictionary *) paraments
+              parameter: (NSDictionary *) parameter
              methodType: (requestMethodType) methodType
                 success: (requestSuccessBlock) success
                 failure: (requestFailurerBlock) failure
@@ -42,7 +42,7 @@
             break;
         }
         case requestMethodTypePost:{
-            [manager POST: url parameters: paraments success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [manager POST: url parameters: parameter success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 [Helper setNetworkIndicator: NO];
                 success(task, responseObject);
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -66,7 +66,7 @@
 {
     NSString *urlString = @"http://huaban.com/boards/26435559/";
 
-    [self requestWithUrl: urlString paraments: nil methodType:(requestMethodTypeGet) success:^(NSURLSessionDataTask *task, id responseObject) {
+    [self requestWithUrl: urlString parameter: nil methodType:(requestMethodTypeGet) success:^(NSURLSessionDataTask *task, id responseObject) {
         
         MottoModel *motto = [MottoModel new];
         
@@ -101,7 +101,7 @@
                          failure: (requestFailurerBlock) failure
 {
     NSString *newsUrl = @"http://www.sxlib.org.cn/";
-    [self requestWithUrl: newsUrl paraments: nil methodType:(requestMethodTypeGet) success:^(NSURLSessionDataTask *task, id responseObject) {
+    [self requestWithUrl: newsUrl parameter: nil methodType:(requestMethodTypeGet) success:^(NSURLSessionDataTask *task, id responseObject) {
         TFHpple *parse = [TFHpple hppleWithHTMLData: responseObject];
         
         NSArray *xpathArray = @[@"//*[@id='shantunew']/div/div[1]/ul/li/a",
@@ -131,7 +131,7 @@
         success(newsContentArray);
 
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
+        failure(task, error);
     }];
 }
 
@@ -175,7 +175,7 @@
 {
     NSString *urlString = @"http://61.185.242.108/uhtbin/cgisirsi/0/%E9%99%95%E8%A5%BF%E7%9C%81%E9%A6%86/0/122/2002";
     
-    [self requestWithUrl: urlString paraments: nil methodType:(requestMethodTypeGet) success:^(NSURLSessionDataTask *task, id responseObject) {
+    [self requestWithUrl: urlString parameter: nil methodType:(requestMethodTypeGet) success:^(NSURLSessionDataTask *task, id responseObject) {
         
         
         TFHpple *parse = [TFHpple hppleWithHTMLData: responseObject];
@@ -216,7 +216,7 @@
                           failure: (requestFailurerBlock) failure
 
 {
-    [self requestWithUrl: urlSstring paraments: dictionary methodType: requestMethodTypePost success:^(NSURLSessionDataTask *task, id responseObject) {
+    [self requestWithUrl: urlSstring parameter: dictionary methodType: requestMethodTypePost success:^(NSURLSessionDataTask *task, id responseObject) {
         
         TFHpple *booksParse = [TFHpple hppleWithHTMLData: responseObject];
         BOOL serverBusy;
@@ -532,12 +532,12 @@
  *
  */
 + (void) booksNumberIsMoreNextPage: (NSString *) urlString
-                         paraments: (NSDictionary *) paraments
+                         parameter: (NSDictionary *) parameter
                           success: (void(^)(NSDictionary *booklist)) success
                            failure: (requestFailurerBlock) failure
 {
     [self requestWithUrl: urlString
-               paraments: paraments
+               parameter: parameter
               methodType:(requestMethodTypePost)
                  success:^(NSURLSessionDataTask *task, id responseObject) {
         TFHpple *booksParse = [TFHpple hppleWithHTMLData: responseObject];
@@ -554,13 +554,13 @@
  *
  */
 + (void) booksNumberIsOneNextPage: (NSString *) urlString
-                        paraments: (NSDictionary *) paraments
+                        parameter: (NSDictionary *) parameter
                           success: (void(^)(NSDictionary *bookContent)) success
                           failure: (requestFailurerBlock) failure
 {
     
     [self requestWithUrl: urlString
-               paraments: paraments
+               parameter: parameter
               methodType: requestMethodTypePost
                  success:^(NSURLSessionDataTask *task, id responseObject) {
                      TFHpple *booksParse = [TFHpple hppleWithHTMLData: responseObject];
@@ -638,7 +638,7 @@
     NSMutableArray *totalTagsArray = [NSMutableArray new];
     
     
-    [self requestWithUrl: urlString paraments: nil methodType: requestMethodTypeGet success:^(NSURLSessionDataTask *task, id responseObject) {
+    [self requestWithUrl: urlString parameter: nil methodType: requestMethodTypeGet success:^(NSURLSessionDataTask *task, id responseObject) {
         
         TFHpple *parse = [TFHpple hppleWithHTMLData: responseObject];
         NSArray *nodes = [parse searchWithXPathQuery: @"//table[@class='tagCol']/tbody"];
@@ -666,13 +666,13 @@
  *
  */
 + (void) searchBookWithTagInUrl: (NSString *) urlString
-                       paraments: (NSDictionary *) paraments
+                       parameter: (NSDictionary *) parameter
                        successs: (void(^)(NSMutableArray *bookArray)) success
                         failure: (requestFailurerBlock) failure
 {
     NSMutableArray *bookArray = [NSMutableArray new];
     
-    [self requestWithUrl: urlString paraments: paraments methodType: requestMethodTypePost success:^(NSURLSessionDataTask *task, id responseObject) {
+    [self requestWithUrl: urlString parameter: parameter methodType: requestMethodTypeGet success:^(NSURLSessionDataTask *task, id responseObject) {
 
         NSString *htmlString = [[NSString alloc] initWithData: responseObject encoding: NSUTF8StringEncoding];
         if (!htmlString) {
@@ -778,11 +778,11 @@
  *
  */
 + (void) amazonBooksWithUrl: (NSString *) urlString
-                  paraments: (NSDictionary *) paraments
+                  parameter: (NSDictionary *) parameter
                    successs: (void(^)(NSMutableArray *amazonBookArray, NSUInteger pageNumber)) success
                     failure: (requestFailurerBlock) failure
 {
-    [self requestWithUrl: urlString paraments: paraments methodType: requestMethodTypePost success:^(NSURLSessionDataTask *task, id responseObject) {
+    [self requestWithUrl: urlString parameter: parameter methodType: requestMethodTypePost success:^(NSURLSessionDataTask *task, id responseObject) {
         
         NSMutableArray *bookArray = [NSMutableArray new];
         NSUInteger pageCount = 0;
@@ -843,7 +843,7 @@
                successs: (void(^)(NSMutableArray *JDBookArray, NSUInteger pageNumber)) success
                 failure: (requestFailurerBlock) failure
 {
-    [self requestWithUrl: urlString paraments: nil methodType: requestMethodTypeGet
+    [self requestWithUrl: urlString parameter: nil methodType: requestMethodTypeGet
                  success:^(NSURLSessionDataTask *task, id responseObject) {
                      
         NSMutableArray *bookArray = [NSMutableArray new];
@@ -922,7 +922,7 @@
                successs: (void(^)(NSMutableArray *DDBookArray, NSUInteger pageNumber)) success
                 failure: (requestFailurerBlock) failure
 {
-    [self requestWithUrl: urlString paraments: nil methodType: requestMethodTypeGet success:^(NSURLSessionDataTask *task, id responseObject) {
+    [self requestWithUrl: urlString parameter: nil methodType: requestMethodTypeGet success:^(NSURLSessionDataTask *task, id responseObject) {
         
         NSMutableArray *bookArray = [NSMutableArray new];
         NSUInteger pageCount = 0;

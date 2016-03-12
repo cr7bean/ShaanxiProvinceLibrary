@@ -9,6 +9,7 @@
 #import "Helper.h"
 
 
+
 @implementation Helper
 {
     
@@ -190,6 +191,9 @@
 {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: show];
 }
+
+
+
 
 
 

@@ -35,17 +35,14 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    _progressProxy = [NJKWebViewProgress new];
-    _webView.delegate = _progressProxy;
-    _progressProxy.webViewProxyDelegate = self;
-    _progressProxy.progressDelegate = self;
+    [self initProgressView];
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
+    dispatch_async(queue, ^{
+        [_webView loadRequest: _request];
+    });
     
-    CGFloat height = 2.0f;
-    CGRect barBounds = self.navigationController.navigationBar.bounds;
-    CGRect barFrame = CGRectMake(0, barBounds.size.height - height, barBounds.size.width, height);
-    _progressView = [[NJKWebViewProgressView alloc] initWithFrame: barFrame];
-    
-    [_webView loadRequest: _request];
+//    [_webView loadRequest: _request];
+
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -71,6 +68,19 @@
     return self;
 }
 
+- (void) initProgressView
+{
+    _progressProxy = [NJKWebViewProgress new];
+    _webView.delegate = _progressProxy;
+    _progressProxy.webViewProxyDelegate = self;
+    _progressProxy.progressDelegate = self;
+    
+    CGFloat height = 2.0f;
+    CGRect barBounds = self.navigationController.navigationBar.bounds;
+    CGRect barFrame = CGRectMake(0, barBounds.size.height - height, barBounds.size.width, height);
+    _progressView = [[NJKWebViewProgressView alloc] initWithFrame: barFrame];
+}
+
 
 #pragma mark - getter
 
@@ -82,6 +92,8 @@
     }
     return _webView;
 }
+
+
 
 
 

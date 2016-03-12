@@ -13,6 +13,7 @@
 #import "DoubanContentTableViewCell.h"
 #import "Helper.h"
 #import <UITableView+FDTemplateLayoutCell.h>
+#import <MBProgressHUD.h>
 
 @interface BookTagListViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -20,6 +21,7 @@
 @property (nonatomic, copy) NSString *tagName;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *bookListArray;
+@property (nonatomic, strong) MBProgressHUD *hud;
 
 @end
 
@@ -86,7 +88,10 @@
 
 - (void) loadBooklistContent
 {
-    
+    self.hud = [MBProgressHUD showHUDAddedTo: self.view animated: YES];
+    self.hud.yOffset = -32;
+    self.hud.labelText = @"加载中...";
+    self.hud.opacity = 0.5;
     switch (_contentType) {
         case contentTypeDoubanTag: {
             [self DoubanContent: 0 type: @"T"];
@@ -121,15 +126,20 @@
     NSString *urlString = @"http://book.douban.com/tag/";
     urlString = [urlString stringByAppendingFormat: @"%@", _tagName];
     urlString = [urlString stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
-    NSDictionary *paraments = @{@"start": [NSNumber numberWithInteger: startNumber],
+    NSDictionary *parameter = @{@"start": [NSNumber numberWithInteger: startNumber],
                                 @"type": typeName};
-    [ParseHTML searchBookWithTagInUrl: urlString paraments: paraments successs:^(NSMutableArray *bookArray) {
+    
+//    NSString *urlString = @"https://www.douban.com/tag/%E5%B0%8F%E8%AF%B4/book";
+//    NSDictionary *parameter = nil;
+    [ParseHTML searchBookWithTagInUrl: urlString parameter: parameter successs:^(NSMutableArray *bookArray) {
+        self.hud.hidden = YES;
         [self.bookListArray addObjectsFromArray: bookArray];
         [self.tableView reloadData];
         
 
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-
+        self.hud.mode = MBProgressHUDModeText;
+        self.hud.labelText = @"请检查您的网络";
     }];
 }
 
@@ -144,11 +154,13 @@
     NSDictionary *parameter = @{@"ie": @"UTF8",
                                 @"pg": [NSNumber numberWithInteger: page],
                                 @"ajax": @0};
-    [ParseHTML amazonBooksWithUrl: urlString paraments: parameter successs:^(NSMutableArray *amazonBookArray, NSUInteger pageNumber) {
+    [ParseHTML amazonBooksWithUrl: urlString parameter: parameter successs:^(NSMutableArray *amazonBookArray, NSUInteger pageNumber) {
+        self.hud.hidden = YES;
         [self.bookListArray addObjectsFromArray: amazonBookArray];
         [self.tableView reloadData];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
+        self.hud.mode = MBProgressHUDModeText;
+        self.hud.labelText = @"请检查您的网络";
     }];
 }
 
@@ -161,10 +173,12 @@
 {
     NSString *urlString = [NSString stringWithFormat: @"http://book.jd.com/booktop/0-0-0.html?category=1713-0-0-0-10003-%lu#comfort", (unsigned long)page];
     [ParseHTML JDBooksWithUrl: urlString successs:^(NSMutableArray *JDBookArray, NSUInteger pageNumber) {
+        self.hud.hidden = YES;
         [self.bookListArray addObjectsFromArray: JDBookArray];
         [self.tableView reloadData];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
+        self.hud.mode = MBProgressHUDModeText;
+        self.hud.labelText = @"请检查您的网络";
     }];
 }
 
@@ -177,10 +191,12 @@
 {
     NSString *urlString = [NSString stringWithFormat: @"http://bang.dangdang.com/books/bestsellers/01.00.00.00.00.00-recent30-0-0-1-%lu", (unsigned long)page];
     [ParseHTML DDBooksWithUrl: urlString successs:^(NSMutableArray *DDBookArray, NSUInteger pageNumber) {
+        self.hud.hidden = YES;
         [self.bookListArray addObjectsFromArray: DDBookArray];
         [self.tableView reloadData];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
+        self.hud.mode = MBProgressHUDModeText;
+        self.hud.labelText = @"请检查您的网络";
     }];
 }
 

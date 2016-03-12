@@ -45,12 +45,12 @@ typedef void(^requestFailurerBlock)(NSURLSessionDataTask *task, NSError *error);
                           failure: (requestFailurerBlock) failure;
 
 + (void) booksNumberIsMoreNextPage: (NSString *) urlString
-                         paraments: (NSDictionary *) paraments
+                         parameter: (NSDictionary *) parameter
                            success: (void(^)(NSDictionary *booklist)) success
                            failure: (requestFailurerBlock) failure;
 
 + (void) booksNumberIsOneNextPage: (NSString *) urlString
-                        paraments: (NSDictionary *) paraments
+                        parameter: (NSDictionary *) parameter
                           success: (void(^)(NSDictionary *bookContent)) success
                           failure: (requestFailurerBlock) failure;
 
@@ -63,12 +63,12 @@ typedef void(^requestFailurerBlock)(NSURLSessionDataTask *task, NSError *error);
           failure: (requestFailurerBlock) failure;
 
 + (void) searchBookWithTagInUrl: (NSString *) urlString
-                      paraments: (NSDictionary *) paraments
+                      parameter: (NSDictionary *) parameter
                        successs: (void(^)(NSMutableArray *bookArray)) success
                         failure: (requestFailurerBlock) failure;
 
 + (void) amazonBooksWithUrl: (NSString *) urlString
-                  paraments: (NSDictionary *) paraments
+                  parameter: (NSDictionary *) parameter
                    successs: (void(^)(NSMutableArray *amazonBookArray, NSUInteger pageNumber)) success
                     failure: (requestFailurerBlock) failure;
 

@@ -120,7 +120,7 @@
     urlString = [urlString stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
     BookListModel *bookModel = self.booklistArray[indexPath.row];
     NSString *keyString = [NSString stringWithFormat: @"VIEW^%@", bookModel.number];
-    NSDictionary *paraments = @{
+    NSDictionary *parameter = @{
                                 @"first_hit": [NSNumber numberWithInteger: self.firstHitNumber],
                                 @"last_hit": [NSNumber numberWithInteger: self.lastHitNumber],
                                 keyString: @"详细资料",
@@ -128,7 +128,7 @@
                                 };
     
     [tableView deselectRowAtIndexPath: indexPath animated: YES];
-    BookContentChildViewController *controller = [[BookContentChildViewController alloc] initWith: paraments transition: transtionTypeListController];
+    BookContentChildViewController *controller = [[BookContentChildViewController alloc] initWith: parameter transition: transtionTypeListController];
     [self.navigationController pushViewController: controller animated: YES];
 }
 
@@ -189,7 +189,7 @@
     NSDictionary *parameters = @{@"first_hit": [NSNumber numberWithInteger: _firstHitNumber],
                                  @"last_hit": [NSNumber numberWithInteger: _lastHitNumber],
                                  @"form_type": nextString};
-    [ParseHTML booksNumberIsMoreNextPage: urlString paraments: parameters success:^(NSDictionary *booklist) {
+    [ParseHTML booksNumberIsMoreNextPage: urlString parameter: parameters success:^(NSDictionary *booklist) {
         [weakSelf.tableView.infiniteScrollingView stopAnimating];
         [self assignWithDictionary: booklist];
         [_tableView reloadData];
