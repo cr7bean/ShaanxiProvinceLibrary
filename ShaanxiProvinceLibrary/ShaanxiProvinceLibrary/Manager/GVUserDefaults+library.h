@@ -13,4 +13,7 @@
 @property (nonatomic, copy) NSString *libraryName;
 @property (nonatomic, copy) NSString *libraryShortName;
 
+@property (nonatomic, strong) NSArray *collectionTag;
+
+
 @end

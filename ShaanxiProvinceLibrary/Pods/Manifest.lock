@@ -25,6 +25,7 @@ PODS:
     - NJKWebViewProgress/ProgressView (= 0.2.3)
   - NJKWebViewProgress/Core (0.2.3)
   - NJKWebViewProgress/ProgressView (0.2.3)
+  - PSTAlertController (1.2.0)
   - SVPullToRefresh (0.4.1)
   - UITableView+FDTemplateLayoutCell (1.4)
 
@@ -37,6 +38,7 @@ DEPENDENCIES:
   - Masonry (~> 0.6.3)
   - MBProgressHUD (~> 0.9.1)
   - NJKWebViewProgress
+  - PSTAlertController (~> 1.2.0)
   - SVPullToRefresh (~> 0.4.1)
   - UITableView+FDTemplateLayoutCell (~> 1.4.beta)
 
@@ -49,6 +51,7 @@ SPEC CHECKSUMS:
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
+  PSTAlertController: 9b802dfbda54fee2683bfd6dda7023a6de895d5b
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   UITableView+FDTemplateLayoutCell: 234e1582bcc4e18461af91155123bb96538ed030
 

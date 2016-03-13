@@ -70,8 +70,13 @@
         make.top.mas_equalTo(0);
     }];
     
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: YES];
-   
+//    MottoModel *motto = [MottoModel new];
+//    motto.saying = @"如果你浪费了自己的年龄，那是挺可悲的。因为你的青春只能持续一点儿时间，很短的一点儿时间。";
+//    motto.personage = @"—— 王尔德";
+//    [self configurateHeaderView: motto];
+    
+    
+   //从网上抓取图片和文字放在首页
     [ParseHTML parseMottoAndImage:^(MottoModel *motto) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
         
@@ -81,6 +86,8 @@
         NSLog(@"查找首页图片失败");
         
     }];
+    
+    
 }
 
 - (void) layoutHeaderView: (UIView*) view
@@ -128,12 +135,8 @@
 
     [_headerView setImageWithURL: [NSURL URLWithString: motto.imageName] placeholderImage: [UIImage imageNamed: @"1"]];
     
+//    [_headerView setImage: [UIImage imageNamed: @"1"]];
+//    _headerView.backgroundColor = [UIColor greenColor];
 }
-
-
-
-
-
-
 
 @end

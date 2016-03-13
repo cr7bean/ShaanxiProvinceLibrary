@@ -12,5 +12,7 @@
 
 @dynamic libraryName;
 @dynamic libraryShortName;
+@dynamic collectionTag;
+
 
 @end

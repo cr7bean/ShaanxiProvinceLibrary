@@ -14,6 +14,8 @@
 #import "Helper.h"
 #import <UITableView+FDTemplateLayoutCell.h>
 #import <MBProgressHUD.h>
+#import <PSTAlertController.h>
+#import "GVUserDefaults+library.h"
 
 @interface BookTagListViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -40,7 +42,14 @@
     [super viewDidLoad];
     [self.tableView registerClass: [DoubanContentTableViewCell class] forCellReuseIdentifier: @"tagListCell"];
     self.title = _tagName;
+    [self addRightBarItem];
     [self loadBooklistContent];
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear: animated];
+    self.hud.hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,6 +67,36 @@
     }
     return self;
 }
+
+# pragma mark add RightBarItem
+- (void) addRightBarItem
+{
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemAdd target: self action: @selector(barItemAction:)];
+    self.navigationItem.rightBarButtonItem = item;
+}
+
+- (void) barItemAction: (UIBarButtonItem *) buttonItem
+{
+    
+    PSTAlertController *tagController = [PSTAlertController actionSheetWithTitle: @"如果您喜欢这个标签，可以收藏"];
+    [tagController addAction: [PSTAlertAction actionWithTitle: @"收藏" handler:^(PSTAlertAction * _Nonnull action) {
+        
+        MBProgressHUD *tagHud = [MBProgressHUD showHUDAddedTo: self.navigationController.view animated: YES];
+        tagHud.mode = MBProgressHUDModeText;
+        NSMutableArray *temp = [NSMutableArray arrayWithArray: [GVUserDefaults standardUserDefaults].collectionTag];
+        if ([temp containsObject: self.tagName]) {
+            tagHud.labelText = @"您已经收藏过了";
+        }else{
+            tagHud.labelText = @"收藏成功";
+                [temp addObject: self.tagName];
+                [GVUserDefaults standardUserDefaults].collectionTag = [temp copy];
+        }
+        [tagHud hide: YES afterDelay: 1];
+    }]];
+    [tagController addAction: [PSTAlertAction actionWithTitle: @"取消" style: PSTAlertActionStyleCancel handler: nil]];
+    [tagController showWithSender: buttonItem controller: self animated: YES completion: nil];
+}
+
 
 #pragma mark - getter
 
@@ -88,8 +127,7 @@
 
 - (void) loadBooklistContent
 {
-    self.hud = [MBProgressHUD showHUDAddedTo: self.view animated: YES];
-    self.hud.yOffset = -32;
+    self.hud = [MBProgressHUD showHUDAddedTo: self.navigationController.view animated: YES];
     self.hud.labelText = @"加载中...";
     self.hud.opacity = 0.5;
     switch (_contentType) {

@@ -39,6 +39,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>PSTAlertController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -62,7 +67,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>42501F1F13DBB364B83C1996BBC1E9BF</key>
+		<key>00BAA7F6EE76603FAD48CF62BAFABAAE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2C22E697BA934244CD655DB30CE3C458</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -72,17 +82,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8391F15291749F983443BB46FA83A433</key>
+		<key>60F38AC4153D757915D5981B6865C096</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>92E6258F7DE3E20B20EB28922DEBB656</key>
+		<key>60F48784621544DA99CD8D7030B717CF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AB78350FEC7ABBDC5FD3C10456984EBC</key>
+		<key>7C79BD172964ECFE45DFE5F182C0096B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8C2E690E123CA9B2F26097493EC2771C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A5B2B1643680983DFA734ACDBBDD5EBF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AD0F8DDF903BBBFE9DAE1964E32A8B1E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,27 +117,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BDE2B70E0B9366EC65EFC9D62F60894C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>D10AFCBBC3949030D56276226438BB24</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E5C822592A6BF1240973D82E3A13B523</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>EB8A8D5AC7D357E4BC4FA57935296357</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F3CB543888D67AF92C703F235FE56E35</key>
+		<key>F03108CECDDE5C0DA8966D285FE9E0A7</key>
 		<dict>
 			<key>primary</key>
 			<true/>

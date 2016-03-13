@@ -15,6 +15,8 @@
 @property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, strong) NSURLRequest *request;
 
+
+
 @end
 
 @implementation DetailNewsViewController
@@ -36,12 +38,13 @@
 {
     [super viewDidLoad];
     [self initProgressView];
+
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
     dispatch_async(queue, ^{
-        [_webView loadRequest: _request];
+        [self.webView loadRequest: _request];
     });
     
-//    [_webView loadRequest: _request];
+//    [self.webView loadRequest: _request];
 
 }
 

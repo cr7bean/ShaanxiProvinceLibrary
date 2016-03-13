@@ -290,7 +290,8 @@ static const CGFloat kInner = 10.0f;
     _publisherLabel.numberOfLines = 0;
     
     //setContent
-    [_coverImage setImageWithURL: [NSURL URLWithString: bookModel.imageString]];
+//    [_coverImage setImageWithURL: [NSURL URLWithString: bookModel.imageString]];
+    [_coverImage setImageWithURL: [NSURL URLWithString: bookModel.imageString] placeholderImage: [UIImage imageNamed: @"imageHolder"]];
     _titleLabel.text = bookModel.title;
     _authorLabel.text = bookModel.author;
     

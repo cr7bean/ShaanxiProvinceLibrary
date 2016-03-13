@@ -14,12 +14,15 @@
 #import "ParseHTML.h"
 #import "BookTagListViewController.h"
 #import "BookTagSearchView.h"
+#import "GVUserDefaults+library.h"
 
 
 @interface BookTagViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) BookTagSearchView *tagSearchView;
+@property (nonatomic, strong) NSMutableDictionary *heightDic;
+@property (nonatomic, assign) BOOL isDidLoad;
 
 @end
 
@@ -47,13 +50,37 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.isDidLoad = YES;
     self.edgesForExtendedLayout = UIRectEdgeNone;
     _booktagsArray = [NSMutableArray new];
     _titleArray = @[@"我的收藏",@"图书销售榜单",@"文学",@"流行", @"文化", @"生活", @"经管", @"科技"];
     _booktagsArray = [NSMutableArray arrayWithContentsOfFile: [[NSBundle mainBundle] pathForResource: @"tags" ofType: @"plist"]];
+    _heightDic = [NSMutableDictionary dictionaryWithCapacity: 100];
+    
+    
+    
+    
+    [self addCollectionTag];
     [self.collectionView reloadData];
-
 }
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear: animated];
+    if ([GVUserDefaults standardUserDefaults].collectionTag.count != [_booktagsArray[0] count]) {
+        [self addCollectionTag];
+        [self.collectionView reloadSections: [NSIndexSet indexSetWithIndex: 0]];
+    }
+}
+
+// add collectionTag
+- (void) addCollectionTag
+{
+    if ([GVUserDefaults standardUserDefaults].collectionTag.count) {
+        [_booktagsArray replaceObjectAtIndex: 0 withObject: [GVUserDefaults standardUserDefaults].collectionTag];
+    }
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -170,9 +197,19 @@
 
 - (CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-
     NSString *tag = [_booktagsArray[indexPath.section] objectAtIndex: indexPath.item];
-    return [tag sizeWithAttributes: @{NSFontAttributeName: [UIFont systemFontOfSize: 16]}];
+    if (indexPath.section == 0) {
+        return [tag sizeWithAttributes: @{NSFontAttributeName: [UIFont systemFontOfSize: 16]}];
+    }else{
+        if (!_heightDic[@"tag"]) {
+            CGSize size = [tag sizeWithAttributes: @{NSFontAttributeName: [UIFont systemFontOfSize: 16]}];
+            [_heightDic setObject: NSStringFromCGSize(size) forKey: tag];
+            return size;
+        }else{
+            return CGSizeFromString(_heightDic[tag]);
+        }
+    }
+//    return CGSizeZero;
 }
 
 - (CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
