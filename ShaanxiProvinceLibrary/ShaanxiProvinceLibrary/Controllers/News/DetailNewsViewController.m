@@ -122,6 +122,8 @@
 - (void) webViewDidFinishLoad:(UIWebView *)webView
 {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
+    [_webView stringByEvaluatingJavaScriptFromString: @"imag"];
+    
 }
 
 @end

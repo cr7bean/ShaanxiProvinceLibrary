@@ -179,8 +179,8 @@
           toViewController: (UIViewController *) parentController
 {
     [parentController addChildViewController: childController];
-//    [[(UIViewController *)childController view] setFrame: CGRectMake(0, 0, 375, 667+64+44)];
-    [[(UIViewController *)childController view] setFrame: [UIScreen mainScreen].bounds];       
+//    [[(UIViewController *)childController view] setFrame: CGRectMake(0, 0, 375, 667-64)];
+    [[(UIViewController *)childController view] setFrame: [UIScreen mainScreen].bounds];
     [parentController.view addSubview: [childController view]];
     [childController didMoveToParentViewController: parentController];
 }

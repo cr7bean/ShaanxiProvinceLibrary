@@ -58,6 +58,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     [self updateBookContent];
 }
 
@@ -92,11 +93,16 @@
 
 - (void) updateBookContent
 {
+//    self.libraryTableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
+//    self.DoubanTableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
+    
+    
     NSString *urlString = self.parameter[@"urlString"];
     [self.parameter removeObjectForKey: @"urlString"];
-    
     switch (self.transtionType) {
         case transtionTypeMainController: {
+            
+            
             self.libraryTableView.contentInset = UIEdgeInsetsMake(0, 0, 64, 0);
             self.DoubanTableView.contentInset = UIEdgeInsetsMake(0, 0, 64, 0);
             [self configureBookContent];
@@ -105,6 +111,7 @@
             break;
         }
         case transtionTypeListController: {
+            
             self.DoubanTableView.hidden = YES;
             self.libraryTableView.hidden = NO;
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo: self.view animated: YES];
@@ -114,12 +121,15 @@
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: YES];
             [ParseHTML booksNumberIsOneNextPage: urlString parameter: self.parameter success:^(NSDictionary *bookContent) {
                 hud.hidden = YES;
-                [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
+                
                 self.bookContentDic = bookContent;
                 [self configureBookContent];
                 [self.libraryTableView reloadData];
             } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
+                
+                hud.mode = MBProgressHUDModeText;
+                hud.labelText = @"网络请求失败";
+                hud.hidden = YES;
             }];
             break;
         }
@@ -205,12 +215,11 @@
         _libraryTableView = [[UITableView alloc] initWithFrame: CGRectZero style: UITableViewStyleGrouped];
         [self.view addSubview: _libraryTableView];
         [_libraryTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 0, 0));
+            make.edges.mas_equalTo(0);
         }];
         [_libraryTableView registerClass: [BookContentTableViewCell class] forCellReuseIdentifier: @"contentCell"];
         _libraryTableView.delegate = self;
         _libraryTableView.dataSource = self;
-        _libraryTableView.showsVerticalScrollIndicator = NO;
         _libraryTableView.sectionFooterHeight = 0;
     }
     return _libraryTableView;
@@ -222,7 +231,7 @@
         _DoubanTableView = [[UITableView alloc] initWithFrame: CGRectZero style: UITableViewStyleGrouped];
         [self.view addSubview: _DoubanTableView];
         [_DoubanTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 0, 0));
+            make.edges.mas_equalTo(0);
         }];
         _DoubanTableView.delegate = self;
         _DoubanTableView.dataSource = self;

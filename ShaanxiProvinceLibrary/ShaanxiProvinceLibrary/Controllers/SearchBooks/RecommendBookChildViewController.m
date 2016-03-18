@@ -33,6 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 64, 0);
     self.navigationItem.title = @"推荐";
     self.recommendedBook = [self.booklistDic objectForKey: @"suggestedBooks"];
     [self.tableView reloadData];
@@ -60,7 +61,7 @@
         _tableView = [[UITableView alloc] initWithFrame: CGRectZero style: UITableViewStyleGrouped];
         [self.view addSubview: _tableView];
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 64, 0));
+            make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 0, 0));
         }];
         _tableView.delegate = self;
         _tableView.dataSource = self;

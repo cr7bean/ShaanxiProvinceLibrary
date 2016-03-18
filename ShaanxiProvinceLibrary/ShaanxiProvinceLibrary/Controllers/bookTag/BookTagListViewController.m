@@ -16,6 +16,7 @@
 #import <MBProgressHUD.h>
 #import <PSTAlertController.h>
 #import "GVUserDefaults+library.h"
+#import "BookTagContentViewController.h"
 
 @interface BookTagListViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -166,18 +167,20 @@
     urlString = [urlString stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
     NSDictionary *parameter = @{@"start": [NSNumber numberWithInteger: startNumber],
                                 @"type": typeName};
-    
-//    NSString *urlString = @"https://www.douban.com/tag/%E5%B0%8F%E8%AF%B4/book";
-//    NSDictionary *parameter = nil;
-    [ParseHTML searchBookWithTagInUrl: urlString parameter: parameter successs:^(NSMutableArray *bookArray) {
+
+    [ParseHTML searchBookWithTagInUrl: urlString parameter: parameter successs:^(NSMutableArray *bookArray, NSArray *tagsRecommended) {
         self.hud.hidden = YES;
         [self.bookListArray addObjectsFromArray: bookArray];
         [self.tableView reloadData];
-        
-
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         self.hud.mode = MBProgressHUDModeText;
-        self.hud.labelText = @"请检查您的网络";
+        if (error.code == -1009) {
+            self.hud.labelText = @"请检查您的网络";
+        }else{
+            self.hud.labelText = @"豆瓣服务异常";
+        }
+        [self.hud hide: YES afterDelay: 1];
+        
     }];
 }
 
@@ -199,6 +202,8 @@
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         self.hud.mode = MBProgressHUDModeText;
         self.hud.labelText = @"请检查您的网络";
+        [self.hud hide: YES afterDelay: 1];
+        
     }];
 }
 
@@ -217,6 +222,7 @@
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         self.hud.mode = MBProgressHUDModeText;
         self.hud.labelText = @"请检查您的网络";
+        [self.hud hide: YES afterDelay: 1];
     }];
 }
 
@@ -235,6 +241,7 @@
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         self.hud.mode = MBProgressHUDModeText;
         self.hud.labelText = @"请检查您的网络";
+        [self.hud hide: YES afterDelay: 1];
     }];
 }
 
@@ -273,6 +280,25 @@
 {
     DoubanBookModel *bookModel = self.bookListArray[indexPath.row];
     [cell configurateBookTagListCell: bookModel contentType: _contentType];
+}
+
+# pragma UITableViewDelegate
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//    [tableView deselectRowAtIndexPath: indexPath animated: YES];
+    DoubanBookModel *bookModel = _bookListArray[indexPath.row];
+    NSString *searchWords;
+    tagContentType bookContenType;
+    if (_contentType == contentTypeDoubanTag) {
+        searchWords = bookModel.idString;
+        bookContenType = tagContentTypeDouban;
+    }else{
+        searchWords = bookModel.shortTitle;
+        bookContenType = tagContentTypeNonDouban;
+    }
+    BookTagContentViewController *controller = [[BookTagContentViewController alloc] initWithSearchWords: searchWords contentType: bookContenType];
+    [self.navigationController pushViewController: controller animated: YES];
 }
 
 

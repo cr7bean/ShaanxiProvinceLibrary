@@ -590,28 +590,34 @@
     [manager GET: urlString parameters: nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         [Helper setNetworkIndicator: NO];
+        NSDictionary *bookDic;
+        if ([responseObject[@"books"] count]) {
+            bookDic = [NSDictionary dictionaryWithDictionary: [responseObject[@"books"] objectAtIndex: 0]];
+        }else{
+            bookDic = [NSDictionary dictionaryWithDictionary: responseObject];
+        }
         
         DoubanBookModel *bookModel = [DoubanBookModel new];
-        bookModel.title = responseObject[@"title"];
-        bookModel.originalTitle = responseObject[@"origin_title"];
-        bookModel.publisher = responseObject[@"publisher"];
-        bookModel.pubdate = responseObject[@"pubdate"];
-        bookModel.pages = responseObject[@"pages"];
-        bookModel.price = responseObject[@"price"];
-        bookModel.binding = responseObject[@"binding"];
-        bookModel.idString = responseObject[@"id"];
-        bookModel.authorIntro = responseObject[@"author_intro"];
-        bookModel.catalog = responseObject[@"catalog"];
-        bookModel.summary = responseObject[@"summary"];
-        bookModel.rating = [responseObject[@"rating"] objectForKey: @"average"];
+        bookModel.title = bookDic[@"title"];
+        bookModel.originalTitle = bookDic[@"origin_title"];
+        bookModel.publisher = bookDic[@"publisher"];
+        bookModel.pubdate = bookDic[@"pubdate"];
+        bookModel.pages = bookDic[@"pages"];
+        bookModel.price = bookDic[@"price"];
+        bookModel.binding = bookDic[@"binding"];
+        bookModel.idString = bookDic[@"id"];
+        bookModel.authorIntro = bookDic[@"author_intro"];
+        bookModel.catalog = bookDic[@"catalog"];
+        bookModel.summary = bookDic[@"summary"];
+        bookModel.rating = [bookDic[@"rating"] objectForKey: @"average"];
         
         bookModel.catalog = [Helper deleteSpaceAndCR: bookModel.catalog];
         
-        if ([responseObject[@"author"] count]) {
-          bookModel.author  = responseObject[@"author"][0];
+        if ([bookDic[@"author"] count]) {
+          bookModel.author  = bookDic[@"author"][0];
         }
-        NSString *image = responseObject[@"image"];
-        NSDictionary *images = responseObject[@"images"];
+        NSString *image = bookDic[@"image"];
+        NSDictionary *images = bookDic[@"images"];
         if (images[@"large"]) {
             bookModel.imageString = images[@"large"];
         }else if (image){
@@ -667,10 +673,11 @@
  */
 + (void) searchBookWithTagInUrl: (NSString *) urlString
                        parameter: (NSDictionary *) parameter
-                       successs: (void(^)(NSMutableArray *bookArray)) success
+                       successs: (void(^)(NSMutableArray *bookArray, NSArray *tagsRecommended)) success
                         failure: (requestFailurerBlock) failure
 {
     NSMutableArray *bookArray = [NSMutableArray new];
+    NSMutableArray *tagsArray = [NSMutableArray new];
     
     [self requestWithUrl: urlString parameter: parameter methodType: requestMethodTypeGet success:^(NSURLSessionDataTask *task, id responseObject) {
 
@@ -678,8 +685,8 @@
         if (!htmlString) {
             responseObject = [Helper UTF8Data: responseObject];
         }
-        [self searchBookInData: responseObject addInArray: bookArray];
-        success(bookArray);
+        [self searchBookInData: responseObject addInArray: bookArray tags: tagsArray];
+        success(bookArray, [tagsArray copy]);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         failure(task, error);
     }];
@@ -691,9 +698,13 @@
  */
 + (void) searchBookInData: (NSData *) responseObject
                addInArray: (NSMutableArray *) bookArray
+                     tags: (NSMutableArray *) tagsArray
 {
     TFHpple *parse = [TFHpple hppleWithHTMLData: responseObject];
     NSArray *nodes = [parse searchWithXPathQuery: @"//li[@class='subject-item']"];
+    NSArray *tagNodes = [parse searchWithXPathQuery: @"//div[@class='tags-list']/a"];
+    
+    
     if (nodes.count) {
         
         for (TFHppleElement *element in nodes) {
@@ -701,14 +712,22 @@
             NSString *xpath = @"//img|//h2/a|//div[@class='pub']|//span[@class='pl']";
             NSArray *bookNodes = [bookParse searchWithXPathQuery: xpath];
             NSArray *ratingNodes = [bookParse searchWithXPathQuery: @"//span[@class='rating_nums']|//p"];
-            DoubanBookModel *bookModel = [DoubanBookModel new];
+//            NSArray *idNodes = [bookParse searchWithXPathQuery: @"//dic[@class=info]/h2/a"];
             
+            
+            DoubanBookModel *bookModel = [DoubanBookModel new];
             [self configureBookContent: bookNodes ratingArray: ratingNodes withModel:bookModel];
             [bookArray addObject: bookModel];
-            
-//            NSLog(@"%@\n", bookModel.title);
+        }
+        
+        if (tagNodes.count) {
+            for (TFHppleElement *element in tagNodes) {
+                [tagsArray addObject: [[[element childrenWithTagName: @"text"] firstObject] content]];
+            }
         }
     }
+    
+    
 }
 
 /**
@@ -719,18 +738,16 @@
                   ratingArray: (NSArray *) ratingNodes
              withModel: (DoubanBookModel *) bookModel
 {
+    // 书籍详细信息
     NSUInteger bookCount = bookNodes.count;
     if (bookCount == 4) {
         bookModel.imageString = [bookNodes[0] objectForKey: @"src"];
         bookModel.imageString = [bookModel.imageString stringByReplacingOccurrencesOfString: @"mpic" withString: @"lpic"];
         bookModel.title = [bookNodes[1] objectForKey: @"title"];
         bookModel.rating = [Helper deleteSpaceAndCR: [bookNodes[3] text]];
-        
         NSString *bookIdString = [bookNodes[1] objectForKey: @"href"];
-        bookIdString = [bookIdString stringByReplacingOccurrencesOfString: @"http://book.douban.com/subject/" withString: @""];
-        NSRange range = [bookIdString rangeOfString: @"/"];
-        bookModel.idString = [bookIdString substringToIndex: range.location];
-        
+        bookModel.idString = [self bookIdString: bookIdString];
+//        NSLog(@"%@", bookModel.idString);
         NSString *basicInfo = [bookNodes[2] text];
         basicInfo = [Helper deleteSpaceAndCR: basicInfo];
         NSArray *basicInfoArray = [basicInfo componentsSeparatedByString: @"/"];
@@ -750,6 +767,7 @@
         }
     }
     
+    // 评分信息
     NSUInteger ratingCount = ratingNodes.count;
     if (ratingCount == 1) {
         if ([[ratingNodes[0] text] length] > 5) {
@@ -762,13 +780,19 @@
         bookModel.summary = [ratingNodes[1] text];
     }
     bookModel.summary = [Helper deleteSpaceAndCR: bookModel.summary];
-    // 截取 summary
-//    NSLog(@"%@", bookModel.summary);
-//    if (bookModel.summary.length > 50){
-//        bookModel.summary = [bookModel.summary substringToIndex: 50];
-//    }
-    
 }
+
+
+//获取书籍 ID
++ (NSString *) bookIdString: (NSString *) string
+{
+    if (string) {
+        string = [string stringByReplacingOccurrencesOfString: @"https://book.douban.com/subject/" withString:@""];
+        string = [string stringByReplacingOccurrencesOfString:@"/" withString:@""];
+    }
+    return string;
+}
+
 
 
 # pragma mark - Amazon book
@@ -808,12 +832,7 @@
                 bookModel.binding = [bookNodes[2] text];
                 bookModel.price = [bookNodes[3] text];
                 
-                NSRange range = [bookModel.title rangeOfString: @"("];
-                if (range.length) {
-                    bookModel.shortTitle = [bookModel.title substringToIndex: range.location];
-                }else{
-                    bookModel.shortTitle = bookModel.title;
-                }
+                [self bookshortTitle: bookModel];
                 
             }
             
@@ -872,13 +891,7 @@
                     bookModel.imageString = [@"http:" stringByAppendingPathComponent: bookModel.imageString];
                 }
                 
-                //去掉标题中的括号
-                NSRange range = [bookModel.title rangeOfString: @"("];
-                if (range.length) {
-                    bookModel.shortTitle = [bookModel.title substringToIndex: range.location];
-                }else{
-                    bookModel.shortTitle = bookModel.title;
-                }
+                [self bookshortTitle: bookModel];
             }
             
             //拼接作者和翻译者
@@ -942,13 +955,7 @@
                 bookModel.publisher = [bookNodes[2] text];
                 bookModel.price = [bookNodes[3] text];
                 
-                //去掉标题中的括号
-                NSRange range = [bookModel.title rangeOfString: @"（"];
-                if (range.length) {
-                    bookModel.shortTitle = [bookModel.title substringToIndex: range.location];
-                }else{
-                    bookModel.shortTitle = bookModel.title;
-                }
+                [self bookshortTitle: bookModel];
                 
                 [bookArray addObject: bookModel];
             }
@@ -958,6 +965,28 @@
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         failure(task, error);
     }];
+}
+
+// 截取书籍的短标题，方便搜索
++ (void) bookshortTitle: (DoubanBookModel *) bookModel
+{
+    // 标题中会出现中文括号或英文括号
+    bookModel.title = [Helper deleteSpaceAndCR: bookModel.title];
+    NSRange rangeA = [bookModel.title rangeOfString: @"（"];
+    NSRange rangeB = [bookModel.title rangeOfString: @"("];
+    if (rangeA.length || rangeB.length) {
+        NSRange range;
+        if (rangeA.length) {
+            range = rangeA;
+        }else if (rangeB.length){
+            range = rangeB;
+        }
+        bookModel.shortTitle = [bookModel.title substringToIndex: range.location];
+       
+    }else{
+        bookModel.shortTitle = bookModel.title;
+    }
+//     NSLog(@"%@", bookModel.shortTitle);
 }
 
 @end

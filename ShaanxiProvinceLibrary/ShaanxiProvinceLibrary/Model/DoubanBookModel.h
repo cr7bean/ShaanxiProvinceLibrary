@@ -21,6 +21,7 @@
 @property (nonatomic, copy) NSString *binding;
 @property (nonatomic, copy) NSString *idString;
 @property (nonatomic, copy) NSString *rating;
+@property (nonatomic, strong) NSArray *tagsRecommended;
 
 @property (nonatomic, copy) NSString *authorIntro;
 @property (nonatomic, copy) NSString *catalog;

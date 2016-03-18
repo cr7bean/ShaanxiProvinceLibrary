@@ -38,13 +38,16 @@
 {
     UIView *view = [[UIView alloc] initWithFrame: [UIScreen mainScreen].bounds];
     self.view = view;
-    self.view.backgroundColor = [UIColor redColor];
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     self.navigationItem.title = @"馆藏信息";
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 64, 0);
     [self assignWithDictionary: self.booklistDic];
 // 因为 tableView 用的是懒加载，上一个版本必须要添加如下代码。
 // 下午运行的时候第一次计算高度变成了0.5。手动刷新之后又正常。这次去掉以下代码又正常了。
@@ -141,7 +144,8 @@
         _tableView = [[UITableView alloc] initWithFrame: CGRectZero style: UITableViewStyleGrouped];
         [self.view addSubview: _tableView];
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 64, 0));
+//            make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 64, 0));
+            make.edges.mas_equalTo(0);
         }];
         _tableView.delegate = self;
         _tableView.dataSource = self;

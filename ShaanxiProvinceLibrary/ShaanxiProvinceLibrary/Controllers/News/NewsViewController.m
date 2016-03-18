@@ -161,7 +161,7 @@
 {
     UITableViewHeaderFooterView *headerView = [UITableViewHeaderFooterView new];
      UILabel *headerLabel = [UILabel new];
-     NSArray *headerTitle = @[@"公告通知", @"陕图动态", @"陕图讲坛", @"少儿活动"];
+     NSArray *headerTitle = @[@"陕图动态", @"阅读推广", @"陕图讲坛", @"少儿活动"];
     
     [headerView.contentView addSubview: headerLabel];
     [headerLabel mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -152,11 +152,14 @@ static const CGFloat kInner = 10.0f;
     if (bookmodel.binding) {
         binding = [binding stringByAppendingString: bookmodel.binding];
     }
-    if ([bookmodel.rating isEqualToString: @"0.0"]) {
-        rating = [rating stringByAppendingString: @"暂无评分"];
-    }else{
-        rating = [rating stringByAppendingString: bookmodel.rating];
+    if (bookmodel.rating) {
+        if ([bookmodel.rating isEqualToString: @"0.0"]) {
+            rating = [rating stringByAppendingString: @"暂无评分"];
+        }else{
+            rating = [rating stringByAppendingString: bookmodel.rating];
+        }
     }
+    
 
     _titleLabel.text = bookmodel.title;
     _authorLabel.text = author;
@@ -266,6 +269,11 @@ static const CGFloat kInner = 10.0f;
 
 # pragma mark - bookTagListCell
 
+/**
+ *  配置标签搜索列表、三大图书排行内容 cell
+ *
+ */
+
 - (void) configurateBookTagListCell: (DoubanBookModel *) bookModel
                         contentType: (NSUInteger) typeIndex
 {
@@ -290,7 +298,7 @@ static const CGFloat kInner = 10.0f;
     _publisherLabel.numberOfLines = 0;
     
     //setContent
-//    [_coverImage setImageWithURL: [NSURL URLWithString: bookModel.imageString]];
+
     [_coverImage setImageWithURL: [NSURL URLWithString: bookModel.imageString] placeholderImage: [UIImage imageNamed: @"imageHolder"]];
     _titleLabel.text = bookModel.title;
     _authorLabel.text = bookModel.author;
@@ -325,14 +333,14 @@ static const CGFloat kInner = 10.0f;
     }];
     
     [_coverImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(KTopAndBottom);
+        make.top.mas_equalTo(KTopAndBottom + 10);
         make.left.mas_equalTo(kLeft);
         make.width.mas_equalTo(112.5);
         make.height.mas_equalTo(_imageHeight);
-        make.bottom.mas_equalTo(-KTopAndBottom);
+        make.bottom.mas_equalTo(-KTopAndBottom - 10);
     }];
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(KTopAndBottom);
+        make.top.mas_equalTo(KTopAndBottom + 10);
         make.left.equalTo(_coverImage.mas_right).offset(kHorizontalInner);
         make.right.mas_equalTo(-kRight);
     }];

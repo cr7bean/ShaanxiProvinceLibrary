@@ -62,9 +62,15 @@ typedef void(^requestFailurerBlock)(NSURLSessionDataTask *task, NSError *error);
          successs: (void(^)(NSMutableArray *tagsArray)) success
           failure: (requestFailurerBlock) failure;
 
+//+ (void) searchBookWithTagInUrl: (NSString *) urlString
+//                      parameter: (NSDictionary *) parameter
+//                       successs: (void(^)(NSMutableArray *bookArray)) success
+//                        failure: (requestFailurerBlock) failure;
+
+
 + (void) searchBookWithTagInUrl: (NSString *) urlString
                       parameter: (NSDictionary *) parameter
-                       successs: (void(^)(NSMutableArray *bookArray)) success
+                       successs: (void(^)(NSMutableArray *bookArray, NSArray *tagsRecommended)) success
                         failure: (requestFailurerBlock) failure;
 
 + (void) amazonBooksWithUrl: (NSString *) urlString

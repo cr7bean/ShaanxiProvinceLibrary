@@ -40,6 +40,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.placeHolderView.hidden = YES;
+    
+    // 重点关注这个方法
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     [self searchBook];
 }
 

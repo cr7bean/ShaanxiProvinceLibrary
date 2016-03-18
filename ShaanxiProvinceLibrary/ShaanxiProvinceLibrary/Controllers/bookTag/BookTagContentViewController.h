@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSUInteger, tagContentType) {
+    tagContentTypeDouban = 1,
+    tagContentTypeNonDouban,
+};
+
 @interface BookTagContentViewController : UIViewController
+
+- (instancetype) initWithSearchWords: (NSString *) searchWords
+                         contentType: (tagContentType) bookContenType;
 
 @end
