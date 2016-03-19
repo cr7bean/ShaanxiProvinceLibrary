@@ -43,9 +43,6 @@
     dispatch_async(queue, ^{
         [self.webView loadRequest: _request];
     });
-    
-//    [self.webView loadRequest: _request];
-
 }
 
 - (void) viewWillAppear:(BOOL)animated

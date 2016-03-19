@@ -34,6 +34,8 @@
 		FDC53A661C8957180005A0E1 /* ShowBooksMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC53A611C8957180005A0E1 /* ShowBooksMainViewController.m */; };
 		FDC53A6B1C89572B0005A0E1 /* DetailNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC53A681C89572B0005A0E1 /* DetailNewsViewController.m */; };
 		FDC53A6C1C89572B0005A0E1 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC53A6A1C89572B0005A0E1 /* NewsViewController.m */; };
+		FDDF41BA1C9BF04B006D3059 /* WindowsAzureMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDDF41B81C9BF04B006D3059 /* WindowsAzureMessaging.framework */; settings = {ASSET_TAGS = (); }; };
+		FDDF41BB1C9BF04B006D3059 /* WindowsAzureMobileServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDDF41B91C9BF04B006D3059 /* WindowsAzureMobileServices.framework */; settings = {ASSET_TAGS = (); }; };
 		FDEE5BE41BFCAA7C00AA0171 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEE5BE31BFCAA7C00AA0171 /* Helper.m */; };
 		FDF4D3BB1C01A5E400C27381 /* NewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF4D3BA1C01A5E400C27381 /* NewsModel.m */; };
 		FDF769741BFD56E300734ECA /* ParseHTML.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF769731BFD56E300734ECA /* ParseHTML.m */; };
@@ -111,6 +113,9 @@
 		FDC53A681C89572B0005A0E1 /* DetailNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailNewsViewController.m; path = Controllers/News/DetailNewsViewController.m; sourceTree = "<group>"; };
 		FDC53A691C89572B0005A0E1 /* NewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsViewController.h; path = Controllers/News/NewsViewController.h; sourceTree = "<group>"; };
 		FDC53A6A1C89572B0005A0E1 /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsViewController.m; path = Controllers/News/NewsViewController.m; sourceTree = "<group>"; };
+		FDDF41B81C9BF04B006D3059 /* WindowsAzureMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMessaging.framework; sourceTree = "<group>"; };
+		FDDF41B91C9BF04B006D3059 /* WindowsAzureMobileServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMobileServices.framework; sourceTree = "<group>"; };
+		FDDF41BC1C9BF0DE006D3059 /* HubInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HubInfo.h; sourceTree = "<group>"; };
 		FDEE5BE21BFCAA7C00AA0171 /* Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Helper.h; path = Helper/Helper.h; sourceTree = "<group>"; };
 		FDEE5BE31BFCAA7C00AA0171 /* Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Helper.m; path = Helper/Helper.m; sourceTree = "<group>"; };
 		FDF4D3B91C01A5E400C27381 /* NewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsModel.h; path = Model/NewsModel.h; sourceTree = "<group>"; };
@@ -140,6 +145,8 @@
 			files = (
 				FDF9CCF61BF89E670070907D /* libxml2.2.dylib in Frameworks */,
 				FC4413043EDDD1D8CB54F6D8 /* libPods.a in Frameworks */,
+				FDDF41BB1C9BF04B006D3059 /* WindowsAzureMobileServices.framework in Frameworks */,
+				FDDF41BA1C9BF04B006D3059 /* WindowsAzureMessaging.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +259,16 @@
 			name = ChooseLibrary;
 			sourceTree = "<group>";
 		};
+		FDDF41B71C9BF04B006D3059 /* AzurePush */ = {
+			isa = PBXGroup;
+			children = (
+				FDDF41B81C9BF04B006D3059 /* WindowsAzureMessaging.framework */,
+				FDDF41B91C9BF04B006D3059 /* WindowsAzureMobileServices.framework */,
+				FDDF41BC1C9BF0DE006D3059 /* HubInfo.h */,
+			);
+			path = AzurePush;
+			sourceTree = "<group>";
+		};
 		FDF2871A1C1D9FD400A48ACF /* Suggestion */ = {
 			isa = PBXGroup;
 			children = (
@@ -330,6 +347,7 @@
 		FDF9CCCE1BF8708B0070907D /* ShaanxiProvinceLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				FDDF41B71C9BF04B006D3059 /* AzurePush */,
 				FD1A32211BF8C5AD00A8B6A7 /* Helper */,
 				FD1A32201BF8C58200A8B6A7 /* Manager */,
 				FD1A321F1BF8C57A00A8B6A7 /* View */,
@@ -628,7 +646,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: RunLong Wang (BT52MSS5FQ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: RunLong Wang (8LMT578K9H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: RunLong Wang (BT52MSS5FQ)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
@@ -651,7 +669,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "a123a505-8cc5-4713-a646-62694ac664ad";
+				PROVISIONING_PROFILE = "00bbbd54-ea88-4121-a23e-1ecec28027c2";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -674,7 +692,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: RunLong Wang (BT52MSS5FQ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: RunLong Wang (8LMT578K9H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: RunLong Wang (BT52MSS5FQ)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
@@ -690,7 +708,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "a123a505-8cc5-4713-a646-62694ac664ad";
+				PROVISIONING_PROFILE = "00bbbd54-ea88-4121-a23e-1ecec28027c2";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -703,13 +721,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: RunLong Wang (BT52MSS5FQ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: RunLong Wang (8LMT578K9H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: RunLong Wang (BT52MSS5FQ)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ShaanxiProvinceLibrary/AzurePush",
+				);
 				INFOPLIST_FILE = ShaanxiProvinceLibrary/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.figurewang.ShaanxiProvinceLibrary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a123a505-8cc5-4713-a646-62694ac664ad";
+				PROVISIONING_PROFILE = "00bbbd54-ea88-4121-a23e-1ecec28027c2";
 				USER_HEADER_SEARCH_PATHS = /usr/include/libxml2;
 			};
 			name = Debug;
@@ -721,13 +743,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: RunLong Wang (BT52MSS5FQ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: RunLong Wang (8LMT578K9H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: RunLong Wang (BT52MSS5FQ)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ShaanxiProvinceLibrary/AzurePush",
+				);
 				INFOPLIST_FILE = ShaanxiProvinceLibrary/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.figurewang.ShaanxiProvinceLibrary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a123a505-8cc5-4713-a646-62694ac664ad";
+				PROVISIONING_PROFILE = "00bbbd54-ea88-4121-a23e-1ecec28027c2";
 				USER_HEADER_SEARCH_PATHS = "${SDKROOT}/usr/include/libxml2";
 			};
 			name = Release;

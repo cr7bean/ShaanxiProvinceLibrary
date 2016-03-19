@@ -679,7 +679,7 @@
     NSMutableArray *bookArray = [NSMutableArray new];
     NSMutableArray *tagsArray = [NSMutableArray new];
     
-    [self requestWithUrl: urlString parameter: parameter methodType: requestMethodTypeGet success:^(NSURLSessionDataTask *task, id responseObject) {
+    [self requestWithUrl: urlString parameter: parameter methodType: requestMethodTypePost success:^(NSURLSessionDataTask *task, id responseObject) {
 
         NSString *htmlString = [[NSString alloc] initWithData: responseObject encoding: NSUTF8StringEncoding];
         if (!htmlString) {
@@ -767,6 +767,7 @@
         }
     }
     
+//    NSLog(@"%@", bookModel.title);
     // 评分信息
     NSUInteger ratingCount = ratingNodes.count;
     if (ratingCount == 1) {

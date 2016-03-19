@@ -196,7 +196,8 @@
     [ParseHTML booksNumberIsMoreNextPage: urlString parameter: parameters success:^(NSDictionary *booklist) {
         [weakSelf.tableView.infiniteScrollingView stopAnimating];
         [self assignWithDictionary: booklist];
-        [_tableView reloadData];
+//        [_tableView reloadData];
+        [_tableView fd_reloadDataWithoutInvalidateIndexPathHeightCache];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
     }];

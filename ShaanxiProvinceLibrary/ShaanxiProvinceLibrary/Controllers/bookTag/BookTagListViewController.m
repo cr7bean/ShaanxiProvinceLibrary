@@ -17,6 +17,7 @@
 #import <PSTAlertController.h>
 #import "GVUserDefaults+library.h"
 #import "BookTagContentViewController.h"
+#import <SVPullToRefresh.h>
 
 @interface BookTagListViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -25,10 +26,15 @@
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *bookListArray;
 @property (nonatomic, strong) MBProgressHUD *hud;
+@property (nonatomic, copy) NSString *OrderType;
+@property (nonatomic, assign)  NSUInteger doubanPageCount, nonDoubanPageCount;
 
 @end
 
 @implementation BookTagListViewController
+{
+    __weak BookTagListViewController *weakSelf;
+}
 
 # pragma mark - lifeCycle
 
@@ -41,10 +47,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.tableView registerClass: [DoubanContentTableViewCell class] forCellReuseIdentifier: @"tagListCell"];
-    self.title = _tagName;
-    [self addRightBarItem];
-    [self loadBooklistContent];
+    [self firstLoadData];
+    [self loadMoreContent];
 }
 
 - (void) viewWillDisappear:(BOOL)animated
@@ -78,24 +82,58 @@
 
 - (void) barItemAction: (UIBarButtonItem *) buttonItem
 {
-    
-    PSTAlertController *tagController = [PSTAlertController actionSheetWithTitle: @"如果您喜欢这个标签，可以收藏"];
-    [tagController addAction: [PSTAlertAction actionWithTitle: @"收藏" handler:^(PSTAlertAction * _Nonnull action) {
+    NSMutableArray *temp = [NSMutableArray arrayWithArray: [GVUserDefaults standardUserDefaults].collectionTag];
+    NSString *title;
+    if ([temp containsObject: self.tagName]) {
+        title = @"取消收藏";
+    }else{
+        title = @"收藏";
+    }
+    PSTAlertController *tagController = [PSTAlertController actionSheetWithTitle: nil];
+    [tagController addAction: [PSTAlertAction actionWithTitle: title handler:^(PSTAlertAction * _Nonnull action) {
+        [self collectionBookTags: title inArray: temp];
         
-        MBProgressHUD *tagHud = [MBProgressHUD showHUDAddedTo: self.navigationController.view animated: YES];
-        tagHud.mode = MBProgressHUDModeText;
-        NSMutableArray *temp = [NSMutableArray arrayWithArray: [GVUserDefaults standardUserDefaults].collectionTag];
-        if ([temp containsObject: self.tagName]) {
-            tagHud.labelText = @"您已经收藏过了";
-        }else{
-            tagHud.labelText = @"收藏成功";
-                [temp addObject: self.tagName];
-                [GVUserDefaults standardUserDefaults].collectionTag = [temp copy];
-        }
-        [tagHud hide: YES afterDelay: 1];
     }]];
     [tagController addAction: [PSTAlertAction actionWithTitle: @"取消" style: PSTAlertActionStyleCancel handler: nil]];
+    
+    if (_contentType == contentTypeDoubanTag) {
+        [tagController addAction: [PSTAlertAction actionWithTitle: @"综合排序(默认)" handler:^(PSTAlertAction * _Nonnull action) {
+            [self changeContentOrderType: @"T"];
+        }]];
+        [tagController addAction: [PSTAlertAction actionWithTitle: @"出版日期排序" handler:^(PSTAlertAction * _Nonnull action) {
+            [self changeContentOrderType: @"R"];
+        }]];
+        [tagController addAction: [PSTAlertAction actionWithTitle: @"评价排序" handler:^(PSTAlertAction * _Nonnull action) {
+            [self changeContentOrderType: @"S"];
+        }]];
+    }
+    
     [tagController showWithSender: buttonItem controller: self animated: YES completion: nil];
+}
+
+// 收藏标签
+- (void) collectionBookTags: (NSString *) title
+                    inArray: (NSMutableArray *) temp
+{
+    MBProgressHUD *tagHud = [MBProgressHUD showHUDAddedTo: self.navigationController.view animated: YES];
+    tagHud.mode = MBProgressHUDModeText;
+    if ([title isEqualToString:@"收藏"]) {
+        [temp addObject: self.tagName];
+        tagHud.labelText = @"收藏成功";
+    }else{
+        [temp removeObject: self.tagName];
+        tagHud.labelText = @"取消收藏";
+    }
+    [GVUserDefaults standardUserDefaults].collectionTag = [temp copy];
+    [tagHud hide: YES afterDelay: 1];
+}
+
+// 更改内容排序方式(仅限豆瓣标签内容)
+- (void) changeContentOrderType: (NSString *) orderType
+{
+    [_bookListArray removeAllObjects];
+    _doubanPageCount = 0;
+    [self DoubanContent: _doubanPageCount type: orderType];
 }
 
 
@@ -126,27 +164,26 @@
 
 #pragma mark - loadBooklistContent
 
-- (void) loadBooklistContent
+- (void) loadBooklistContent: (NSUInteger) doubanPageCount
+       doubanContenOrderType: (NSString *) orderType
+        nonDoubanContentPage: (NSUInteger) nonDoubanPageCount
 {
-    self.hud = [MBProgressHUD showHUDAddedTo: self.navigationController.view animated: YES];
-    self.hud.labelText = @"加载中...";
-    self.hud.opacity = 0.5;
+
     switch (_contentType) {
         case contentTypeDoubanTag: {
-            [self DoubanContent: 0 type: @"T"];
-            
+            [self DoubanContent: doubanPageCount type: orderType];
             break;
         }
         case contentTypeAmazon: {
-            [self AmazonContent: 1];
+            [self AmazonContent: nonDoubanPageCount];
             break;
         }
         case contentTypeJD: {
-            [self JDContent: 1];
+            [self JDContent: nonDoubanPageCount];
             break;
         }
         case contentTypeDD: {
-            [self DDContent: 1];
+            [self DDContent: nonDoubanPageCount];
             break;
         }
     }
@@ -162,17 +199,22 @@
 - (void) DoubanContent: (NSUInteger) startNumber
                   type: (NSString *) typeName
 {
-    NSString *urlString = @"http://book.douban.com/tag/";
+    NSString *urlString = @"https://book.douban.com/tag/";
     urlString = [urlString stringByAppendingFormat: @"%@", _tagName];
     urlString = [urlString stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
     NSDictionary *parameter = @{@"start": [NSNumber numberWithInteger: startNumber],
                                 @"type": typeName};
-
+    
     [ParseHTML searchBookWithTagInUrl: urlString parameter: parameter successs:^(NSMutableArray *bookArray, NSArray *tagsRecommended) {
         self.hud.hidden = YES;
         [self.bookListArray addObjectsFromArray: bookArray];
-        [self.tableView reloadData];
+        
+        [weakSelf.tableView.infiniteScrollingView stopAnimating];
+        if (bookArray.count) {
+            [self.tableView fd_reloadDataWithoutInvalidateIndexPathHeightCache];
+        }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [weakSelf.tableView.infiniteScrollingView stopAnimating];
         self.hud.mode = MBProgressHUDModeText;
         if (error.code == -1009) {
             self.hud.labelText = @"请检查您的网络";
@@ -191,6 +233,7 @@
  */
 - (void) AmazonContent: (NSUInteger) page
 {
+    
     NSString *urlString = @"http://www.amazon.cn/gp/bestsellers/books/ref=zg_bs_books_pg_2";
     NSDictionary *parameter = @{@"ie": @"UTF8",
                                 @"pg": [NSNumber numberWithInteger: page],
@@ -198,8 +241,12 @@
     [ParseHTML amazonBooksWithUrl: urlString parameter: parameter successs:^(NSMutableArray *amazonBookArray, NSUInteger pageNumber) {
         self.hud.hidden = YES;
         [self.bookListArray addObjectsFromArray: amazonBookArray];
-        [self.tableView reloadData];
+        if (amazonBookArray.count) {
+           [self.tableView fd_reloadDataWithoutInvalidateIndexPathHeightCache];
+        }
+        [weakSelf.tableView.infiniteScrollingView stopAnimating];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [weakSelf.tableView.infiniteScrollingView stopAnimating];
         self.hud.mode = MBProgressHUDModeText;
         self.hud.labelText = @"请检查您的网络";
         [self.hud hide: YES afterDelay: 1];
@@ -218,8 +265,12 @@
     [ParseHTML JDBooksWithUrl: urlString successs:^(NSMutableArray *JDBookArray, NSUInteger pageNumber) {
         self.hud.hidden = YES;
         [self.bookListArray addObjectsFromArray: JDBookArray];
-        [self.tableView reloadData];
+        if (JDBookArray.count) {
+            [self.tableView fd_reloadDataWithoutInvalidateIndexPathHeightCache];
+        }
+        [weakSelf.tableView.infiniteScrollingView stopAnimating];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [weakSelf.tableView.infiniteScrollingView stopAnimating];
         self.hud.mode = MBProgressHUDModeText;
         self.hud.labelText = @"请检查您的网络";
         [self.hud hide: YES afterDelay: 1];
@@ -237,11 +288,49 @@
     [ParseHTML DDBooksWithUrl: urlString successs:^(NSMutableArray *DDBookArray, NSUInteger pageNumber) {
         self.hud.hidden = YES;
         [self.bookListArray addObjectsFromArray: DDBookArray];
-        [self.tableView reloadData];
+        if (DDBookArray.count) {
+            [self.tableView fd_reloadDataWithoutInvalidateIndexPathHeightCache];
+        }
+        [weakSelf.tableView.infiniteScrollingView stopAnimating];
+        
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [weakSelf.tableView.infiniteScrollingView stopAnimating];
         self.hud.mode = MBProgressHUDModeText;
         self.hud.labelText = @"请检查您的网络";
         [self.hud hide: YES afterDelay: 1];
+    }];
+}
+
+// 初始化，第一次请求数据
+- (void) firstLoadData
+{
+    [self.tableView registerClass: [DoubanContentTableViewCell class] forCellReuseIdentifier: @"tagListCell"];
+    self.title = _tagName;
+    [self addRightBarItem];
+    
+    self.hud = [MBProgressHUD showHUDAddedTo: self.navigationController.view animated: YES];
+    self.hud.labelText = @"加载中...";
+    self.hud.opacity = 0.5;
+    
+    _OrderType = @"T";
+    _doubanPageCount = 0;
+    _nonDoubanPageCount = 1;
+    [self loadBooklistContent: _doubanPageCount doubanContenOrderType: _OrderType nonDoubanContentPage: _nonDoubanPageCount];
+    weakSelf = self;
+}
+
+
+
+//下拉刷新，请求更多数据
+- (void) loadMoreContent
+{
+    __weak BookTagListViewController *weak = self;
+    [self.tableView addInfiniteScrollingWithActionHandler:^{
+            _doubanPageCount += 20;
+            _nonDoubanPageCount += 1;
+            [weak loadBooklistContent: weak.doubanPageCount
+                    doubanContenOrderType: weak.OrderType
+                     nonDoubanContentPage: weak.nonDoubanPageCount];
     }];
 }
 
@@ -251,6 +340,7 @@
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
+    
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

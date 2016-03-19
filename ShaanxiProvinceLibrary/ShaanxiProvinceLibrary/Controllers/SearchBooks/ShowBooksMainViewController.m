@@ -109,21 +109,25 @@
 
     [ParseHTML parseBooksListWithString: urlString dictionary: _dictionary success:^(searchBookState searchState, NSDictionary *searchBook) {
         
-        [hud hide: YES];
-     
         switch (searchState) {
             case searchBookStateServeBusy: {
+                hud.mode = MBProgressHUDModeText;
+                hud.labelText = @"图书馆系统繁忙";
+                hud.detailsLabelText = @"请您稍后再试";
                 break;
             }
             case searchBookStateZero: {
+                [hud hide: YES];
                 [self searchBookStateZero: searchBook];
                 break;
             }
             case searchBookStateOne: {
+                [hud hide: YES];
                 [self searchBookStateOne: searchBook];
                 break;
             }
             case searchBookStateMore: {
+                [hud hide: YES];
                 [self searchBookStateMore: searchBook];
                 break;
             }
