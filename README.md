@@ -21,15 +21,13 @@
 
 ![](http://7xotel.com1.z0.glb.clouddn.com/%E5%9B%BE%E4%B9%A6%E9%A6%86%E5%86%85%E5%AE%B9%E6%8E%92%E5%BA%8F.png)
 
-### 功能介绍
+### 功能介绍     [`gif 演示`](http://7xotel.com1.z0.glb.clouddn.com/%E5%9B%BE%E4%B9%A6%E9%A6%86%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B.gif)
 
 - [x] 查看新闻、讲坛查看新闻、讲座、公告和活动。  
 - [x] 搜索图书，涵盖省内所有图书馆    
 - [x] 显示图书在图书馆的信息和豆瓣读书的信息，点击加载更多信息。  
 - [x] 热门书籍标签，自定义搜索，收藏标签 
 - [x] 实时更新三大图书网站热销榜信息
-
-![](http://7xotel.com1.z0.glb.clouddn.com/%E5%9B%BE%E4%B9%A6%E9%A6%86%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B.gif)
 
 ### 预计增加功能  
 - [ ] 网上续借、借阅历史、到期提醒
