@@ -116,7 +116,7 @@
             self.libraryTableView.hidden = NO;
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo: self.view animated: YES];
             hud.yOffset = -32;
-            hud.labelText = @"加载中...";
+//            hud.labelText = @"加载中...";
             hud.opacity = 0.5;
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: YES];
             [ParseHTML booksNumberIsOneNextPage: urlString parameter: self.parameter success:^(NSDictionary *bookContent) {
@@ -285,7 +285,7 @@
             
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo: self.DoubanTableView animated: NO];
             hud.yOffset = -32;
-            hud.labelText = @"加载中...";
+//            hud.labelText = @"加载中...";
             hud.opacity = 0.5;
             
             NSString *urlString = [NSString stringWithFormat: @"https://api.douban.com/v2/book/isbn/%@", isbnString];

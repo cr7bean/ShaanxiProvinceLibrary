@@ -50,6 +50,7 @@
     self.tableView.backgroundColor = [UIColor clearColor];
     [self.tableView setContentInset:UIEdgeInsetsMake(_screenSize.width*IMAGE_SCALE, 0, 0, 0)];
     self.tableView.contentOffset = CGPointMake(0, -_screenSize.width*IMAGE_SCALE);
+    self.tableView.showsVerticalScrollIndicator = NO;
     
 }
 

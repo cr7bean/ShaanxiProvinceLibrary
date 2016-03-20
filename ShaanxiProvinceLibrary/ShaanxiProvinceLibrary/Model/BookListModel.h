@@ -15,6 +15,7 @@
 @property (nonatomic, copy) NSString *callNumber;
 @property (nonatomic, copy) NSString *publicationDate;
 @property (nonatomic, copy) NSString *libraryHoldings;
+@property (nonatomic, copy) NSString *detailNumString;
 
 + (BookListModel *) initWithNumber: (NSString *) number
                         callNumber: (NSString *) callNumber

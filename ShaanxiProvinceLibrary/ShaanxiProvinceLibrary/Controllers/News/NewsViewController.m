@@ -62,6 +62,21 @@
         hud.labelText = @"请检查您的网络";
         [hud hide: NO afterDelay: 5];
     }];
+    
+    
+    // test
+    NSString *urlString = @"http://opac.snnu.edu.cn:8991/F";
+//    http://opac.snnu.edu.cn:8991/F
+//    http://al.lib.xidian.edu.cn/F
+    NSDictionary *parameter = @{@"func": @"find-b",
+                                @"find_code": @"WRD",
+                                @"request": @"ios"
+                                };
+    [ParseHTML bookListInXidianLibraryWithUrl: urlString parameter:parameter success:^(NSMutableArray *bookArray, NSString *totalNumberString) {
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning

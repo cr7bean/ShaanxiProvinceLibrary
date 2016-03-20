@@ -6,6 +6,10 @@
 //  Copyright © 2015年 Long. All rights reserved.
 //
 
+
+# define wangLogObject(x) NSLog(@"%@", x)
+# define wangLogValue(x) NSLog(@"%lu", x)
+
 #import "ParseHTML.h"
 #import "Helper.h"
 #import <TFHpple.h>
@@ -989,5 +993,185 @@
     }
 //     NSLog(@"%@", bookModel.shortTitle);
 }
+
+
+// 西工大图书馆、长安大学图书馆
++ (void) bookListInNPULibraryWithUrl: (NSString *) urlString
+                           parameter: (NSDictionary *) parameter
+                             success: (void(^)(NSMutableArray *bookArray, NSString *totalNumberString)) success
+                             failure: (requestFailurerBlock) failure
+{
+    NSMutableArray *bookListArray = [NSMutableArray new];
+    __block NSString *numberString;
+    [self requestWithUrl: urlString parameter: parameter methodType: requestMethodTypePost success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        TFHpple *parse = [TFHpple hppleWithHTMLData: responseObject];
+        
+        // 搜索总数
+        NSArray *totalNodes = [parse searchWithXPathQuery: @"//strong[@class='red']"];
+        if (totalNodes.count) {
+            numberString = [totalNodes[0] text];
+        }
+        
+        // 图书信息
+        NSString *xpath = @"//ol[@id='search_book_list']/li[@class='book_list_info']";
+        NSArray *nodes = [parse searchWithXPathQuery: xpath];
+        for (TFHppleElement *element in nodes) {
+            
+            NSData *listData = [NSData dataWithData: [[element raw] dataUsingEncoding: NSUTF8StringEncoding]];
+            TFHpple *listParse = [TFHpple hppleWithHTMLData: listData];
+            NSString *listXpath = @"//text()";
+            NSArray *listNodes = [listParse searchWithXPathQuery: listXpath];
+
+            if (listNodes.count == 17) {
+                
+                BookListModel *book = [BookListModel new];
+                
+                // 标题和序号
+                NSString *title = [Helper deleteSpaceAndCR: [listNodes[2] content]];
+                NSRange range = [title rangeOfString: @"."];
+                NSString *numberString;
+                if (range.length) {
+                    numberString = [title substringToIndex: range.location];
+                    title = [title substringFromIndex: range.location+1];
+                }
+                book.number = numberString;
+                book.authorAndTitle = title;
+                
+                // 作者和出版社
+                NSString *author = [Helper deleteSpaceAndCR: [listNodes[8] content]];
+                NSString *publisher = [Helper deleteSpaceAndCR: [listNodes[9] content]];
+                if (publisher) {
+                    book.publicationDate = [author stringByAppendingPathComponent: publisher];
+                }
+                
+                // 借阅号
+                book.callNumber = [Helper deleteSpaceAndCR: [listNodes[3] content]];
+                
+                // 馆藏
+                NSString *holding = [listNodes[6] content];
+                NSString *loanable = [listNodes[7] content];
+                holding = [Helper deleteSpaceAndCR: holding];
+                loanable = [Helper deleteSpaceAndCR: loanable];
+                if (loanable) {
+                    holding = [holding stringByAppendingString: @" "];
+                    book.libraryHoldings = [holding stringByAppendingString: loanable];
+                }
+                // 详细信息 URL
+                NSArray *detailStrings = [listParse searchWithXPathQuery: @"//p/a"];
+                if (detailStrings.count) {
+                    book.detailNumString = [detailStrings[0] objectForKey: @"href"];
+                    book.detailNumString = [urlString stringByAppendingPathComponent: book.detailNumString];
+                }
+                [bookListArray addObject: book];
+
+//                NSLog(@"%@\n%@\n%@\n%@\n", book.authorAndTitle, book.publicationDate, book.callNumber, book.libraryHoldings);
+            }
+        }
+        success(bookListArray, numberString);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failure(task, error);
+    }];
+    
+}
+
+
+// 西电图书馆、陕西师范图书馆
++ (void) bookListInXidianLibraryWithUrl: (NSString *) urlString
+                           parameter: (NSDictionary *) parameter
+                             success: (void(^)(NSMutableArray *bookArray, NSString *totalNumberString)) success
+                             failure: (requestFailurerBlock) failure
+{
+    NSMutableArray *bookListArray = [NSMutableArray new];
+    __block NSString *numberString;
+    [self requestWithUrl: urlString parameter: parameter methodType: requestMethodTypePost success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+//        NSString *html = [[NSString alloc] initWithData: responseObject encoding: NSUTF8StringEncoding];
+//        wangLogObject(html);
+        
+        TFHpple *parse = [TFHpple hppleWithHTMLData: responseObject];
+        
+        
+        // 搜索总数,总数在原网页中夹在多个文字中间，通过两次取 substring 来获取总数。
+        NSArray *totalNodes = [parse searchWithXPathQuery: @"//div[@id='hitnum']/text()"];
+        if (totalNodes.count == 2) {
+            numberString = [totalNodes[1] content];
+            NSRange range = [numberString rangeOfString: @"of"];
+            if (range.length) {
+                numberString = [numberString substringFromIndex: range.location+range.length];
+                NSRange newRange = [numberString rangeOfString: @"("];
+                if (newRange.length) {
+                    numberString = [numberString substringToIndex: newRange.location];
+                    numberString = [Helper deleteSpaceAndCR: numberString];
+                }
+            }
+        }
+        
+
+        // 图书详情
+        NSString *xPath = @"//table[@class='items']";
+        NSArray *nodes = [parse searchWithXPathQuery: xPath];
+        for (TFHppleElement *element in nodes) {
+            
+            NSData *listData = [NSData dataWithData: [[element raw] dataUsingEncoding: NSUTF8StringEncoding]];
+            TFHpple *listParse = [TFHpple hppleWithHTMLData: listData];
+            
+            BookListModel *book = [BookListModel new];
+            //编号
+            NSArray *numberNodes = [listParse searchWithXPathQuery: @"//td[@class='col1']/a"];
+            if (numberNodes.count) {
+                book.number = [Helper deleteSpaceAndCR: [numberNodes[0] text]];
+               
+            }
+            
+            // 书名
+            NSArray *titleNodes = [listParse searchWithXPathQuery: @"//td[@class='col2']/div[@class='itemtitle']/a//text()"];
+            if (titleNodes.count) {
+                book.authorAndTitle = [Helper deleteSpaceAndCR: [titleNodes[0] content]];
+            }
+            
+            //其他信息(作者等)
+            NSArray *contentNodes = [listParse searchWithXPathQuery: @"//td[@class='col2']//td[@class='content'and@valign='top']"];
+            
+            if (contentNodes.count == 5) {
+                NSString *author = [contentNodes[0] text];
+                NSString *publisher = [contentNodes[2] text];
+                NSString *pubdate = [contentNodes[3] text];
+                book.callNumber = [Helper deleteSpaceAndCR: [contentNodes[1] text]];
+
+                if (pubdate && publisher) {
+                    book.publicationDate = [[author stringByAppendingString: publisher] stringByAppendingString: pubdate];
+                    book.publicationDate = [Helper deleteSpaceAndCR: book.publicationDate];
+                   }
+            }
+            
+            // 借阅信息
+            NSArray *holdingNodes = [listParse searchWithXPathQuery: @"//a"];
+//            wangLogObject(holdingNodes);
+//            wangLogValue(holdingNodes.count);
+            NSUInteger count = holdingNodes.count;
+            if (count == 5 || count == 4) {
+                // 借阅信息
+                NSString *holding = [[holdingNodes[count-1] firstChild] content];
+                
+                holding = [holding stringByReplacingOccurrencesOfString: @"     " withString: @""];
+                book.libraryHoldings = holding;
+                
+                // 借阅详情页面 URL
+                book.detailNumString = [holdingNodes[count-1] objectForKey: @"href"];
+                
+//                wangLogObject(book.libraryHoldings);
+//                wangLogObject(book.detailNumString);
+            }
+            
+            [bookListArray addObject: book];
+        }
+        success(bookListArray, numberString);
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failure(task, error);
+    }];
+}
+
 
 @end

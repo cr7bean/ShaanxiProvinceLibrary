@@ -62,11 +62,6 @@ typedef void(^requestFailurerBlock)(NSURLSessionDataTask *task, NSError *error);
          successs: (void(^)(NSMutableArray *tagsArray)) success
           failure: (requestFailurerBlock) failure;
 
-//+ (void) searchBookWithTagInUrl: (NSString *) urlString
-//                      parameter: (NSDictionary *) parameter
-//                       successs: (void(^)(NSMutableArray *bookArray)) success
-//                        failure: (requestFailurerBlock) failure;
-
 
 + (void) searchBookWithTagInUrl: (NSString *) urlString
                       parameter: (NSDictionary *) parameter
@@ -85,5 +80,15 @@ typedef void(^requestFailurerBlock)(NSURLSessionDataTask *task, NSError *error);
 + (void) DDBooksWithUrl: (NSString *) urlString
                successs: (void(^)(NSMutableArray *DDBookArray, NSUInteger pageNumber)) success
                 failure: (requestFailurerBlock) failure;
+
++ (void) bookListInNPULibraryWithUrl: (NSString *) urlString
+                           parameter: (NSDictionary *) parameter
+                             success: (void(^)(NSMutableArray *bookArray, NSString *totalNumberString)) success
+                             failure: (requestFailurerBlock) failure;
+
++ (void) bookListInXidianLibraryWithUrl: (NSString *) urlString
+                              parameter: (NSDictionary *) parameter
+                                success: (void(^)(NSMutableArray *bookArray, NSString *totalNumberString)) success
+                                failure: (requestFailurerBlock) failure;
 
 @end

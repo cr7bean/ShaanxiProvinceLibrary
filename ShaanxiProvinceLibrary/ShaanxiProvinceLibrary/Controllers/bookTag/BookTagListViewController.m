@@ -76,7 +76,7 @@
 # pragma mark add RightBarItem
 - (void) addRightBarItem
 {
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemAdd target: self action: @selector(barItemAction:)];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed:@"list2"] style: UIBarButtonItemStylePlain target: self action: @selector(barItemAction:)];
     self.navigationItem.rightBarButtonItem = item;
 }
 
@@ -308,8 +308,7 @@
     self.title = _tagName;
     [self addRightBarItem];
     
-    self.hud = [MBProgressHUD showHUDAddedTo: self.navigationController.view animated: YES];
-    self.hud.labelText = @"加载中...";
+    self.hud = [MBProgressHUD showHUDAddedTo: self.view animated: YES];
     self.hud.opacity = 0.5;
     
     _OrderType = @"T";

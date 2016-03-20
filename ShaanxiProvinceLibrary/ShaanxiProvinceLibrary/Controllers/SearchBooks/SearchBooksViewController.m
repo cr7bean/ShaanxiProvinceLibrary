@@ -10,6 +10,9 @@
 #import "ParseHTML.h"
 #import "ShowBooksMainViewController.h"
 #import "GVUserDefaults+library.h"
+#import <PSTAlertController.h>
+#import "LibraryNPUViewController.h"
+#import "LibraryXidianViewController.h"
 
 
 
@@ -111,6 +114,14 @@
     [self.navigationController pushViewController: controller animated: YES];
     [searchBar resignFirstResponder];
 }
+
+- (void) searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope
+{
+    if (selectedScope == 3) {
+        
+    }
+}
+
 
 #pragma mark - tableView delegate
 

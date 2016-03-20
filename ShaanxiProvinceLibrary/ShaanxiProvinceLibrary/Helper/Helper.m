@@ -51,14 +51,14 @@
                 resultString: (void(^)(NSString* formerString, NSString*        latterString)) resultString
 {
     if (original) {
-        
         NSRange range = [identify rangeOfString: original];
-        NSString *former = [original substringToIndex: range.location];
-        NSString *latter = [original substringFromIndex: range.location];
-        
-        resultString(former, latter);
+        if (range.length) {
+            NSString *former = [original substringToIndex: range.location];
+            NSString *latter = [original substringFromIndex: range.location];
+            
+            resultString(former, latter);
+        }
     }
-    
 }
 
 //删除多余空格和回车

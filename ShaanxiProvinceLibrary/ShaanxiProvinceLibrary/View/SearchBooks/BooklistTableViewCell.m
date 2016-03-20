@@ -73,17 +73,18 @@ static const CGFloat kOffset = 5.0f;
                    alignment: NSTextAlignmentLeft];
     _authorAndTitle.preferredMaxLayoutWidth = kMaxLength;
     _libraryHoldings.preferredMaxLayoutWidth = kMaxLength - 30;
+    _publicationDate.preferredMaxLayoutWidth = kMaxLength;
     
     [Helper configurateLabel: _callNumber
                    textColor: [UIColor grayColor]
                         font: [UIFont systemFontOfSize: 13]
-                      number: 1
+                      number: 0
                    alignment: NSTextAlignmentLeft];
     
     [Helper configurateLabel: _publicationDate
                    textColor: [UIColor grayColor]
                         font: [UIFont systemFontOfSize: 13]
-                      number: 1
+                      number: 0
                    alignment: NSTextAlignmentLeft];
     
     [Helper configurateLabel: _libraryHoldings
