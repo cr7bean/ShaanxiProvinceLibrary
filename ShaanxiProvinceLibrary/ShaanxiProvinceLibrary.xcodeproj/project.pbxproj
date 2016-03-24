@@ -11,6 +11,7 @@
 		FD00E6321C8C05020085E34F /* GVUserDefaults+library.m in Sources */ = {isa = PBXBuildFile; fileRef = FD00E6311C8C05020085E34F /* GVUserDefaults+library.m */; };
 		FD00E6341C8C1FCF0085E34F /* libraries.plist in Resources */ = {isa = PBXBuildFile; fileRef = FD00E6331C8C1FCF0085E34F /* libraries.plist */; };
 		FD2766931C9D78AE002926CB /* LibraryXidianViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD2766921C9D78AE002926CB /* LibraryXidianViewController.m */; settings = {ASSET_TAGS = (); }; };
+		FD54B50A1CA0175500732547 /* LibraryXAUTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD54B5091CA0175500732547 /* LibraryXAUTViewController.m */; settings = {ASSET_TAGS = (); }; };
 		FD5853461C0C862500F4C5AF /* BookListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5853451C0C862500F4C5AF /* BookListModel.m */; };
 		FD5853491C0C86A300F4C5AF /* RecommendedBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5853481C0C86A300F4C5AF /* RecommendedBookModel.m */; };
 		FD6B6AD71C2BCCC100EE517C /* DoubanBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6B6AD61C2BCCC100EE517C /* DoubanBookModel.m */; };
@@ -70,6 +71,8 @@
 		FD00E6331C8C1FCF0085E34F /* libraries.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = libraries.plist; path = Resource/libraries.plist; sourceTree = "<group>"; };
 		FD2766911C9D78AE002926CB /* LibraryXidianViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryXidianViewController.h; sourceTree = "<group>"; };
 		FD2766921C9D78AE002926CB /* LibraryXidianViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryXidianViewController.m; sourceTree = "<group>"; };
+		FD54B5081CA0175500732547 /* LibraryXAUTViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryXAUTViewController.h; sourceTree = "<group>"; };
+		FD54B5091CA0175500732547 /* LibraryXAUTViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryXAUTViewController.m; sourceTree = "<group>"; };
 		FD5853441C0C862500F4C5AF /* BookListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookListModel.h; path = Model/BookListModel.h; sourceTree = "<group>"; };
 		FD5853451C0C862500F4C5AF /* BookListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookListModel.m; path = Model/BookListModel.m; sourceTree = "<group>"; };
 		FD5853471C0C86A300F4C5AF /* RecommendedBookModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecommendedBookModel.h; path = Model/RecommendedBookModel.h; sourceTree = "<group>"; };
@@ -282,6 +285,8 @@
 				FDF0734D1C9D4FB600AE3577 /* LibraryNPUViewController.m */,
 				FD2766911C9D78AE002926CB /* LibraryXidianViewController.h */,
 				FD2766921C9D78AE002926CB /* LibraryXidianViewController.m */,
+				FD54B5081CA0175500732547 /* LibraryXAUTViewController.h */,
+				FD54B5091CA0175500732547 /* LibraryXAUTViewController.m */,
 			);
 			path = SchoolLibrary;
 			sourceTree = "<group>";
@@ -604,6 +609,7 @@
 				FDC53A4C1C8956260005A0E1 /* BookContentTableViewCell.m in Sources */,
 				FD5853491C0C86A300F4C5AF /* RecommendedBookModel.m in Sources */,
 				FDC53A621C8957180005A0E1 /* BookContentChildViewController.m in Sources */,
+				FD54B50A1CA0175500732547 /* LibraryXAUTViewController.m in Sources */,
 				FDF9CCD21BF8708B0070907D /* main.m in Sources */,
 				FDC53A451C8956140005A0E1 /* BookTagSearchView.m in Sources */,
 				FDC53A3B1C8954B00005A0E1 /* NewsTableViewCell.m in Sources */,
@@ -665,7 +671,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: RunLong Wang (BT52MSS5FQ)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: RunLong Wang (8LMT578K9H)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: RunLong Wang (BT52MSS5FQ)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -689,7 +695,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "00bbbd54-ea88-4121-a23e-1ecec28027c2";
+				PROVISIONING_PROFILE = "730ffcef-637c-4e13-bf11-c56a1ac18f79";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -711,7 +717,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: RunLong Wang (BT52MSS5FQ)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: RunLong Wang (8LMT578K9H)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: RunLong Wang (BT52MSS5FQ)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -728,7 +734,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "00bbbd54-ea88-4121-a23e-1ecec28027c2";
+				PROVISIONING_PROFILE = "730ffcef-637c-4e13-bf11-c56a1ac18f79";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -740,7 +746,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: RunLong Wang (BT52MSS5FQ)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: RunLong Wang (8LMT578K9H)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: RunLong Wang (BT52MSS5FQ)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -751,7 +757,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.figurewang.ShaanxiProvinceLibrary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "00bbbd54-ea88-4121-a23e-1ecec28027c2";
+				PROVISIONING_PROFILE = "730ffcef-637c-4e13-bf11-c56a1ac18f79";
 				USER_HEADER_SEARCH_PATHS = /usr/include/libxml2;
 			};
 			name = Debug;
@@ -762,7 +768,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: RunLong Wang (BT52MSS5FQ)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: RunLong Wang (8LMT578K9H)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: RunLong Wang (BT52MSS5FQ)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -773,7 +779,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.figurewang.ShaanxiProvinceLibrary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "00bbbd54-ea88-4121-a23e-1ecec28027c2";
+				PROVISIONING_PROFILE = "730ffcef-637c-4e13-bf11-c56a1ac18f79";
 				USER_HEADER_SEARCH_PATHS = "${SDKROOT}/usr/include/libxml2";
 			};
 			name = Release;

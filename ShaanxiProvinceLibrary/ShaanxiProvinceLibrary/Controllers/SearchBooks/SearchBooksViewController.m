@@ -13,6 +13,7 @@
 #import <PSTAlertController.h>
 #import "LibraryNPUViewController.h"
 #import "LibraryXidianViewController.h"
+#import "Helper.h"
 
 
 
@@ -96,6 +97,10 @@
 - (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     NSString *searchBookName = searchBar.text;
+    
+    //删除特殊符号
+    searchBookName = [Helper deleteSpesicalSymbolInString: searchBookName];
+    
     NSArray *typeArray = @[@"TI^TITLE^SERIES^Title Processing^题名",
                            @"AU^AUTHOR^AUTHORS^Author Processing^著者",
                            @"SU^SUBJECT^SUBJECTS^^主题",

@@ -18,6 +18,7 @@
 #import "LibraryNPUViewController.h"
 #import <MBProgressHUD.h>
 #import "LibraryXidianViewController.h"
+#import "LibraryXAUTViewController.h"
 
 @interface BookTagContentViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -219,6 +220,10 @@
         [self searchBookInLibrary];
     }]];
     
+    [tagController addAction: [PSTAlertAction actionWithTitle: @"西安理工图书馆" handler:^(PSTAlertAction * _Nonnull action) {
+        [self searchBookInXAUTLibrary: @"西安理工"];
+    }]];
+    
     [tagController addAction: [PSTAlertAction actionWithTitle: @"西工大图书馆" handler:^(PSTAlertAction * _Nonnull action) {
         [self searchBookInNPULibraryorCHDLibrary: @"西工大"];
     }]];
@@ -271,5 +276,14 @@
     LibraryXidianViewController *controller = [[LibraryXidianViewController alloc] initWithsearchWords: _bookModel.title schoolName: schoolName];
     [self.navigationController pushViewController: controller animated: YES];
 }
+
+// 在西安理工大学图书馆搜索
+
+- (void) searchBookInXAUTLibrary: (NSString *) schoolName
+{
+    LibraryXAUTViewController *controller = [[LibraryXAUTViewController alloc] initWithsearchWords: _bookModel.title schoolName: schoolName];
+    [self.navigationController pushViewController: controller animated: YES];
+}
+
 
 @end

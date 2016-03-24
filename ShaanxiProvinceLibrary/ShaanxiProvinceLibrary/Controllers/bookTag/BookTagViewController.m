@@ -76,8 +76,10 @@
 // add collectionTag
 - (void) addCollectionTag
 {
-    if ([GVUserDefaults standardUserDefaults].collectionTag.count) {
+    if ([GVUserDefaults standardUserDefaults].collectionTag) {
         [_booktagsArray replaceObjectAtIndex: 0 withObject: [GVUserDefaults standardUserDefaults].collectionTag];
+    }else{
+        _booktagsArray[0] = [NSArray new];
     }
 }
 

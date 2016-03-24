@@ -51,7 +51,7 @@
 
 - (void) addBarItemOnNavigationbar
 {
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemUndo target: self action:@selector(cancel)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle: @"取消" style: UIBarButtonItemStyleDone target: self action: @selector(cancel)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemDone target: self action: @selector(done)];
 }
 

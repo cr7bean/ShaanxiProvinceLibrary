@@ -1174,4 +1174,90 @@
 }
 
 
+// 西安理工大学图书馆
++ (void) bookListInXAUTLibraryWithUrl: (NSString *) urlString
+                              parameter: (NSDictionary *) parameter
+                                success: (void(^)(NSMutableArray *bookArray, NSString *totalNumberString)) success
+                                failure: (requestFailurerBlock) failure
+{
+    [self requestWithUrl: urlString parameter: parameter methodType: requestMethodTypePost success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        NSMutableArray *bookListArray = [NSMutableArray new];
+        __block NSString *numberString;
+        
+        TFHpple *parse = [TFHpple hppleWithHTMLData: responseObject];
+        // 书籍总数
+        NSArray *totalNodes = [parse searchWithXPathQuery: @"//div[@class='account']"];
+        if (totalNodes.count) {
+            numberString = [[totalNodes[0] firstChild] content];
+        }
+        
+        
+        // 书籍详细信息
+        NSArray *nodes = [parse searchWithXPathQuery: @"//ul[@class='list']/li"];
+        for (TFHppleElement *element in nodes) {
+            
+            BookListModel *book = [BookListModel new];
+            NSData *listData = [NSData dataWithData: [[element raw] dataUsingEncoding: NSUTF8StringEncoding]];
+            TFHpple *listParse = [TFHpple hppleWithHTMLData: listData];
+            NSString *listXpath = @"//span/text() | //p/text() | //p | //a |//font";
+            NSArray *listNodes = [listParse searchWithXPathQuery: listXpath];
+    
+            if (listNodes.count == 10) {
+                
+                // 图书详细信息 URL
+                NSString *prefix = @"http://202.200.117.15:8081";
+                NSString *detail = [listNodes[0] objectForKey: @"href"];
+                if (detail.length) {
+                  book.detailNumString = [prefix stringByAppendingString: detail];
+                }
+                
+                // 编号
+                NSString *titlePrefix;
+                NSString *serial = [listNodes[1] content];
+                NSRange range = [serial rangeOfString: @"."];
+                if (range.length) {
+                    book.number = [serial substringToIndex: range.location];
+                    titlePrefix = [serial substringFromIndex: range.location + 1];
+                }
+                
+                // 题名
+                NSString *title = [[listNodes[2] text] stringByAppendingString: [listNodes[3] content]];
+                if (titlePrefix.length) {
+                    book.authorAndTitle = [titlePrefix stringByAppendingString: title];
+                }else{
+                    book.authorAndTitle = title;
+                }
+                
+                
+                // 出版社
+                NSString *publisher = [listNodes[5] content];
+                publisher = [publisher stringByReplacingOccurrencesOfString: @"\n" withString: @""];
+                publisher = [publisher stringByReplacingOccurrencesOfString: @"           " withString: @""];
+                book.publicationDate = [Helper deleteSpaceAndCR: publisher];
+                
+                // 馆藏
+                NSString *holding = [listNodes[7] content];
+                holding = [holding stringByReplacingOccurrencesOfString: @"          " withString: @""];
+                holding = [holding stringByReplacingOccurrencesOfString: @"\n" withString: @""];
+                book.libraryHoldings = [Helper deleteSpaceAndCR: holding];
+                
+                // 借阅信息
+                NSString *callNumber = [listNodes[9] content];
+                book.callNumber = [Helper deleteSpaceAndCR: callNumber];
+                wangLogObject([book description]);
+                [bookListArray addObject: book];
+            }
+            
+        }
+        
+        success(bookListArray, numberString);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failure(task, error);
+    }];
+    
+}
+
+
+
 @end

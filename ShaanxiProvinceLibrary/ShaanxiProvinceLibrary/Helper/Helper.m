@@ -82,6 +82,21 @@
     return string;
 }
 
+// 删除字符串中的特殊字符
++ (NSString *) deleteSpesicalSymbolInString: (NSString *) string
+{
+    NSArray *symbolArray = @[@"=", @"?", @".", @"。", @"<", @">", @"《", @"》", @"，", @"+", @"*", @"!", @"@", @"#", @"-", @"——", @"_"];
+    for (NSString * symbol in symbolArray) {
+        NSRange range = [string rangeOfString: symbol];
+        if (range.length) {
+            string = [string stringByReplacingOccurrencesOfString: symbol withString: @""];
+        }
+    }
+    return string;
+}
+
+
+
 # pragma mark - NSData
 
 //NSData 转 NSString 的时候，返回nil,对NSData 进行处理。
@@ -193,7 +208,16 @@
 }
 
 
+# pragma mark - regularExpression
 
++ (NSInteger) findNumberInString: (NSString *) checkString
+                withNumberLength: (NSInteger) number
+{
+    NSString *pattern = [NSString stringWithFormat: @"\\d{1,%ld}", (long)number];
+    NSRegularExpression *expression = [NSRegularExpression regularExpressionWithPattern: pattern options: NSRegularExpressionCaseInsensitive error: nil];
+    NSTextCheckingResult *result = [expression firstMatchInString: checkString options: 0 range: NSMakeRange(0, pattern.length)];
+    return [[checkString substringWithRange: result.range] integerValue];
+}
 
 
 

@@ -27,5 +27,15 @@
     return book;
 }
 
+- (NSString *) description
+{
+    NSDictionary *dic = @{@"number": _number,
+                          @"callNumber": _callNumber,
+                          @"date": _publicationDate,
+                          @"title": _authorAndTitle,
+                          @"holding": _libraryHoldings,
+                          @"detail": _detailNumString};
+    return [NSString stringWithFormat: @"%@", dic];
+}
 
 @end

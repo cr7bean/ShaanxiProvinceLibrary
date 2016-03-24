@@ -45,4 +45,17 @@
 
 + (void) setNetworkIndicator: (BOOL) show;
 
++ (NSString *) deleteSpesicalSymbolInString: (NSString *) string;
+
+
+/**
+ *  从字符串中找到某个范围内的数字
+ *
+ *  @param checkString 要检索的字符串
+ *  @param number      数字的位数，1-number 位
+ *
+ */
++ (NSInteger) findNumberInString: (NSString *) checkString
+                withNumberLength: (NSInteger) number;
+
 @end

@@ -76,8 +76,10 @@
 # pragma mark add RightBarItem
 - (void) addRightBarItem
 {
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed:@"list2"] style: UIBarButtonItemStylePlain target: self action: @selector(barItemAction:)];
-    self.navigationItem.rightBarButtonItem = item;
+    if (_contentType == contentTypeDoubanTag) {
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed:@"list2"] style: UIBarButtonItemStylePlain target: self action: @selector(barItemAction:)];
+        self.navigationItem.rightBarButtonItem = item;
+    }
 }
 
 - (void) barItemAction: (UIBarButtonItem *) buttonItem
@@ -376,18 +378,26 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 //    [tableView deselectRowAtIndexPath: indexPath animated: YES];
-    DoubanBookModel *bookModel = _bookListArray[indexPath.row];
-    NSString *searchWords;
-    tagContentType bookContenType;
-    if (_contentType == contentTypeDoubanTag) {
-        searchWords = bookModel.idString;
-        bookContenType = tagContentTypeDouban;
+    if (_bookListArray.count) {
+        DoubanBookModel *bookModel = _bookListArray[indexPath.row];
+        NSString *searchWords;
+        tagContentType bookContenType;
+        if (_contentType == contentTypeDoubanTag) {
+            searchWords = bookModel.idString;
+            bookContenType = tagContentTypeDouban;
+        }else{
+            searchWords = bookModel.shortTitle;
+            bookContenType = tagContentTypeNonDouban;
+        }
+        BookTagContentViewController *controller = [[BookTagContentViewController alloc] initWithSearchWords: searchWords contentType: bookContenType];
+        [self.navigationController pushViewController: controller animated: YES];
     }else{
-        searchWords = bookModel.shortTitle;
-        bookContenType = tagContentTypeNonDouban;
+        [self.hud show: YES];
+        self.hud.mode = MBProgressHUDModeText;
+        self.hud.labelText = @"请重新选择排序方式";
+        [self.hud hide: YES afterDelay: 1];
     }
-    BookTagContentViewController *controller = [[BookTagContentViewController alloc] initWithSearchWords: searchWords contentType: bookContenType];
-    [self.navigationController pushViewController: controller animated: YES];
+    
 }
 
 

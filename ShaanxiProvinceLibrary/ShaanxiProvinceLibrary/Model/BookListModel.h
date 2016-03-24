@@ -22,5 +22,6 @@
                    publicationDate: (NSString *) publicationDate
                     authorAndTitle: (NSString *) authorAndTitle
                    libraryHoldings: (NSString *) libraryHoldings;
+- (NSString *) description;
 
 @end

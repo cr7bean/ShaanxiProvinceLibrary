@@ -65,18 +65,9 @@
     
     
     // test
-    NSString *urlString = @"http://opac.snnu.edu.cn:8991/F";
-//    http://opac.snnu.edu.cn:8991/F
-//    http://al.lib.xidian.edu.cn/F
-    NSDictionary *parameter = @{@"func": @"find-b",
-                                @"find_code": @"WRD",
-                                @"request": @"ios"
-                                };
-    [ParseHTML bookListInXidianLibraryWithUrl: urlString parameter:parameter success:^(NSMutableArray *bookArray, NSString *totalNumberString) {
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
-    }];
+//   NSString *test = @"wang90872960";
+//    NSInteger number = [Helper findNumberInString: test withNumberLength: 10];
+    
 }
 
 - (void)didReceiveMemoryWarning
