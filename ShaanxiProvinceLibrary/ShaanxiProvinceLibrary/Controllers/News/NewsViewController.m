@@ -65,9 +65,6 @@
     
     
     // test
-//   NSString *test = @"wang90872960";
-//    NSInteger number = [Helper findNumberInString: test withNumberLength: 10];
-    
 }
 
 - (void)didReceiveMemoryWarning

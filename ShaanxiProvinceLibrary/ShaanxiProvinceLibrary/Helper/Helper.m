@@ -210,15 +210,29 @@
 
 # pragma mark - regularExpression
 
-+ (NSInteger) findNumberInString: (NSString *) checkString
-                withNumberLength: (NSInteger) number
+// 查找字符串中的数字
++ (NSInteger) regexFindNumberInString: (NSString *) checkString
+                
 {
-    NSString *pattern = [NSString stringWithFormat: @"\\d{1,%ld}", (long)number];
-    NSRegularExpression *expression = [NSRegularExpression regularExpressionWithPattern: pattern options: NSRegularExpressionCaseInsensitive error: nil];
-    NSTextCheckingResult *result = [expression firstMatchInString: checkString options: 0 range: NSMakeRange(0, pattern.length)];
-    return [[checkString substringWithRange: result.range] integerValue];
+
+    NSString *pattern = @"\\d{1,}";
+    NSRegularExpression *expression = [NSRegularExpression regularExpressionWithPattern: pattern
+      options: NSRegularExpressionCaseInsensitive error: nil];
+   
+    NSRange range = [expression rangeOfFirstMatchInString: checkString
+                                                  options: 0
+                                                    range: NSMakeRange(0, checkString.length)];
+    return [[checkString substringWithRange: range] integerValue];
 }
 
+
++ (NSString *)regexDeleteBlankCharacterInString: (NSString *) checkString
+{
+    NSString *pattern = @"\\s";
+    NSRegularExpression *expression = [NSRegularExpression regularExpressionWithPattern: pattern options: NSRegularExpressionCaseInsensitive error: nil];
+    NSString *result = [expression stringByReplacingMatchesInString: checkString options: 0 range: NSMakeRange(0, [checkString length]) withTemplate: @""];
+    return result;
+}
 
 
 

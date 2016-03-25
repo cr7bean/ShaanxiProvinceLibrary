@@ -124,7 +124,7 @@
 {
     [weakSelf.tableView addInfiniteScrollingWithActionHandler:^{
         _pageCount += 1;
-        NSInteger totalNumber = [Helper findNumberInString: _totalNumString withNumberLength:10];
+        NSInteger totalNumber = [Helper regexFindNumberInString: _totalNumString];
         float index = totalNumber / 20.0;
         index = ceilf(index);
         

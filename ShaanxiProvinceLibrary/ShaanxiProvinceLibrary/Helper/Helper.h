@@ -52,10 +52,16 @@
  *  从字符串中找到某个范围内的数字
  *
  *  @param checkString 要检索的字符串
- *  @param number      数字的位数，1-number 位
- *
  */
-+ (NSInteger) findNumberInString: (NSString *) checkString
-                withNumberLength: (NSInteger) number;
++ (NSInteger) regexFindNumberInString: (NSString *) checkString;
 
+
+/**
+ *  删除字符串中的所有空白符。包括 \f(换页符)、\n(换行符)、\r(回车符)、\t(制表符)、\v(垂直制表符)
+ *
+ *  @param checkString 目标字符串
+ *
+ *  @return 删除空白符后的字符串
+ */
++ (NSString *)regexDeleteBlankCharacterInString: (NSString *) checkString;
 @end

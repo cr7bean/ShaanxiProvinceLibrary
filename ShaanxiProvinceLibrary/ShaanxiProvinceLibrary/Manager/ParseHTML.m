@@ -716,9 +716,7 @@
             NSString *xpath = @"//img|//h2/a|//div[@class='pub']|//span[@class='pl']";
             NSArray *bookNodes = [bookParse searchWithXPathQuery: xpath];
             NSArray *ratingNodes = [bookParse searchWithXPathQuery: @"//span[@class='rating_nums']|//p"];
-//            NSArray *idNodes = [bookParse searchWithXPathQuery: @"//dic[@class=info]/h2/a"];
-            
-            
+       
             DoubanBookModel *bookModel = [DoubanBookModel new];
             [self configureBookContent: bookNodes ratingArray: ratingNodes withModel:bookModel];
             [bookArray addObject: bookModel];
@@ -751,7 +749,7 @@
         bookModel.rating = [Helper deleteSpaceAndCR: [bookNodes[3] text]];
         NSString *bookIdString = [bookNodes[1] objectForKey: @"href"];
         bookModel.idString = [self bookIdString: bookIdString];
-//        NSLog(@"%@", bookModel.idString);
+
         NSString *basicInfo = [bookNodes[2] text];
         basicInfo = [Helper deleteSpaceAndCR: basicInfo];
         NSArray *basicInfoArray = [basicInfo componentsSeparatedByString: @"/"];
@@ -792,8 +790,9 @@
 + (NSString *) bookIdString: (NSString *) string
 {
     if (string) {
-        string = [string stringByReplacingOccurrencesOfString: @"https://book.douban.com/subject/" withString:@""];
-        string = [string stringByReplacingOccurrencesOfString:@"/" withString:@""];
+//        string = [string stringByReplacingOccurrencesOfString: @"https://book.douban.com/subject/" withString:@""];
+//        string = [string stringByReplacingOccurrencesOfString:@"/" withString:@""];
+        string = [NSString stringWithFormat: @"%lu", [Helper regexFindNumberInString: string]];
     }
     return string;
 }
