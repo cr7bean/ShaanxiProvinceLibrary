@@ -10,7 +10,7 @@
 
 @interface NewsViewController : UIViewController
 
-- (instancetype) initWithsearchWords: (NSString *) searchWords
-                          schoolName: (NSString *) schoolName;
+//- (instancetype) initWithsearchWords: (NSString *) searchWords
+//                          schoolName: (NSString *) schoolName;
 
 @end

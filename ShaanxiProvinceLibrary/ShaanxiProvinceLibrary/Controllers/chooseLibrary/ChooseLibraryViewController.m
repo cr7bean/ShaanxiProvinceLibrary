@@ -14,7 +14,7 @@
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *libraries;
-@property (nonatomic, assign) NSInteger selecredRow;
+@property (nonatomic, copy) NSIndexPath *selecredIndexPath;
 @property (nonatomic, copy) NSString *selectedLibrary;
 
 
@@ -27,17 +27,19 @@
 
 # pragma mark lifeCycle
 
-- (void) loadView
-{
-    self.view = [[UIView alloc] initWithFrame: [UIScreen mainScreen].bounds];
-    self.view.backgroundColor = [UIColor whiteColor];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.libraries = [NSArray arrayWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"libraries" ofType: @"plist"]];
+    NSArray *schoolLibraries = @[@"西安理工图书馆", @"西工大图书馆", @"长安大学图书馆", @"西电图书馆", @"陕师大图书馆"];
+    NSArray *proviceLibraries = [NSArray arrayWithContentsOfFile: [[NSBundle mainBundle] pathForResource: @"libraries" ofType: @"plist"]];
+    self.libraries = @[schoolLibraries, proviceLibraries];
     self.selectedLibrary = [GVUserDefaults standardUserDefaults].libraryName;
-    self.selecredRow = [self.libraries indexOfObject: self.selectedLibrary];
+    
+    BOOL isContained = [proviceLibraries containsObject: self.selectedLibrary];
+    if (isContained) {
+        self.selecredIndexPath = [NSIndexPath indexPathForRow: [proviceLibraries indexOfObject: self.selectedLibrary] inSection: 1];
+    }else{
+        self.selecredIndexPath = [NSIndexPath indexPathForRow: [schoolLibraries indexOfObject: self.selectedLibrary] inSection: 0];
+    }
     [self addBarItemOnNavigationbar];
     [self.tableView reloadData];
     
@@ -89,31 +91,35 @@
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return _libraries.count;
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.libraries.count;
+    return [_libraries[section] count];
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"libraryCell"];
-    cell.textLabel.text = self.libraries[indexPath.row];
+    cell.textLabel.text = [self.libraries[indexPath.section] objectAtIndex: indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    if (self.selecredRow == indexPath.row) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    }else{
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
+    BOOL isEqual = self.selecredIndexPath.row == indexPath.row && self.selecredIndexPath.section == indexPath.section;
+    cell.accessoryType = isEqual ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     return cell;
 }
 
+- (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSArray *libraryType =@[@"高校图书馆", @"省图书馆"];
+    return libraryType[section];
+}
+
+
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.selecredRow = indexPath.row;
-    self.selectedLibrary = self.libraries[indexPath.row];
+    self.selecredIndexPath = indexPath;
+    self.selectedLibrary = [_libraries[indexPath.section] objectAtIndex: indexPath.row];
     [tableView reloadData];
 }
 

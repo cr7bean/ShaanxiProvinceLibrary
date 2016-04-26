@@ -46,7 +46,6 @@
     [self setLibraryName];
     [self.navigationController.navigationBar lt_setBackgroundColor: [UIColor clearColor]];
     _newsContentArray = [NSMutableArray new];
-   
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo: self.view animated: YES];
     hud.hidden = YES;
@@ -63,8 +62,6 @@
         [hud hide: NO afterDelay: 5];
     }];
     
-    
-    // test
 }
 
 - (void)didReceiveMemoryWarning

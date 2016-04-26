@@ -24,7 +24,7 @@
 @property (nonatomic, assign) NSUInteger pageCount;
 @property (nonatomic, copy) NSString *totalNumString;
 @property (nonatomic, strong) MBProgressHUD *hud;
-@property (nonatomic, copy) NSString *schoolName;
+@property (nonatomic, copy) NSString *searchType;
 
 @end
 
@@ -37,21 +37,21 @@
 # pragma mark lifeCycle
 
 - (instancetype) initWithsearchWords: (NSString *) searchWords
-                          schoolName: (NSString *) schoolName
+                          searchType: (NSString *) searchType
 {
     if ([super init]) {
         _searchWords = searchWords;
-        _schoolName = schoolName;
+        _searchType = searchType;
     }
     return self;
 }
 
-- (void) loadView
++ (instancetype) searchBookWithWords: (NSString *) words
+                          searchType: (NSString *) type
 {
-    UIView *view = [[UIView alloc] initWithFrame: [UIScreen mainScreen].bounds];
-    self.view = view;
-    self.view.backgroundColor = [UIColor whiteColor];
+    return [[self alloc] initWithsearchWords: words searchType: type];
 }
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -75,7 +75,7 @@
     NSString *urlString = @"http://202.200.117.15:8081/search";
     
     NSDictionary *parameter = @{@"kw": _searchWords,
-                                @"searchtype": @"title",
+                                @"searchtype": _searchType,
                                 @"page": [NSNumber numberWithInteger: pageCount],
                                 @"xc": @3
                                 };
@@ -108,10 +108,9 @@
 
 - (void) firstLoadBookList
 {
-//    _searchWords = @"ios";
     self.hud = [MBProgressHUD showHUDAddedTo: self.view animated: YES];
     self.hud.alpha = 0.5;
-    self.title = [[NSString stringWithFormat: @"%@", _schoolName] stringByAppendingString: @"馆藏信息"];
+    self.title = @"西安理工图书馆";
     self.bookListArray = [NSMutableArray new];
     weakSelf = self;
     _pageCount = 1;
@@ -208,8 +207,7 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BookListModel *book = _bookListArray[indexPath.row];
-    NSLog(@"%@", book.detailNumString);
+    
 }
 
 

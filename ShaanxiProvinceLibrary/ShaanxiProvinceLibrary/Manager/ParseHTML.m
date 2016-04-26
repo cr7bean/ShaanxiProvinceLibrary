@@ -1201,7 +1201,7 @@
             TFHpple *listParse = [TFHpple hppleWithHTMLData: listData];
             NSString *listXpath = @"//span/text() | //p/text() | //p | //a |//font";
             NSArray *listNodes = [listParse searchWithXPathQuery: listXpath];
-    
+            
             if (listNodes.count == 10) {
                 
                 // 图书详细信息 URL
@@ -1244,7 +1244,7 @@
                 // 借阅信息
                 NSString *callNumber = [listNodes[9] content];
                 book.callNumber = [Helper deleteSpaceAndCR: callNumber];
-                wangLogObject([book description]);
+//                wangLogObject([book description]);
                 [bookListArray addObject: book];
             }
             

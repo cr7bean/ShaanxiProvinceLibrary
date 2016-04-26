@@ -45,12 +45,6 @@
     return self;
 }
 
-- (void) loadView
-{
-    self.view = [[UIView alloc] initWithFrame: [UIScreen mainScreen].bounds];
-    self.view.backgroundColor = [UIColor whiteColor];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.DoubanTableView.contentInset = UIEdgeInsetsMake(0, 0, 64, 0);
@@ -79,7 +73,7 @@
         }
     }
     
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo: self.view animated: YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo: self.navigationController.view animated: YES];
     hud.alpha = 0.5;
     urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [ParseHTML bookContentFromDouban: urlString success:^(DoubanBookModel *book) {
@@ -102,6 +96,7 @@
         }
         [hud hide: YES afterDelay: 1];
     }];
+    
 }
 
 - (void) configureDoubanContent
@@ -281,7 +276,7 @@
 
 - (void) searchBookInXAUTLibrary: (NSString *) schoolName
 {
-    LibraryXAUTViewController *controller = [[LibraryXAUTViewController alloc] initWithsearchWords: _bookModel.title schoolName: schoolName];
+    LibraryXAUTViewController *controller = [LibraryXAUTViewController searchBookWithWords: _bookModel.title searchType: @"title"];
     [self.navigationController pushViewController: controller animated: YES];
 }
 

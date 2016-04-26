@@ -48,12 +48,6 @@
     return self;
 }
 
-- (void) loadView
-{
-    UIView *view = [[UIView alloc] initWithFrame: [UIScreen mainScreen].bounds];
-    self.view = view;
-    self.view.backgroundColor = [UIColor whiteColor];
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

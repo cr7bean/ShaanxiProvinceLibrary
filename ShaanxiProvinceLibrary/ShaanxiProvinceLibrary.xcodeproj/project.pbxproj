@@ -15,6 +15,8 @@
 		FD5853461C0C862500F4C5AF /* BookListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5853451C0C862500F4C5AF /* BookListModel.m */; };
 		FD5853491C0C86A300F4C5AF /* RecommendedBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5853481C0C86A300F4C5AF /* RecommendedBookModel.m */; };
 		FD6B6AD71C2BCCC100EE517C /* DoubanBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6B6AD61C2BCCC100EE517C /* DoubanBookModel.m */; };
+		FD767F261CCFB38900AA4BED /* UIViewController+AddView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD767F251CCFB38900AA4BED /* UIViewController+AddView.m */; settings = {ASSET_TAGS = (); }; };
+		FD767F291CCFB3D800AA4BED /* HudView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD767F281CCFB3D800AA4BED /* HudView.m */; settings = {ASSET_TAGS = (); }; };
 		FD84A74A1C970D5F009B6172 /* TagsView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD84A7491C970D5F009B6172 /* TagsView.m */; };
 		FDA2D79E1C8AFAE500949D50 /* ChooseLibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA2D79D1C8AFAE500949D50 /* ChooseLibraryViewController.m */; };
 		FDB434A91C3AAB500040DDE1 /* tags.plist in Resources */ = {isa = PBXBuildFile; fileRef = FDB434A81C3AAB500040DDE1 /* tags.plist */; };
@@ -36,8 +38,6 @@
 		FDC53A661C8957180005A0E1 /* ShowBooksMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC53A611C8957180005A0E1 /* ShowBooksMainViewController.m */; };
 		FDC53A6B1C89572B0005A0E1 /* DetailNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC53A681C89572B0005A0E1 /* DetailNewsViewController.m */; };
 		FDC53A6C1C89572B0005A0E1 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC53A6A1C89572B0005A0E1 /* NewsViewController.m */; };
-		FDDF41BA1C9BF04B006D3059 /* WindowsAzureMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDDF41B81C9BF04B006D3059 /* WindowsAzureMessaging.framework */; settings = {ASSET_TAGS = (); }; };
-		FDDF41BB1C9BF04B006D3059 /* WindowsAzureMobileServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDDF41B91C9BF04B006D3059 /* WindowsAzureMobileServices.framework */; settings = {ASSET_TAGS = (); }; };
 		FDEE5BE41BFCAA7C00AA0171 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEE5BE31BFCAA7C00AA0171 /* Helper.m */; };
 		FDF0734E1C9D4FB600AE3577 /* LibraryNPUViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF0734D1C9D4FB600AE3577 /* LibraryNPUViewController.m */; settings = {ASSET_TAGS = (); }; };
 		FDF4D3BB1C01A5E400C27381 /* NewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF4D3BA1C01A5E400C27381 /* NewsModel.m */; };
@@ -79,6 +79,10 @@
 		FD5853481C0C86A300F4C5AF /* RecommendedBookModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecommendedBookModel.m; path = Model/RecommendedBookModel.m; sourceTree = "<group>"; };
 		FD6B6AD51C2BCCC100EE517C /* DoubanBookModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DoubanBookModel.h; path = Model/DoubanBookModel.h; sourceTree = "<group>"; };
 		FD6B6AD61C2BCCC100EE517C /* DoubanBookModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DoubanBookModel.m; path = Model/DoubanBookModel.m; sourceTree = "<group>"; };
+		FD767F241CCFB38900AA4BED /* UIViewController+AddView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+AddView.h"; path = "Helper/UIViewController+AddView.h"; sourceTree = "<group>"; };
+		FD767F251CCFB38900AA4BED /* UIViewController+AddView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+AddView.m"; path = "Helper/UIViewController+AddView.m"; sourceTree = "<group>"; };
+		FD767F271CCFB3D800AA4BED /* HudView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HudView.h; path = Helper/HudView.h; sourceTree = "<group>"; };
+		FD767F281CCFB3D800AA4BED /* HudView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HudView.m; path = Helper/HudView.m; sourceTree = "<group>"; };
 		FD84A7481C970D5F009B6172 /* TagsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagsView.h; path = View/BookTag/TagsView.h; sourceTree = "<group>"; };
 		FD84A7491C970D5F009B6172 /* TagsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagsView.m; path = View/BookTag/TagsView.m; sourceTree = "<group>"; };
 		FDA2D79C1C8AFAE500949D50 /* ChooseLibraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChooseLibraryViewController.h; path = Controllers/chooseLibrary/ChooseLibraryViewController.h; sourceTree = "<group>"; };
@@ -120,9 +124,6 @@
 		FDC53A681C89572B0005A0E1 /* DetailNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailNewsViewController.m; path = Controllers/News/DetailNewsViewController.m; sourceTree = "<group>"; };
 		FDC53A691C89572B0005A0E1 /* NewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsViewController.h; path = Controllers/News/NewsViewController.h; sourceTree = "<group>"; };
 		FDC53A6A1C89572B0005A0E1 /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsViewController.m; path = Controllers/News/NewsViewController.m; sourceTree = "<group>"; };
-		FDDF41B81C9BF04B006D3059 /* WindowsAzureMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMessaging.framework; sourceTree = "<group>"; };
-		FDDF41B91C9BF04B006D3059 /* WindowsAzureMobileServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMobileServices.framework; sourceTree = "<group>"; };
-		FDDF41BC1C9BF0DE006D3059 /* HubInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HubInfo.h; sourceTree = "<group>"; };
 		FDEE5BE21BFCAA7C00AA0171 /* Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Helper.h; path = Helper/Helper.h; sourceTree = "<group>"; };
 		FDEE5BE31BFCAA7C00AA0171 /* Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Helper.m; path = Helper/Helper.m; sourceTree = "<group>"; };
 		FDF0734C1C9D4FB600AE3577 /* LibraryNPUViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryNPUViewController.h; sourceTree = "<group>"; };
@@ -154,8 +155,6 @@
 			files = (
 				FDF9CCF61BF89E670070907D /* libxml2.2.dylib in Frameworks */,
 				FC4413043EDDD1D8CB54F6D8 /* libPods.a in Frameworks */,
-				FDDF41BB1C9BF04B006D3059 /* WindowsAzureMobileServices.framework in Frameworks */,
-				FDDF41BA1C9BF04B006D3059 /* WindowsAzureMessaging.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +239,10 @@
 		FD1A32211BF8C5AD00A8B6A7 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				FD767F271CCFB3D800AA4BED /* HudView.h */,
+				FD767F281CCFB3D800AA4BED /* HudView.m */,
+				FD767F241CCFB38900AA4BED /* UIViewController+AddView.h */,
+				FD767F251CCFB38900AA4BED /* UIViewController+AddView.m */,
 				FDEE5BE21BFCAA7C00AA0171 /* Helper.h */,
 				FDEE5BE31BFCAA7C00AA0171 /* Helper.m */,
 			);
@@ -266,16 +269,6 @@
 				FDA2D79D1C8AFAE500949D50 /* ChooseLibraryViewController.m */,
 			);
 			name = ChooseLibrary;
-			sourceTree = "<group>";
-		};
-		FDDF41B71C9BF04B006D3059 /* AzurePush */ = {
-			isa = PBXGroup;
-			children = (
-				FDDF41B81C9BF04B006D3059 /* WindowsAzureMessaging.framework */,
-				FDDF41B91C9BF04B006D3059 /* WindowsAzureMobileServices.framework */,
-				FDDF41BC1C9BF0DE006D3059 /* HubInfo.h */,
-			);
-			path = AzurePush;
 			sourceTree = "<group>";
 		};
 		FDF073391C9D4D0200AE3577 /* SchoolLibrary */ = {
@@ -370,7 +363,6 @@
 			isa = PBXGroup;
 			children = (
 				FDF073391C9D4D0200AE3577 /* SchoolLibrary */,
-				FDDF41B71C9BF04B006D3059 /* AzurePush */,
 				FD1A32211BF8C5AD00A8B6A7 /* Helper */,
 				FD1A32201BF8C58200A8B6A7 /* Manager */,
 				FD1A321F1BF8C57A00A8B6A7 /* View */,
@@ -584,11 +576,13 @@
 				FDC53A6B1C89572B0005A0E1 /* DetailNewsViewController.m in Sources */,
 				FDA2D79E1C8AFAE500949D50 /* ChooseLibraryViewController.m in Sources */,
 				FDC53A4D1C8956260005A0E1 /* BooklistTableViewCell.m in Sources */,
+				FD767F291CCFB3D800AA4BED /* HudView.m in Sources */,
 				FD00E6321C8C05020085E34F /* GVUserDefaults+library.m in Sources */,
 				FDFBB8921BFB5AF50072CC8A /* MottoModel.m in Sources */,
 				FDEE5BE41BFCAA7C00AA0171 /* Helper.m in Sources */,
 				FDC53A651C8957180005A0E1 /* SearchBooksViewController.m in Sources */,
 				FDC53A431C8956140005A0E1 /* BookTagCollectionReusableView.m in Sources */,
+				FD767F261CCFB38900AA4BED /* UIViewController+AddView.m in Sources */,
 				FD2766931C9D78AE002926CB /* LibraryXidianViewController.m in Sources */,
 				FDC53A6C1C89572B0005A0E1 /* NewsViewController.m in Sources */,
 				FDC53A571C8957050005A0E1 /* BookTagViewController.m in Sources */,
@@ -695,7 +689,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "730ffcef-637c-4e13-bf11-c56a1ac18f79";
+				PROVISIONING_PROFILE = "00bbbd54-ea88-4121-a23e-1ecec28027c2";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -734,7 +728,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "730ffcef-637c-4e13-bf11-c56a1ac18f79";
+				PROVISIONING_PROFILE = "00bbbd54-ea88-4121-a23e-1ecec28027c2";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -746,7 +740,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: RunLong Wang (8LMT578K9H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: RunLong Wang (BT52MSS5FQ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: RunLong Wang (BT52MSS5FQ)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -757,7 +751,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.figurewang.ShaanxiProvinceLibrary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "730ffcef-637c-4e13-bf11-c56a1ac18f79";
+				PROVISIONING_PROFILE = "00bbbd54-ea88-4121-a23e-1ecec28027c2";
 				USER_HEADER_SEARCH_PATHS = /usr/include/libxml2;
 			};
 			name = Debug;
@@ -768,7 +762,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: RunLong Wang (8LMT578K9H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: RunLong Wang (BT52MSS5FQ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: RunLong Wang (BT52MSS5FQ)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -779,7 +773,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.figurewang.ShaanxiProvinceLibrary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "730ffcef-637c-4e13-bf11-c56a1ac18f79";
+				PROVISIONING_PROFILE = "00bbbd54-ea88-4121-a23e-1ecec28027c2";
 				USER_HEADER_SEARCH_PATHS = "${SDKROOT}/usr/include/libxml2";
 			};
 			name = Release;

@@ -13,6 +13,7 @@
 #import <PSTAlertController.h>
 #import "LibraryNPUViewController.h"
 #import "LibraryXidianViewController.h"
+#import "LibraryXAUTViewController.h"
 #import "Helper.h"
 
 
@@ -96,35 +97,41 @@
 
 - (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    NSString *searchBookName = searchBar.text;
-    
-    //删除特殊符号
-    searchBookName = [Helper deleteSpesicalSymbolInString: searchBookName];
-    
     NSArray *typeArray = @[@"TI^TITLE^SERIES^Title Processing^题名",
                            @"AU^AUTHOR^AUTHORS^Author Processing^著者",
                            @"SU^SUBJECT^SUBJECTS^^主题",
                            @"PER^PERTITLE^SERIES^Title Processing^期刊名"];
     self.searchType = typeArray[searchBar.selectedScopeButtonIndex];
 
-    NSDictionary *parameters = @{
-                                 @"srchfield1": self.searchType,
-                                 @"searchdata1": searchBookName,
-                                 @"library": [GVUserDefaults standardUserDefaults].libraryShortName,
-                                 @"sort_by": @"ANY"
-                                 };
-    
-    ShowBooksMainViewController *controller = [[ShowBooksMainViewController alloc] initWithDictionary: parameters];
-    controller.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController: controller animated: YES];
+    [self chooseLibrarySystem];
     [searchBar resignFirstResponder];
 }
 
-- (void) searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope
+- (void) chooseLibrarySystem
 {
-    if (selectedScope == 3) {
+    NSString *searchBookName = _searchbar.text;
+    //删除特殊符号
+    searchBookName = [Helper deleteSpesicalSymbolInString: searchBookName];
+    
+    NSString *libraryName = [GVUserDefaults standardUserDefaults].libraryName;
+    if ([libraryName isEqualToString: @"西安理工图书馆"]) {
+      LibraryXAUTViewController *controller = [LibraryXAUTViewController searchBookWithWords: searchBookName searchType: @"title"];
+        controller.hidesBottomBarWhenPushed = YES;
         
+    }else{
+        
+        NSDictionary *parameters = @{
+                                     @"srchfield1": self.searchType,
+                                     @"searchdata1": searchBookName,
+                                     @"library": [GVUserDefaults standardUserDefaults].libraryShortName,
+                                     @"sort_by": @"ANY"
+                                     };
+        ShowBooksMainViewController *controller = [[ShowBooksMainViewController alloc] initWithDictionary: parameters];
+        controller.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController: controller animated: YES];
     }
+    
+    
 }
 
 

@@ -19,6 +19,8 @@
 #import "BookTagContentViewController.h"
 #import <SVPullToRefresh.h>
 
+#import "UIViewController+AddView.h"
+
 @interface BookTagListViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, assign) contentType contentType;
@@ -32,18 +34,10 @@
 @end
 
 @implementation BookTagListViewController
-{
-    __weak BookTagListViewController *weakSelf;
-}
+
 
 # pragma mark - lifeCycle
 
-- (void) loadView
-{
-    UIView *view = [[UIView alloc] initWithFrame: [UIScreen mainScreen].bounds];
-    self.view = view;
-    self.view.backgroundColor = [UIColor whiteColor];
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -152,6 +146,7 @@
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.mas_equalTo(0);
         }];
+        [self.tableView registerClass: [DoubanContentTableViewCell class] forCellReuseIdentifier: @"tagListCell"];
     }
     return _tableView;
 }
@@ -208,15 +203,18 @@
                                 @"type": typeName};
     
     [ParseHTML searchBookWithTagInUrl: urlString parameter: parameter successs:^(NSMutableArray *bookArray, NSArray *tagsRecommended) {
-        self.hud.hidden = YES;
-        [self.bookListArray addObjectsFromArray: bookArray];
         
-        [weakSelf.tableView.infiniteScrollingView stopAnimating];
+        
+//        self.hud.hidden = YES;
+        [self rl_removeHudView];
+        
+        [self.bookListArray addObjectsFromArray: bookArray];
+        [self.tableView.infiniteScrollingView stopAnimating];
         if (bookArray.count) {
             [self.tableView fd_reloadDataWithoutInvalidateIndexPathHeightCache];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [weakSelf.tableView.infiniteScrollingView stopAnimating];
+        [self.tableView.infiniteScrollingView stopAnimating];
         self.hud.mode = MBProgressHUDModeText;
         if (error.code == -1009) {
             self.hud.labelText = @"请检查您的网络";
@@ -246,9 +244,9 @@
         if (amazonBookArray.count) {
            [self.tableView fd_reloadDataWithoutInvalidateIndexPathHeightCache];
         }
-        [weakSelf.tableView.infiniteScrollingView stopAnimating];
+        [self.tableView.infiniteScrollingView stopAnimating];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [weakSelf.tableView.infiniteScrollingView stopAnimating];
+        [self.tableView.infiniteScrollingView stopAnimating];
         self.hud.mode = MBProgressHUDModeText;
         self.hud.labelText = @"请检查您的网络";
         [self.hud hide: YES afterDelay: 1];
@@ -270,9 +268,9 @@
         if (JDBookArray.count) {
             [self.tableView fd_reloadDataWithoutInvalidateIndexPathHeightCache];
         }
-        [weakSelf.tableView.infiniteScrollingView stopAnimating];
+        [self.tableView.infiniteScrollingView stopAnimating];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [weakSelf.tableView.infiniteScrollingView stopAnimating];
+        [self.tableView.infiniteScrollingView stopAnimating];
         self.hud.mode = MBProgressHUDModeText;
         self.hud.labelText = @"请检查您的网络";
         [self.hud hide: YES afterDelay: 1];
@@ -289,14 +287,15 @@
     NSString *urlString = [NSString stringWithFormat: @"http://bang.dangdang.com/books/bestsellers/01.00.00.00.00.00-recent30-0-0-1-%lu", (unsigned long)page];
     [ParseHTML DDBooksWithUrl: urlString successs:^(NSMutableArray *DDBookArray, NSUInteger pageNumber) {
         self.hud.hidden = YES;
+        
         [self.bookListArray addObjectsFromArray: DDBookArray];
         if (DDBookArray.count) {
             [self.tableView fd_reloadDataWithoutInvalidateIndexPathHeightCache];
         }
-        [weakSelf.tableView.infiniteScrollingView stopAnimating];
+        [self.tableView.infiniteScrollingView stopAnimating];
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [weakSelf.tableView.infiniteScrollingView stopAnimating];
+        [self.tableView.infiniteScrollingView stopAnimating];
         self.hud.mode = MBProgressHUDModeText;
         self.hud.labelText = @"请检查您的网络";
         [self.hud hide: YES afterDelay: 1];
@@ -310,14 +309,15 @@
     self.title = _tagName;
     [self addRightBarItem];
     
-    self.hud = [MBProgressHUD showHUDAddedTo: self.view animated: YES];
-    self.hud.opacity = 0.5;
+    
+//    self.hud = [MBProgressHUD showHUDAddedTo: self.navigationController.view animated: YES];
+//    self.hud.opacity = 0.5;
+    [self rl_addHudView];
     
     _OrderType = @"T";
     _doubanPageCount = 0;
     _nonDoubanPageCount = 1;
     [self loadBooklistContent: _doubanPageCount doubanContenOrderType: _OrderType nonDoubanContentPage: _nonDoubanPageCount];
-    weakSelf = self;
 }
 
 
@@ -363,7 +363,6 @@
         [self configurateCell: cell atIndexPath: indexPath];
     }];
     return height;
-
 }
 
 - (void) configurateCell: (DoubanContentTableViewCell *) cell

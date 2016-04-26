@@ -10,7 +10,7 @@
 
 @interface LibraryXAUTViewController : UIViewController
 
-- (instancetype) initWithsearchWords: (NSString *) searchWords
-                          schoolName: (NSString *) schoolName;
++ (instancetype) searchBookWithWords: (NSString *) words
+                          searchType: (NSString *) type;
 
 @end
