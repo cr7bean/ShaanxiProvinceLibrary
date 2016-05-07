@@ -101,7 +101,6 @@
 {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo: self.view animated: YES];
     hud.yOffset = -32;
-//    hud.labelText = @"加载中...";
     hud.opacity = 0.5;
 
     NSString *urlString = [NSString stringWithFormat: @"http://61.185.242.108/uhtbin/cgisirsi/0/%@/0/123", @"陕西省馆"];

@@ -45,11 +45,14 @@
         CGFloat y = CGRectGetHeight(frame);
         _indicatorView.center = CGPointMake(CGRectGetWidth(_indicatorView.frame)/2, y/2);
         _label.center = CGPointMake(CGRectGetWidth(_indicatorView.frame) + CGRectGetWidth(_label.frame)/2 + 5, y/2);
+        
         // show animation
         [_indicatorView startAnimating];
         
         // observe
         [_label addObserver: self forKeyPath: @"text" options: NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context: nil];
+        
+        
     }
     return self;
 }

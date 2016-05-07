@@ -20,6 +20,7 @@
 #import <SVPullToRefresh.h>
 
 #import "UIViewController+AddView.h"
+#import "EmptyDataView.h"
 
 @interface BookTagListViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -203,11 +204,7 @@
                                 @"type": typeName};
     
     [ParseHTML searchBookWithTagInUrl: urlString parameter: parameter successs:^(NSMutableArray *bookArray, NSArray *tagsRecommended) {
-        
-        
-//        self.hud.hidden = YES;
         [self rl_removeHudView];
-        
         [self.bookListArray addObjectsFromArray: bookArray];
         [self.tableView.infiniteScrollingView stopAnimating];
         if (bookArray.count) {
@@ -215,15 +212,28 @@
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [self.tableView.infiniteScrollingView stopAnimating];
-        self.hud.mode = MBProgressHUDModeText;
-        if (error.code == -1009) {
-            self.hud.labelText = @"请检查您的网络";
-        }else{
-            self.hud.labelText = @"豆瓣服务异常";
-        }
-        [self.hud hide: YES afterDelay: 1];
+        [self rl_removeHudView];
+        
+        EmptyDataView *emptyView = [[EmptyDataView alloc] initOnView: self.view];
+        [emptyView configurateEmptyDataView];
+        [emptyView.refreshButton addTarget: self action: @selector(refresh:) forControlEvents: UIControlEventTouchUpInside];
+        
+        
+//        self.hud.mode = MBProgressHUDModeText;
+//        if (error.code == -1009) {
+//            self.hud.labelText = @"请检查您的网络";
+//        }else{
+//            self.hud.labelText = @"豆瓣服务异常";
+//        }
+//        [self.hud hide: YES afterDelay: 1];
         
     }];
+}
+
+- (void) refresh: (UIButton *) button
+{
+    [button.superview removeFromSuperview];
+    [self firstLoadData];
 }
 
 /**
@@ -308,12 +318,7 @@
     [self.tableView registerClass: [DoubanContentTableViewCell class] forCellReuseIdentifier: @"tagListCell"];
     self.title = _tagName;
     [self addRightBarItem];
-    
-    
-//    self.hud = [MBProgressHUD showHUDAddedTo: self.navigationController.view animated: YES];
-//    self.hud.opacity = 0.5;
     [self rl_addHudView];
-    
     _OrderType = @"T";
     _doubanPageCount = 0;
     _nonDoubanPageCount = 1;

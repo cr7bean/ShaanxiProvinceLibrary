@@ -50,7 +50,6 @@
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo: self.view animated: YES];
     hud.hidden = YES;
     hud.delegate = self;
-//    hud.yOffset = -32;
     hud.mode = MBProgressHUDModeText;
     hud.opacity = 0.5;
     [ParseHTML parseNewsContentSuccess:^(NSMutableArray *newsContent) {

@@ -11,6 +11,7 @@
 #import <Masonry.h>
 #import "Helper.h"
 #import "ParseHTML.h"
+#import <FXBlurView.h>
 
 #define IMAGE_SCALE 439.0/658
 
@@ -71,22 +72,23 @@
         make.top.mas_equalTo(0);
     }];
     
-//    MottoModel *motto = [MottoModel new];
-//    motto.saying = @"如果你浪费了自己的年龄，那是挺可悲的。因为你的青春只能持续一点儿时间，很短的一点儿时间。";
-//    motto.personage = @"—— 王尔德";
-//    [self configurateHeaderView: motto];
+    MottoModel *motto = [MottoModel new];
+    motto.saying = @"如果你浪费了自己的年龄，那是挺可悲的。因为你的青春只能持续一点儿时间，很短的一点儿时间。";
+    motto.personage = @"—— 王尔德";
+    motto.imageName = @"12";
+    [self configurateHeaderView: motto];
     
     
    //从网上抓取图片和文字放在首页
-    [ParseHTML parseMottoAndImage:^(MottoModel *motto) {
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
-        
-        [self configurateHeaderView: motto];
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"查找首页图片失败");
-        
-    }];
+//    [ParseHTML parseMottoAndImage:^(MottoModel *motto) {
+//        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
+//        
+//        [self configurateHeaderView: motto];
+//        
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        NSLog(@"查找首页图片失败");
+//        
+//    }];
     
     
 }
@@ -134,10 +136,8 @@
                       number: 1
                    alignment: NSTextAlignmentRight];
 
-    [_headerView setImageWithURL: [NSURL URLWithString: motto.imageName] placeholderImage: [UIImage imageNamed: @"1"]];
-    
-//    [_headerView setImage: [UIImage imageNamed: @"1"]];
-//    _headerView.backgroundColor = [UIColor greenColor];
+//    [_headerView setImageWithURL: [NSURL URLWithString: motto.imageName] placeholderImage: [UIImage imageNamed: @"1"]];
+    _headerView.image = [UIImage imageNamed: motto.imageName];
 }
 
 @end

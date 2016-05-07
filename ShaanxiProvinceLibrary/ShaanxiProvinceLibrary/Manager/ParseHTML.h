@@ -11,6 +11,7 @@
 #import <Foundation/Foundation.h>
 #import <AFNetworking.h>
 #import "MottoModel.h"
+#import "UIViewController+AddView.h"
 
 @class DoubanBookModel;
 

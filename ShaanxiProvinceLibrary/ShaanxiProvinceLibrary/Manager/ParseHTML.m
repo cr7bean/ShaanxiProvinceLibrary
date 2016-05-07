@@ -33,26 +33,39 @@
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager.requestSerializer setTimeoutInterval: 20];
     [Helper setNetworkIndicator: YES];
-
+    
     switch (methodType) {
         case requestMethodTypeGet:{
-            [manager GET: url parameters: nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                [Helper setNetworkIndicator: NO];
-                success(task, responseObject);
-            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                [Helper setNetworkIndicator: NO];
-                failure(task, error);
-            }];
-            break;
+            [manager GET: url
+              parameters: parameter
+                progress:^(NSProgress * downloadProgress) {
+                
+                }
+                 success:^(NSURLSessionDataTask * task, id  responseObject) {
+                     [Helper setNetworkIndicator: NO];
+                     success(task, responseObject);
+                 }
+                 failure:^(NSURLSessionDataTask * task, NSError * error) {
+                     [Helper setNetworkIndicator: NO];
+                     failure(task, error);
+                     
+                 }];
+             break;
         }
         case requestMethodTypePost:{
-            [manager POST: url parameters: parameter success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                [Helper setNetworkIndicator: NO];
-                success(task, responseObject);
-            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                [Helper setNetworkIndicator: NO];
-                failure(task, error);
-            }];
+            [manager POST: url
+               parameters: parameter
+                 progress:^(NSProgress *uploadProgress) {
+                     
+                 }
+                  success:^(NSURLSessionDataTask *task, id  responseObject) {
+                      [Helper setNetworkIndicator: NO];
+                      success(task, responseObject);
+                  }
+                  failure:^(NSURLSessionDataTask * task, NSError *error) {
+                      [Helper setNetworkIndicator: NO];
+                      failure(task, error);
+                  }];
             break;
         }
     }
@@ -591,48 +604,54 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager.requestSerializer setTimeoutInterval: 20];
     [AFJSONResponseSerializer serializer].removesKeysWithNullValues = YES;
-    [manager GET: urlString parameters: nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-        [Helper setNetworkIndicator: NO];
-        NSDictionary *bookDic;
-        if ([responseObject[@"books"] count]) {
-            bookDic = [NSDictionary dictionaryWithDictionary: [responseObject[@"books"] objectAtIndex: 0]];
-        }else{
-            bookDic = [NSDictionary dictionaryWithDictionary: responseObject];
+    [manager GET: urlString
+      parameters: nil
+        progress:^(NSProgress *downloadProgress) {
+            
         }
-        
-        DoubanBookModel *bookModel = [DoubanBookModel new];
-        bookModel.title = bookDic[@"title"];
-        bookModel.originalTitle = bookDic[@"origin_title"];
-        bookModel.publisher = bookDic[@"publisher"];
-        bookModel.pubdate = bookDic[@"pubdate"];
-        bookModel.pages = bookDic[@"pages"];
-        bookModel.price = bookDic[@"price"];
-        bookModel.binding = bookDic[@"binding"];
-        bookModel.idString = bookDic[@"id"];
-        bookModel.authorIntro = bookDic[@"author_intro"];
-        bookModel.catalog = bookDic[@"catalog"];
-        bookModel.summary = bookDic[@"summary"];
-        bookModel.rating = [bookDic[@"rating"] objectForKey: @"average"];
-        
-        bookModel.catalog = [Helper deleteSpaceAndCR: bookModel.catalog];
-        
-        if ([bookDic[@"author"] count]) {
-          bookModel.author  = bookDic[@"author"][0];
-        }
-        NSString *image = bookDic[@"image"];
-        NSDictionary *images = bookDic[@"images"];
-        if (images[@"large"]) {
-            bookModel.imageString = images[@"large"];
-        }else if (image){
-            bookModel.imageString = image;
-        }
-        success(bookModel);
-        
-     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-         [Helper setNetworkIndicator: NO];
-         failure(task, error);
-    }];
+         success:^(NSURLSessionDataTask *task, id  responseObject) {
+             [Helper setNetworkIndicator: NO];
+             NSDictionary *bookDic;
+             if ([responseObject[@"books"] count]) {
+                 bookDic = [NSDictionary dictionaryWithDictionary: [responseObject[@"books"] objectAtIndex: 0]];
+             }else{
+                 bookDic = [NSDictionary dictionaryWithDictionary: responseObject];
+             }
+             
+             DoubanBookModel *bookModel = [DoubanBookModel new];
+             bookModel.title = bookDic[@"title"];
+             bookModel.originalTitle = bookDic[@"origin_title"];
+             bookModel.publisher = bookDic[@"publisher"];
+             bookModel.pubdate = bookDic[@"pubdate"];
+             bookModel.pages = bookDic[@"pages"];
+             bookModel.price = bookDic[@"price"];
+             bookModel.binding = bookDic[@"binding"];
+             bookModel.idString = bookDic[@"id"];
+             bookModel.authorIntro = bookDic[@"author_intro"];
+             bookModel.catalog = bookDic[@"catalog"];
+             bookModel.summary = bookDic[@"summary"];
+             bookModel.rating = [bookDic[@"rating"] objectForKey: @"average"];
+             
+             bookModel.catalog = [Helper deleteSpaceAndCR: bookModel.catalog];
+             
+             if ([bookDic[@"author"] count]) {
+                 bookModel.author  = bookDic[@"author"][0];
+             }
+             NSString *image = bookDic[@"image"];
+             NSDictionary *images = bookDic[@"images"];
+             if (images[@"large"]) {
+                 bookModel.imageString = images[@"large"];
+             }else if (image){
+                 bookModel.imageString = image;
+             }
+             success(bookModel);
+             
+         }
+         failure:^(NSURLSessionDataTask * task, NSError *error) {
+             [Helper setNetworkIndicator: NO];
+             failure(task, error);
+             
+         }];
    
 }
 
@@ -901,7 +920,7 @@
             //拼接作者和翻译者
             __block NSMutableString *titleString;
             if (titleNodes.count) {
-                [titleNodes enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                [titleNodes enumerateObjectsUsingBlock:^(id  obj, NSUInteger idx, BOOL * stop) {
                     NSString *subTitle = [Helper deleteSpaceAndCR: [obj content]];
                     if ([subTitle isEqualToString: @"著"]) {
                         subTitle = @" 著 ";
