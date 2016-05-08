@@ -10,6 +10,7 @@
 		FC4413043EDDD1D8CB54F6D8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BC332BFDBCCAACB72850117 /* libPods.a */; };
 		FD00E6321C8C05020085E34F /* GVUserDefaults+library.m in Sources */ = {isa = PBXBuildFile; fileRef = FD00E6311C8C05020085E34F /* GVUserDefaults+library.m */; };
 		FD00E6341C8C1FCF0085E34F /* libraries.plist in Resources */ = {isa = PBXBuildFile; fileRef = FD00E6331C8C1FCF0085E34F /* libraries.plist */; };
+		FD1196AC1CDF5C6A006E203C /* PersonalCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1196AB1CDF5C6A006E203C /* PersonalCenterViewController.m */; settings = {ASSET_TAGS = (); }; };
 		FD2766931C9D78AE002926CB /* LibraryXidianViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD2766921C9D78AE002926CB /* LibraryXidianViewController.m */; settings = {ASSET_TAGS = (); }; };
 		FD2947AB1CD8D75E00BF7E5B /* EmptyDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD2947AA1CD8D75E00BF7E5B /* EmptyDataView.m */; settings = {ASSET_TAGS = (); }; };
 		FD54B50A1CA0175500732547 /* LibraryXAUTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD54B5091CA0175500732547 /* LibraryXAUTViewController.m */; settings = {ASSET_TAGS = (); }; };
@@ -74,6 +75,8 @@
 		FD00E6301C8C05020085E34F /* GVUserDefaults+library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GVUserDefaults+library.h"; path = "Manager/GVUserDefaults+library.h"; sourceTree = "<group>"; };
 		FD00E6311C8C05020085E34F /* GVUserDefaults+library.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "GVUserDefaults+library.m"; path = "Manager/GVUserDefaults+library.m"; sourceTree = "<group>"; };
 		FD00E6331C8C1FCF0085E34F /* libraries.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = libraries.plist; path = Resource/libraries.plist; sourceTree = "<group>"; };
+		FD1196AA1CDF5C6A006E203C /* PersonalCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterViewController.h; sourceTree = "<group>"; };
+		FD1196AB1CDF5C6A006E203C /* PersonalCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterViewController.m; sourceTree = "<group>"; };
 		FD2766911C9D78AE002926CB /* LibraryXidianViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryXidianViewController.h; sourceTree = "<group>"; };
 		FD2766921C9D78AE002926CB /* LibraryXidianViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryXidianViewController.m; sourceTree = "<group>"; };
 		FD2947A91CD8D75E00BF7E5B /* EmptyDataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmptyDataView.h; path = Helper/EmptyDataView.h; sourceTree = "<group>"; };
@@ -277,9 +280,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FD1196A61CDF5B3A006E203C /* PersonalCenter */ = {
+			isa = PBXGroup;
+			children = (
+				FD1196AA1CDF5C6A006E203C /* PersonalCenterViewController.h */,
+				FD1196AB1CDF5C6A006E203C /* PersonalCenterViewController.m */,
+			);
+			name = PersonalCenter;
+			path = Controllers/PersonalCenter;
+			sourceTree = "<group>";
+		};
 		FD1A321D1BF8C55C00A8B6A7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				FD1196A61CDF5B3A006E203C /* PersonalCenter */,
 				FDA2D7981C8AFA2300949D50 /* ChooseLibrary */,
 				FD4F58971C32D7940080C283 /* bookTag */,
 				FDF2871A1C1D9FD400A48ACF /* Suggestion */,
@@ -818,6 +832,7 @@
 				FD767F261CCFB38900AA4BED /* UIViewController+AddView.m in Sources */,
 				FD2766931C9D78AE002926CB /* LibraryXidianViewController.m in Sources */,
 				FDC53A6C1C89572B0005A0E1 /* NewsViewController.m in Sources */,
+				FD1196AC1CDF5C6A006E203C /* PersonalCenterViewController.m in Sources */,
 				FDC53A571C8957050005A0E1 /* BookTagViewController.m in Sources */,
 				FDC53A561C8957050005A0E1 /* BookTagListViewController.m in Sources */,
 				FDC53A441C8956140005A0E1 /* BookTagCollectionViewCell.m in Sources */,
