@@ -15,7 +15,6 @@ PODS:
   - AFNetworking/UIKit (3.0.4):
     - AFNetworking/NSURLSession
   - CSStickyHeaderFlowLayout (0.2.10)
-  - FXBlurView (1.6.4)
   - GVUserDefaults (1.0.2)
   - hpple (0.2.0)
   - LTNavigationBar (2.1.2)
@@ -27,13 +26,13 @@ PODS:
   - NJKWebViewProgress/Core (0.2.3)
   - NJKWebViewProgress/ProgressView (0.2.3)
   - PSTAlertController (1.2.0)
+  - SSKeychain (1.4.0)
   - SVPullToRefresh (0.4.1)
   - UITableView+FDTemplateLayoutCell (1.4)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0.0-beta.1)
   - CSStickyHeaderFlowLayout (~> 0.2.10)
-  - FXBlurView (~> 1.6.4)
   - GVUserDefaults (~> 1.0.2)
   - hpple (~> 0.2.0)
   - LTNavigationBar (~> 2.1.0)
@@ -41,13 +40,13 @@ DEPENDENCIES:
   - MBProgressHUD (~> 0.9.1)
   - NJKWebViewProgress
   - PSTAlertController (~> 1.2.0)
+  - SSKeychain (~> 1.4.0)
   - SVPullToRefresh (~> 0.4.1)
   - UITableView+FDTemplateLayoutCell (~> 1.4.beta)
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
   CSStickyHeaderFlowLayout: 5366582779d8b7c9ba9b9cc729c218cc23888776
-  FXBlurView: db786c2561cb49a09ae98407f52460096ab8a44f
   GVUserDefaults: 52d48cf8ba578b40a1a76312b196dfc9134ba36a
   hpple: 3b765f96fc2cd56ad1a49aef6f7be5cb2aa64b57
   LTNavigationBar: bfc5fc06a83463009b9d99675f2a32dcbb631b00
@@ -55,6 +54,7 @@ SPEC CHECKSUMS:
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
   PSTAlertController: 9b802dfbda54fee2683bfd6dda7023a6de895d5b
+  SSKeychain: c71293fa57216a40ab06c23f4085387583293de4
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   UITableView+FDTemplateLayoutCell: 234e1582bcc4e18461af91155123bb96538ed030
 

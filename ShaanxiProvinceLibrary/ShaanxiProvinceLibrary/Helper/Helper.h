@@ -64,4 +64,6 @@
  *  @return 删除空白符后的字符串
  */
 + (NSString *)regexDeleteBlankCharacterInString: (NSString *) checkString;
+
+
 @end

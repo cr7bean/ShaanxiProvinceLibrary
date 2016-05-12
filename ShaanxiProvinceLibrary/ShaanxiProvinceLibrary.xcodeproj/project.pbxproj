@@ -11,6 +11,9 @@
 		FD00E6321C8C05020085E34F /* GVUserDefaults+library.m in Sources */ = {isa = PBXBuildFile; fileRef = FD00E6311C8C05020085E34F /* GVUserDefaults+library.m */; };
 		FD00E6341C8C1FCF0085E34F /* libraries.plist in Resources */ = {isa = PBXBuildFile; fileRef = FD00E6331C8C1FCF0085E34F /* libraries.plist */; };
 		FD1196AC1CDF5C6A006E203C /* PersonalCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1196AB1CDF5C6A006E203C /* PersonalCenterViewController.m */; settings = {ASSET_TAGS = (); }; };
+		FD2405BE1CE4480F0071F2BE /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FD2405BD1CE4480F0071F2BE /* LoginManager.m */; settings = {ASSET_TAGS = (); }; };
+		FD2405C31CE472F50071F2BE /* schools.plist in Resources */ = {isa = PBXBuildFile; fileRef = FD2405C21CE472F50071F2BE /* schools.plist */; settings = {ASSET_TAGS = (); }; };
+		FD2405C61CE4A8550071F2BE /* BorrowBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD2405C51CE4A8550071F2BE /* BorrowBookModel.m */; settings = {ASSET_TAGS = (); }; };
 		FD2766931C9D78AE002926CB /* LibraryXidianViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD2766921C9D78AE002926CB /* LibraryXidianViewController.m */; settings = {ASSET_TAGS = (); }; };
 		FD2947AB1CD8D75E00BF7E5B /* EmptyDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD2947AA1CD8D75E00BF7E5B /* EmptyDataView.m */; settings = {ASSET_TAGS = (); }; };
 		FD54B50A1CA0175500732547 /* LibraryXAUTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD54B5091CA0175500732547 /* LibraryXAUTViewController.m */; settings = {ASSET_TAGS = (); }; };
@@ -44,8 +47,11 @@
 		FDEA6EDF1CDD8DC8002085B7 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEA6E8B1CDD8DC8002085B7 /* GTMBase64.m */; settings = {ASSET_TAGS = (); }; };
 		FDEA6EE01CDD8DC8002085B7 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDEA6EDC1CDD8DC8002085B7 /* libcrypto.a */; settings = {ASSET_TAGS = (); }; };
 		FDEA6EE11CDD8DC8002085B7 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDEA6EDD1CDD8DC8002085B7 /* libssl.a */; settings = {ASSET_TAGS = (); }; };
+		FDECA7B61CE2DF8300A2C94C /* CollectionBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDECA7B51CE2DF8300A2C94C /* CollectionBookViewController.m */; settings = {ASSET_TAGS = (); }; };
+		FDECA7B91CE2E62C00A2C94C /* AddAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDECA7B81CE2E62C00A2C94C /* AddAccountViewController.m */; settings = {ASSET_TAGS = (); }; };
 		FDEE5BE41BFCAA7C00AA0171 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEE5BE31BFCAA7C00AA0171 /* Helper.m */; };
 		FDF0734E1C9D4FB600AE3577 /* LibraryNPUViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF0734D1C9D4FB600AE3577 /* LibraryNPUViewController.m */; settings = {ASSET_TAGS = (); }; };
+		FDF3A3041CE2340C00ECB101 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDF3A3031CE2340C00ECB101 /* Security.framework */; };
 		FDF4D3BB1C01A5E400C27381 /* NewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF4D3BA1C01A5E400C27381 /* NewsModel.m */; };
 		FDF769741BFD56E300734ECA /* ParseHTML.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF769731BFD56E300734ECA /* ParseHTML.m */; };
 		FDF9CCD21BF8708B0070907D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF9CCD11BF8708B0070907D /* main.m */; };
@@ -77,6 +83,11 @@
 		FD00E6331C8C1FCF0085E34F /* libraries.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = libraries.plist; path = Resource/libraries.plist; sourceTree = "<group>"; };
 		FD1196AA1CDF5C6A006E203C /* PersonalCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterViewController.h; sourceTree = "<group>"; };
 		FD1196AB1CDF5C6A006E203C /* PersonalCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterViewController.m; sourceTree = "<group>"; };
+		FD2405BC1CE4480F0071F2BE /* LoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginManager.h; sourceTree = "<group>"; };
+		FD2405BD1CE4480F0071F2BE /* LoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginManager.m; sourceTree = "<group>"; };
+		FD2405C21CE472F50071F2BE /* schools.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = schools.plist; path = Resource/schools.plist; sourceTree = "<group>"; };
+		FD2405C41CE4A8550071F2BE /* BorrowBookModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BorrowBookModel.h; path = Model/BorrowBookModel.h; sourceTree = "<group>"; };
+		FD2405C51CE4A8550071F2BE /* BorrowBookModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BorrowBookModel.m; path = Model/BorrowBookModel.m; sourceTree = "<group>"; };
 		FD2766911C9D78AE002926CB /* LibraryXidianViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryXidianViewController.h; sourceTree = "<group>"; };
 		FD2766921C9D78AE002926CB /* LibraryXidianViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryXidianViewController.m; sourceTree = "<group>"; };
 		FD2947A91CD8D75E00BF7E5B /* EmptyDataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmptyDataView.h; path = Helper/EmptyDataView.h; sourceTree = "<group>"; };
@@ -216,10 +227,15 @@
 		FDEA6EDA1CDD8DC8002085B7 /* x509v3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509v3.h; sourceTree = "<group>"; };
 		FDEA6EDC1CDD8DC8002085B7 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
 		FDEA6EDD1CDD8DC8002085B7 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
+		FDECA7B41CE2DF8300A2C94C /* CollectionBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionBookViewController.h; sourceTree = "<group>"; };
+		FDECA7B51CE2DF8300A2C94C /* CollectionBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionBookViewController.m; sourceTree = "<group>"; };
+		FDECA7B71CE2E62C00A2C94C /* AddAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddAccountViewController.h; sourceTree = "<group>"; };
+		FDECA7B81CE2E62C00A2C94C /* AddAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAccountViewController.m; sourceTree = "<group>"; };
 		FDEE5BE21BFCAA7C00AA0171 /* Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Helper.h; path = Helper/Helper.h; sourceTree = "<group>"; };
 		FDEE5BE31BFCAA7C00AA0171 /* Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Helper.m; path = Helper/Helper.m; sourceTree = "<group>"; };
 		FDF0734C1C9D4FB600AE3577 /* LibraryNPUViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryNPUViewController.h; sourceTree = "<group>"; };
 		FDF0734D1C9D4FB600AE3577 /* LibraryNPUViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryNPUViewController.m; sourceTree = "<group>"; };
+		FDF3A3031CE2340C00ECB101 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		FDF4D3B91C01A5E400C27381 /* NewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsModel.h; path = Model/NewsModel.h; sourceTree = "<group>"; };
 		FDF4D3BA1C01A5E400C27381 /* NewsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsModel.m; path = Model/NewsModel.m; sourceTree = "<group>"; };
 		FDF769721BFD56E300734ECA /* ParseHTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParseHTML.h; path = Manager/ParseHTML.h; sourceTree = "<group>"; };
@@ -245,6 +261,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDF3A3041CE2340C00ECB101 /* Security.framework in Frameworks */,
 				FDEA6EE11CDD8DC8002085B7 /* libssl.a in Frameworks */,
 				FDF9CCF61BF89E670070907D /* libxml2.2.dylib in Frameworks */,
 				FC4413043EDDD1D8CB54F6D8 /* libPods.a in Frameworks */,
@@ -274,6 +291,7 @@
 		BA3F4F548A175BBBE57B3B36 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FDF3A3031CE2340C00ECB101 /* Security.framework */,
 				FDF9CCF51BF89E670070907D /* libxml2.2.dylib */,
 				0BC332BFDBCCAACB72850117 /* libPods.a */,
 			);
@@ -285,6 +303,10 @@
 			children = (
 				FD1196AA1CDF5C6A006E203C /* PersonalCenterViewController.h */,
 				FD1196AB1CDF5C6A006E203C /* PersonalCenterViewController.m */,
+				FDECA7B41CE2DF8300A2C94C /* CollectionBookViewController.h */,
+				FDECA7B51CE2DF8300A2C94C /* CollectionBookViewController.m */,
+				FDECA7B71CE2E62C00A2C94C /* AddAccountViewController.h */,
+				FDECA7B81CE2E62C00A2C94C /* AddAccountViewController.m */,
 			);
 			name = PersonalCenter;
 			path = Controllers/PersonalCenter;
@@ -296,7 +318,6 @@
 				FD1196A61CDF5B3A006E203C /* PersonalCenter */,
 				FDA2D7981C8AFA2300949D50 /* ChooseLibrary */,
 				FD4F58971C32D7940080C283 /* bookTag */,
-				FDF2871A1C1D9FD400A48ACF /* Suggestion */,
 				FDFE0A991C089A3A008AE8FC /* SearchBooks */,
 				FDFE0A981C089A25008AE8FC /* News */,
 			);
@@ -316,6 +337,8 @@
 				FD5853481C0C86A300F4C5AF /* RecommendedBookModel.m */,
 				FD6B6AD51C2BCCC100EE517C /* DoubanBookModel.h */,
 				FD6B6AD61C2BCCC100EE517C /* DoubanBookModel.m */,
+				FD2405C41CE4A8550071F2BE /* BorrowBookModel.h */,
+				FD2405C51CE4A8550071F2BE /* BorrowBookModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -354,6 +377,22 @@
 				FD2947AA1CD8D75E00BF7E5B /* EmptyDataView.m */,
 			);
 			name = Helper;
+			sourceTree = "<group>";
+		};
+		FD2405BA1CE447D50071F2BE /* Database */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		FD2405BB1CE447E30071F2BE /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				FD2405BC1CE4480F0071F2BE /* LoginManager.h */,
+				FD2405BD1CE4480F0071F2BE /* LoginManager.m */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		FD4F58971C32D7940080C283 /* bookTag */ = {
@@ -528,13 +567,6 @@
 			path = SchoolLibrary;
 			sourceTree = "<group>";
 		};
-		FDF2871A1C1D9FD400A48ACF /* Suggestion */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Suggestion;
-			sourceTree = "<group>";
-		};
 		FDF2C8B11C33615D0071E241 /* News */ = {
 			isa = PBXGroup;
 			children = (
@@ -577,6 +609,7 @@
 		FDF907F61C355AE400ACC2DA /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				FD2405C21CE472F50071F2BE /* schools.plist */,
 				FD00E6331C8C1FCF0085E34F /* libraries.plist */,
 				FDB434A81C3AAB500040DDE1 /* tags.plist */,
 			);
@@ -606,6 +639,8 @@
 		FDF9CCCE1BF8708B0070907D /* ShaanxiProvinceLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				FD2405BB1CE447E30071F2BE /* Login */,
+				FD2405BA1CE447D50071F2BE /* Database */,
 				FDEA6E851CDD8DC8002085B7 /* Vendor */,
 				FDF073391C9D4D0200AE3577 /* SchoolLibrary */,
 				FD1A32211BF8C5AD00A8B6A7 /* Helper */,
@@ -762,6 +797,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD2405C31CE472F50071F2BE /* schools.plist in Resources */,
 				FD00E6341C8C1FCF0085E34F /* libraries.plist in Resources */,
 				FDF9CCDB1BF8708B0070907D /* Main.storyboard in Resources */,
 				FDF9CCE01BF8708C0070907D /* LaunchScreen.xib in Resources */,
@@ -844,6 +880,8 @@
 				FDF4D3BB1C01A5E400C27381 /* NewsModel.m in Sources */,
 				FDC53A631C8957180005A0E1 /* BookListChildViewController.m in Sources */,
 				FDC53A551C8957050005A0E1 /* BookTagContentViewController.m in Sources */,
+				FD2405BE1CE4480F0071F2BE /* LoginManager.m in Sources */,
+				FD2405C61CE4A8550071F2BE /* BorrowBookModel.m in Sources */,
 				FDF9CCD51BF8708B0070907D /* AppDelegate.m in Sources */,
 				FD6B6AD71C2BCCC100EE517C /* DoubanBookModel.m in Sources */,
 				FDC53A3C1C8954B00005A0E1 /* NewsView.m in Sources */,
@@ -856,6 +894,8 @@
 				FDF9CCD21BF8708B0070907D /* main.m in Sources */,
 				FDC53A451C8956140005A0E1 /* BookTagSearchView.m in Sources */,
 				FDC53A3B1C8954B00005A0E1 /* NewsTableViewCell.m in Sources */,
+				FDECA7B91CE2E62C00A2C94C /* AddAccountViewController.m in Sources */,
+				FDECA7B61CE2DF8300A2C94C /* CollectionBookViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

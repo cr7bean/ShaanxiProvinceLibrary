@@ -29,7 +29,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSArray *schoolLibraries = @[@"西安理工图书馆", @"西工大图书馆", @"长安大学图书馆", @"西电图书馆", @"陕师大图书馆"];
+    NSMutableArray *schoolLibraries = [NSMutableArray new];
+    NSArray *schools = [NSArray arrayWithContentsOfFile: [[NSBundle mainBundle] pathForResource: @"schools" ofType: @"plist"]];
+    [schools enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (idx) {
+            [schoolLibraries addObject: obj[@"schoolName"]];
+        }
+    }];
     NSArray *proviceLibraries = [NSArray arrayWithContentsOfFile: [[NSBundle mainBundle] pathForResource: @"libraries" ofType: @"plist"]];
     self.libraries = @[schoolLibraries, proviceLibraries];
     self.selectedLibrary = [GVUserDefaults standardUserDefaults].libraryName;

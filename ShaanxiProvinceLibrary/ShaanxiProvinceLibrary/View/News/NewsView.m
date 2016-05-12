@@ -11,7 +11,7 @@
 #import <Masonry.h>
 #import "Helper.h"
 #import "ParseHTML.h"
-#import <FXBlurView.h>
+
 
 #define IMAGE_SCALE 439.0/658
 
