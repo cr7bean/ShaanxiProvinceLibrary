@@ -12,6 +12,8 @@ typedef void(^success)(id responseObject);
 typedef void(^failure)(NSError *error);
 typedef void(^RSAEncode)(NSString *encodePassword);
 typedef void(^loginStatus)(NSInteger statusCode);
+typedef void(^borrowBook)(NSMutableArray *borrowBooks);
+//typedef void(^borrowBookStatus)(NSMutableArray *borrowBooks, NSInteger status);
 
 
 @interface LoginManager : NSObject
@@ -21,7 +23,8 @@ typedef void(^loginStatus)(NSInteger statusCode);
              libraryType: (NSInteger) typeIndex
                  success: (loginStatus) statusCode
                  failure: (failure) failure;
-
 + (instancetype) sharedManager;
++ (void) fetchBorrowInfo: (borrowBook) borrowBook
+                 failure: (failure) failure;
 
 @end

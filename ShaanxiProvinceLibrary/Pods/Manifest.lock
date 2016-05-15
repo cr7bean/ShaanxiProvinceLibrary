@@ -15,6 +15,9 @@ PODS:
   - AFNetworking/UIKit (3.0.4):
     - AFNetworking/NSURLSession
   - CSStickyHeaderFlowLayout (0.2.10)
+  - FMDB (2.6.2):
+    - FMDB/standard (= 2.6.2)
+  - FMDB/standard (2.6.2)
   - GVUserDefaults (1.0.2)
   - hpple (0.2.0)
   - LTNavigationBar (2.1.2)
@@ -33,6 +36,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 3.0.0-beta.1)
   - CSStickyHeaderFlowLayout (~> 0.2.10)
+  - FMDB (~> 2.6.2)
   - GVUserDefaults (~> 1.0.2)
   - hpple (~> 0.2.0)
   - LTNavigationBar (~> 2.1.0)
@@ -47,6 +51,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
   CSStickyHeaderFlowLayout: 5366582779d8b7c9ba9b9cc729c218cc23888776
+  FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   GVUserDefaults: 52d48cf8ba578b40a1a76312b196dfc9134ba36a
   hpple: 3b765f96fc2cd56ad1a49aef6f7be5cb2aa64b57
   LTNavigationBar: bfc5fc06a83463009b9d99675f2a32dcbb631b00

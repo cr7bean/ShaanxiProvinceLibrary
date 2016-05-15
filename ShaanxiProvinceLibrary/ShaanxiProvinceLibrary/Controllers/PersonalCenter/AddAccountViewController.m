@@ -96,7 +96,11 @@
     _account.text = @"2140321246";
     _password.text = @"908729601";
     
-//    [SSKeychain deletePasswordForService: SERVICE account: _account.text];
+    [LoginManager fetchBorrowInfo:^(NSMutableArray *borrowBooks) {
+        hud.hidden = YES;
+    } failure:^(NSError *error) {
+        
+    }];
     
     NSInteger index = [_libraryNames indexOfObject: _libraryButton.currentTitle];
     [LoginManager loginWithAccont: _account.text
@@ -110,18 +114,25 @@
                               }else{
                                   hud.labelText = @"登录成功";
                                   [SSKeychain setPassword: _password.text forService: SERVICE account: _account.text];
-                                  [[NSNotificationCenter defaultCenter] postNotificationName: NOTIFICATION_ACCOUNT object: nil];
-                                  dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 1ull*NSEC_PER_SEC);
-                                  dispatch_after(time, dispatch_get_main_queue(), ^{
-                                      hud.hidden = YES;
-                                      [self dismissViewControllerAnimated: YES completion: nil];
-                                  });
+//                                  [[NSNotificationCenter defaultCenter] postNotificationName: NOTIFICATION_ACCOUNT object: nil];
+//                                  dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 1ull*NSEC_PER_SEC);
+//                                  dispatch_after(time, dispatch_get_main_queue(), ^{
+//                                      hud.hidden = YES;
+//                                      [self dismissViewControllerAnimated: YES completion: nil];
+//                                  });
+                                  [LoginManager fetchBorrowInfo:^(NSMutableArray *borrowBooks) {
+                                      NSLog(@"%@", borrowBooks);
+                                  } failure:^(NSError *error) {
+                                      NSLog(@"%@", error);
+                                  }];
                               }
                               
                               
                           } failure:^(NSError *error) {
                               NSLog(@"%@", error);
                           }];
+    
+
 }
 
 

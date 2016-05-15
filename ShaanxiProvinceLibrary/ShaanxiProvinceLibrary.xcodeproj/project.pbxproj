@@ -14,14 +14,31 @@
 		FD2405BE1CE4480F0071F2BE /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FD2405BD1CE4480F0071F2BE /* LoginManager.m */; settings = {ASSET_TAGS = (); }; };
 		FD2405C31CE472F50071F2BE /* schools.plist in Resources */ = {isa = PBXBuildFile; fileRef = FD2405C21CE472F50071F2BE /* schools.plist */; settings = {ASSET_TAGS = (); }; };
 		FD2405C61CE4A8550071F2BE /* BorrowBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD2405C51CE4A8550071F2BE /* BorrowBookModel.m */; settings = {ASSET_TAGS = (); }; };
+		FD27221C1CE8B48A007078A4 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD2722121CE8B48A007078A4 /* GoogleMobileAds.framework */; settings = {ASSET_TAGS = (); }; };
+		FD27221D1CE8B48A007078A4 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = FD27221A1CE8B48A007078A4 /* README.txt */; settings = {ASSET_TAGS = (); }; };
+		FD27221E1CE8B48A007078A4 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = FD27221B1CE8B48A007078A4 /* README.txt */; settings = {ASSET_TAGS = (); }; };
+		FD2722201CE8B530007078A4 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD27221F1CE8B530007078A4 /* CoreBluetooth.framework */; };
 		FD2766931C9D78AE002926CB /* LibraryXidianViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD2766921C9D78AE002926CB /* LibraryXidianViewController.m */; settings = {ASSET_TAGS = (); }; };
 		FD2947AB1CD8D75E00BF7E5B /* EmptyDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD2947AA1CD8D75E00BF7E5B /* EmptyDataView.m */; settings = {ASSET_TAGS = (); }; };
+		FD302AE11CE8677500CF8F67 /* DatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FD302AE01CE8677500CF8F67 /* DatabaseManager.m */; settings = {ASSET_TAGS = (); }; };
+		FD302AE31CE8736F00CF8F67 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD302AE21CE8736F00CF8F67 /* AdSupport.framework */; };
+		FD302AE51CE8737D00CF8F67 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD302AE41CE8737D00CF8F67 /* AudioToolbox.framework */; };
+		FD302AE71CE8738700CF8F67 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD302AE61CE8738700CF8F67 /* AVFoundation.framework */; };
+		FD302AE91CE8739200CF8F67 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD302AE81CE8739200CF8F67 /* CoreGraphics.framework */; };
+		FD302AEB1CE8739A00CF8F67 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD302AEA1CE8739A00CF8F67 /* CoreMedia.framework */; };
+		FD302AED1CE873A600CF8F67 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD302AEC1CE873A600CF8F67 /* CoreTelephony.framework */; };
+		FD302AF01CE873B900CF8F67 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD302AEE1CE873B900CF8F67 /* EventKit.framework */; };
+		FD302AF11CE873B900CF8F67 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD302AEF1CE873B900CF8F67 /* EventKitUI.framework */; };
+		FD302AF31CE873C800CF8F67 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD302AF21CE873C800CF8F67 /* MediaPlayer.framework */; };
+		FD302AF51CE873D400CF8F67 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD302AF41CE873D400CF8F67 /* MessageUI.framework */; };
+		FD302AF71CE873DB00CF8F67 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD302AF61CE873DB00CF8F67 /* StoreKit.framework */; };
 		FD54B50A1CA0175500732547 /* LibraryXAUTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD54B5091CA0175500732547 /* LibraryXAUTViewController.m */; settings = {ASSET_TAGS = (); }; };
 		FD5853461C0C862500F4C5AF /* BookListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5853451C0C862500F4C5AF /* BookListModel.m */; };
 		FD5853491C0C86A300F4C5AF /* RecommendedBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5853481C0C86A300F4C5AF /* RecommendedBookModel.m */; };
 		FD6B6AD71C2BCCC100EE517C /* DoubanBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6B6AD61C2BCCC100EE517C /* DoubanBookModel.m */; };
 		FD767F261CCFB38900AA4BED /* UIViewController+AddView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD767F251CCFB38900AA4BED /* UIViewController+AddView.m */; settings = {ASSET_TAGS = (); }; };
 		FD767F291CCFB3D800AA4BED /* HudView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD767F281CCFB3D800AA4BED /* HudView.m */; settings = {ASSET_TAGS = (); }; };
+		FD82D3EE1CE8B63B00B659E8 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD82D3ED1CE8B63B00B659E8 /* SafariServices.framework */; };
 		FD84A74A1C970D5F009B6172 /* TagsView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD84A7491C970D5F009B6172 /* TagsView.m */; };
 		FDA2D79E1C8AFAE500949D50 /* ChooseLibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA2D79D1C8AFAE500949D50 /* ChooseLibraryViewController.m */; };
 		FDB434A91C3AAB500040DDE1 /* tags.plist in Resources */ = {isa = PBXBuildFile; fileRef = FDB434A81C3AAB500040DDE1 /* tags.plist */; };
@@ -49,6 +66,7 @@
 		FDEA6EE11CDD8DC8002085B7 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDEA6EDD1CDD8DC8002085B7 /* libssl.a */; settings = {ASSET_TAGS = (); }; };
 		FDECA7B61CE2DF8300A2C94C /* CollectionBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDECA7B51CE2DF8300A2C94C /* CollectionBookViewController.m */; settings = {ASSET_TAGS = (); }; };
 		FDECA7B91CE2E62C00A2C94C /* AddAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDECA7B81CE2E62C00A2C94C /* AddAccountViewController.m */; settings = {ASSET_TAGS = (); }; };
+		FDEE09461CE7595F009E0D3F /* NSDate+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEE09451CE7595F009E0D3F /* NSDate+Tools.m */; settings = {ASSET_TAGS = (); }; };
 		FDEE5BE41BFCAA7C00AA0171 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEE5BE31BFCAA7C00AA0171 /* Helper.m */; };
 		FDF0734E1C9D4FB600AE3577 /* LibraryNPUViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF0734D1C9D4FB600AE3577 /* LibraryNPUViewController.m */; settings = {ASSET_TAGS = (); }; };
 		FDF3A3041CE2340C00ECB101 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDF3A3031CE2340C00ECB101 /* Security.framework */; };
@@ -88,10 +106,33 @@
 		FD2405C21CE472F50071F2BE /* schools.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = schools.plist; path = Resource/schools.plist; sourceTree = "<group>"; };
 		FD2405C41CE4A8550071F2BE /* BorrowBookModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BorrowBookModel.h; path = Model/BorrowBookModel.h; sourceTree = "<group>"; };
 		FD2405C51CE4A8550071F2BE /* BorrowBookModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BorrowBookModel.m; path = Model/BorrowBookModel.m; sourceTree = "<group>"; };
+		FD2722121CE8B48A007078A4 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
+		FD2722141CE8B48A007078A4 /* GADMAdNetworkAdapterProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADMAdNetworkAdapterProtocol.h; sourceTree = "<group>"; };
+		FD2722151CE8B48A007078A4 /* GADMAdNetworkConnectorProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADMAdNetworkConnectorProtocol.h; sourceTree = "<group>"; };
+		FD2722161CE8B48A007078A4 /* GADMediationAdRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADMediationAdRequest.h; sourceTree = "<group>"; };
+		FD2722171CE8B48A007078A4 /* GADMEnums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADMEnums.h; sourceTree = "<group>"; };
+		FD2722181CE8B48A007078A4 /* GADMRewardBasedVideoAdNetworkAdapterProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADMRewardBasedVideoAdNetworkAdapterProtocol.h; sourceTree = "<group>"; };
+		FD2722191CE8B48A007078A4 /* GADMRewardBasedVideoAdNetworkConnectorProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADMRewardBasedVideoAdNetworkConnectorProtocol.h; sourceTree = "<group>"; };
+		FD27221A1CE8B48A007078A4 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		FD27221B1CE8B48A007078A4 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		FD27221F1CE8B530007078A4 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		FD2766911C9D78AE002926CB /* LibraryXidianViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryXidianViewController.h; sourceTree = "<group>"; };
 		FD2766921C9D78AE002926CB /* LibraryXidianViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryXidianViewController.m; sourceTree = "<group>"; };
 		FD2947A91CD8D75E00BF7E5B /* EmptyDataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmptyDataView.h; path = Helper/EmptyDataView.h; sourceTree = "<group>"; };
 		FD2947AA1CD8D75E00BF7E5B /* EmptyDataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmptyDataView.m; path = Helper/EmptyDataView.m; sourceTree = "<group>"; };
+		FD302ADF1CE8677500CF8F67 /* DatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseManager.h; sourceTree = "<group>"; };
+		FD302AE01CE8677500CF8F67 /* DatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseManager.m; sourceTree = "<group>"; };
+		FD302AE21CE8736F00CF8F67 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		FD302AE41CE8737D00CF8F67 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		FD302AE61CE8738700CF8F67 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		FD302AE81CE8739200CF8F67 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		FD302AEA1CE8739A00CF8F67 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		FD302AEC1CE873A600CF8F67 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		FD302AEE1CE873B900CF8F67 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		FD302AEF1CE873B900CF8F67 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
+		FD302AF21CE873C800CF8F67 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		FD302AF41CE873D400CF8F67 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		FD302AF61CE873DB00CF8F67 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		FD54B5081CA0175500732547 /* LibraryXAUTViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryXAUTViewController.h; sourceTree = "<group>"; };
 		FD54B5091CA0175500732547 /* LibraryXAUTViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryXAUTViewController.m; sourceTree = "<group>"; };
 		FD5853441C0C862500F4C5AF /* BookListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookListModel.h; path = Model/BookListModel.h; sourceTree = "<group>"; };
@@ -104,6 +145,7 @@
 		FD767F251CCFB38900AA4BED /* UIViewController+AddView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+AddView.m"; path = "Helper/UIViewController+AddView.m"; sourceTree = "<group>"; };
 		FD767F271CCFB3D800AA4BED /* HudView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HudView.h; path = Helper/HudView.h; sourceTree = "<group>"; };
 		FD767F281CCFB3D800AA4BED /* HudView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HudView.m; path = Helper/HudView.m; sourceTree = "<group>"; };
+		FD82D3ED1CE8B63B00B659E8 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		FD84A7481C970D5F009B6172 /* TagsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagsView.h; path = View/BookTag/TagsView.h; sourceTree = "<group>"; };
 		FD84A7491C970D5F009B6172 /* TagsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagsView.m; path = View/BookTag/TagsView.m; sourceTree = "<group>"; };
 		FDA2D79C1C8AFAE500949D50 /* ChooseLibraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChooseLibraryViewController.h; path = Controllers/chooseLibrary/ChooseLibraryViewController.h; sourceTree = "<group>"; };
@@ -231,6 +273,8 @@
 		FDECA7B51CE2DF8300A2C94C /* CollectionBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionBookViewController.m; sourceTree = "<group>"; };
 		FDECA7B71CE2E62C00A2C94C /* AddAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddAccountViewController.h; sourceTree = "<group>"; };
 		FDECA7B81CE2E62C00A2C94C /* AddAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAccountViewController.m; sourceTree = "<group>"; };
+		FDEE09441CE7595F009E0D3F /* NSDate+Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+Tools.h"; path = "Helper/NSDate+Tools.h"; sourceTree = "<group>"; };
+		FDEE09451CE7595F009E0D3F /* NSDate+Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+Tools.m"; path = "Helper/NSDate+Tools.m"; sourceTree = "<group>"; };
 		FDEE5BE21BFCAA7C00AA0171 /* Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Helper.h; path = Helper/Helper.h; sourceTree = "<group>"; };
 		FDEE5BE31BFCAA7C00AA0171 /* Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Helper.m; path = Helper/Helper.m; sourceTree = "<group>"; };
 		FDF0734C1C9D4FB600AE3577 /* LibraryNPUViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryNPUViewController.h; sourceTree = "<group>"; };
@@ -261,10 +305,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD82D3EE1CE8B63B00B659E8 /* SafariServices.framework in Frameworks */,
+				FD2722201CE8B530007078A4 /* CoreBluetooth.framework in Frameworks */,
+				FD302AF71CE873DB00CF8F67 /* StoreKit.framework in Frameworks */,
+				FD302AF51CE873D400CF8F67 /* MessageUI.framework in Frameworks */,
+				FD302AF31CE873C800CF8F67 /* MediaPlayer.framework in Frameworks */,
+				FD302AF01CE873B900CF8F67 /* EventKit.framework in Frameworks */,
+				FD302AF11CE873B900CF8F67 /* EventKitUI.framework in Frameworks */,
+				FD302AED1CE873A600CF8F67 /* CoreTelephony.framework in Frameworks */,
+				FD302AEB1CE8739A00CF8F67 /* CoreMedia.framework in Frameworks */,
+				FD302AE91CE8739200CF8F67 /* CoreGraphics.framework in Frameworks */,
+				FD302AE71CE8738700CF8F67 /* AVFoundation.framework in Frameworks */,
+				FD302AE51CE8737D00CF8F67 /* AudioToolbox.framework in Frameworks */,
+				FD302AE31CE8736F00CF8F67 /* AdSupport.framework in Frameworks */,
 				FDF3A3041CE2340C00ECB101 /* Security.framework in Frameworks */,
 				FDEA6EE11CDD8DC8002085B7 /* libssl.a in Frameworks */,
 				FDF9CCF61BF89E670070907D /* libxml2.2.dylib in Frameworks */,
 				FC4413043EDDD1D8CB54F6D8 /* libPods.a in Frameworks */,
+				FD27221C1CE8B48A007078A4 /* GoogleMobileAds.framework in Frameworks */,
 				FDEA6EE01CDD8DC8002085B7 /* libcrypto.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,6 +349,20 @@
 		BA3F4F548A175BBBE57B3B36 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FD82D3ED1CE8B63B00B659E8 /* SafariServices.framework */,
+				FD27221F1CE8B530007078A4 /* CoreBluetooth.framework */,
+				FD2722111CE8B48A007078A4 /* GoogleMobileAdsSdkiOS-7.8.1 */,
+				FD302AF61CE873DB00CF8F67 /* StoreKit.framework */,
+				FD302AF41CE873D400CF8F67 /* MessageUI.framework */,
+				FD302AF21CE873C800CF8F67 /* MediaPlayer.framework */,
+				FD302AEE1CE873B900CF8F67 /* EventKit.framework */,
+				FD302AEF1CE873B900CF8F67 /* EventKitUI.framework */,
+				FD302AEC1CE873A600CF8F67 /* CoreTelephony.framework */,
+				FD302AEA1CE8739A00CF8F67 /* CoreMedia.framework */,
+				FD302AE81CE8739200CF8F67 /* CoreGraphics.framework */,
+				FD302AE61CE8738700CF8F67 /* AVFoundation.framework */,
+				FD302AE41CE8737D00CF8F67 /* AudioToolbox.framework */,
+				FD302AE21CE8736F00CF8F67 /* AdSupport.framework */,
 				FDF3A3031CE2340C00ECB101 /* Security.framework */,
 				FDF9CCF51BF89E670070907D /* libxml2.2.dylib */,
 				0BC332BFDBCCAACB72850117 /* libPods.a */,
@@ -375,6 +447,8 @@
 				FDEE5BE31BFCAA7C00AA0171 /* Helper.m */,
 				FD2947A91CD8D75E00BF7E5B /* EmptyDataView.h */,
 				FD2947AA1CD8D75E00BF7E5B /* EmptyDataView.m */,
+				FDEE09441CE7595F009E0D3F /* NSDate+Tools.h */,
+				FDEE09451CE7595F009E0D3F /* NSDate+Tools.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -382,6 +456,8 @@
 		FD2405BA1CE447D50071F2BE /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				FD302ADF1CE8677500CF8F67 /* DatabaseManager.h */,
+				FD302AE01CE8677500CF8F67 /* DatabaseManager.m */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -393,6 +469,31 @@
 				FD2405BD1CE4480F0071F2BE /* LoginManager.m */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		FD2722111CE8B48A007078A4 /* GoogleMobileAdsSdkiOS-7.8.1 */ = {
+			isa = PBXGroup;
+			children = (
+				FD2722121CE8B48A007078A4 /* GoogleMobileAds.framework */,
+				FD2722131CE8B48A007078A4 /* Mediation Adapters */,
+				FD27221B1CE8B48A007078A4 /* README.txt */,
+			);
+			name = "GoogleMobileAdsSdkiOS-7.8.1";
+			path = "ShaanxiProvinceLibrary/GoogleMobileAdsSdkiOS-7.8.1";
+			sourceTree = "<group>";
+		};
+		FD2722131CE8B48A007078A4 /* Mediation Adapters */ = {
+			isa = PBXGroup;
+			children = (
+				FD2722141CE8B48A007078A4 /* GADMAdNetworkAdapterProtocol.h */,
+				FD2722151CE8B48A007078A4 /* GADMAdNetworkConnectorProtocol.h */,
+				FD2722161CE8B48A007078A4 /* GADMediationAdRequest.h */,
+				FD2722171CE8B48A007078A4 /* GADMEnums.h */,
+				FD2722181CE8B48A007078A4 /* GADMRewardBasedVideoAdNetworkAdapterProtocol.h */,
+				FD2722191CE8B48A007078A4 /* GADMRewardBasedVideoAdNetworkConnectorProtocol.h */,
+				FD27221A1CE8B48A007078A4 /* README.txt */,
+			);
+			path = "Mediation Adapters";
 			sourceTree = "<group>";
 		};
 		FD4F58971C32D7940080C283 /* bookTag */ = {
@@ -802,6 +903,8 @@
 				FDF9CCDB1BF8708B0070907D /* Main.storyboard in Resources */,
 				FDF9CCE01BF8708C0070907D /* LaunchScreen.xib in Resources */,
 				FDF9CCDD1BF8708B0070907D /* Images.xcassets in Resources */,
+				FD27221D1CE8B48A007078A4 /* README.txt in Resources */,
+				FD27221E1CE8B48A007078A4 /* README.txt in Resources */,
 				FDB434A91C3AAB500040DDE1 /* tags.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -881,6 +984,8 @@
 				FDC53A631C8957180005A0E1 /* BookListChildViewController.m in Sources */,
 				FDC53A551C8957050005A0E1 /* BookTagContentViewController.m in Sources */,
 				FD2405BE1CE4480F0071F2BE /* LoginManager.m in Sources */,
+				FD302AE11CE8677500CF8F67 /* DatabaseManager.m in Sources */,
+				FDEE09461CE7595F009E0D3F /* NSDate+Tools.m in Sources */,
 				FD2405C61CE4A8550071F2BE /* BorrowBookModel.m in Sources */,
 				FDF9CCD51BF8708B0070907D /* AppDelegate.m in Sources */,
 				FD6B6AD71C2BCCC100EE517C /* DoubanBookModel.m in Sources */,
@@ -1031,7 +1136,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: RunLong Wang (BT52MSS5FQ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: RunLong Wang (BT52MSS5FQ)";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ShaanxiProvinceLibrary/GoogleMobileAdsSdkiOS-7.8.1",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(SDKROOT)/usr/include/libxml2",
 					"$(inherited)",
@@ -1072,7 +1180,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: RunLong Wang (BT52MSS5FQ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: RunLong Wang (BT52MSS5FQ)";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ShaanxiProvinceLibrary/GoogleMobileAdsSdkiOS-7.8.1",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(SDKROOT)/usr/include/libxml2",
 					"$(inherited)",

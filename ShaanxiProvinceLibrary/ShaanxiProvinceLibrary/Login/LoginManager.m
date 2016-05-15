@@ -11,6 +11,10 @@
 #import "BBRSACryptor.h"
 #import "GTMBase64.h"
 #import <TFHpple.h>
+#import "BorrowBookModel.h"
+
+# define wangLogObject(x) NSLog(@"%@", x)
+# define wangLogValue(x) NSLog(@"%lu", x)
 
 @interface LoginManager ()
 
@@ -133,12 +137,14 @@
                  failure: (failure) failure
 {
     LoginManager *manager = [LoginManager sharedManager];
+    NSLog(@"%p", manager);
     [manager loginWithAccont: account
                     password: password
                  libraryType: typeIndex
                      success:^(id responseObject) {
                          id json = [NSJSONSerialization JSONObjectWithData: responseObject options: 0 error: nil];
                          NSInteger code = [[json objectForKey: @"result"] integerValue];
+//                         NSLog(@"login %@", NSStringFromClass([json[@"result"] class]));
                          statusCode(code);
                      }
                      failure:^(NSError *error) {
@@ -146,7 +152,7 @@
                      }];
 }
 
-# pragma borrowBook url
+# pragma mark - borrowBook url
 
 - (void) fetchBorrowUrlString: (success) success
                        failue: (failure) failure
@@ -156,15 +162,91 @@
                    parameters: nil
                       success:^(id responseObject) {
                           success(responseObject);
-                          
                     }
                       failure:^(NSError *error) {
                           failure(error);
                       }];
-    
 }
 
 
+# pragma mark - borrowBooks
+
+- (void) fetchBorrowInfo: (borrowBook) borrowBook
+                 failure: (failure) failure
+{
+    [self fetchBorrowUrlString:^(id responseObject) {
+        id json = [NSJSONSerialization JSONObjectWithData: responseObject options: 0 error: nil];
+//        NSLog(@"borrow %@",NSStringFromClass([json[@"result"] class]));
+        NSArray *node = json[@"opacUrl"];
+        if (node.count) {
+            NSString *borrowUrl = [node[0] objectForKey: @"opaclendurl"];
+            [self basicRequestWithUrl: borrowUrl
+                           parameters: nil
+                              success:^(id responseObject) {
+                                  [self parseBowerInfoWithData: responseObject
+                                                    borrowBook:^(NSMutableArray *borrowBooks) {
+                                                        borrowBook(borrowBooks);
+                                                    }];
+                              }
+                              failure:^(NSError *error) {
+                                  failure(error);
+                              }];
+        }else{
+            NSMutableArray *temp = [NSMutableArray new];
+            borrowBook(temp);
+        }
+            }
+                        failue:^(NSError *error) {
+                            failure(error);
+                        }];
+}
+
+// parse borrow book html
+
+- (void) parseBowerInfoWithData: (NSData *) responseData
+                     borrowBook: (borrowBook) borrowBook
+{
+    NSMutableArray *books = [[NSMutableArray alloc] initWithCapacity: 20];
+    TFHpple *parse = [TFHpple hppleWithHTMLData: responseData];
+    NSArray *sheets = [parse searchWithXPathQuery: @"//div[@class='sheet']"];
+    if (sheets.count) {
+        for (TFHppleElement *element in sheets) {
+            NSData *sheetData = [[element raw] dataUsingEncoding: NSUTF8StringEncoding];
+            TFHpple *sheetParse = [TFHpple hppleWithHTMLData: sheetData];
+            NSString *sheetPath = @"//th[@class='sheetHd']/text() | //td";
+            NSArray *borrowInfo = [sheetParse searchWithXPathQuery: sheetPath];
+            if (borrowInfo.count == 6) {
+                BorrowBookModel *book  = [BorrowBookModel new];
+                book.title = [borrowInfo[0] content];
+                book.renewUrlString = [[borrowInfo[1] firstChild] objectForKey: @"href"];
+                book.borrowDate = [borrowInfo[3] text];
+                book.returnDate = [borrowInfo[4] text];
+                book.location = [borrowInfo[5] text];
+                [books addObject: book];
+//                wangLogObject(book.title);
+//                wangLogObject(book.renewUrlString);
+//                wangLogObject(book.borrowDate);
+//                wangLogObject(book.returnDate);
+//                wangLogObject(book.location);
+            }
+            
+        }
+        borrowBook(books);
+    }
+}
+
++ (void) fetchBorrowInfo: (borrowBook) borrowBook
+                 failure: (failure) failure
+{
+    LoginManager *manager = [LoginManager sharedManager];
+    [manager fetchBorrowInfo:^(NSMutableArray *borrowBooks) {
+        borrowBook(borrowBooks);
+    }
+                     failure:^(NSError *error) {
+                         failure(error);
+    }];
+    
+}
 
 
 
