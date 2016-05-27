@@ -137,15 +137,14 @@
                  failure: (failure) failure
 {
     LoginManager *manager = [LoginManager sharedManager];
-    NSLog(@"%p", manager);
     [manager loginWithAccont: account
                     password: password
                  libraryType: typeIndex
                      success:^(id responseObject) {
                          id json = [NSJSONSerialization JSONObjectWithData: responseObject options: 0 error: nil];
-                         NSInteger code = [[json objectForKey: @"result"] integerValue];
-//                         NSLog(@"login %@", NSStringFromClass([json[@"result"] class]));
-                         statusCode(code);
+                         NSString *errorMsg = [json objectForKey: @"errorMsg"];
+                         id msg = [json objectForKey: @"msg"];
+                         statusCode(errorMsg, msg);
                      }
                      failure:^(NSError *error) {
                          failure(error);
@@ -165,19 +164,21 @@
                     }
                       failure:^(NSError *error) {
                           failure(error);
+                          
                       }];
 }
 
 
 # pragma mark - borrowBooks
 
-- (void) fetchBorrowInfo: (borrowBook) borrowBook
+- (void) fetchBorrowInfo: (borrowBookStatus) borrowBookStatus
                  failure: (failure) failure
 {
     [self fetchBorrowUrlString:^(id responseObject) {
         id json = [NSJSONSerialization JSONObjectWithData: responseObject options: 0 error: nil];
 //        NSLog(@"borrow %@",NSStringFromClass([json[@"result"] class]));
         NSArray *node = json[@"opacUrl"];
+        id result = json[@"result"];
         if (node.count) {
             NSString *borrowUrl = [node[0] objectForKey: @"opaclendurl"];
             [self basicRequestWithUrl: borrowUrl
@@ -185,7 +186,7 @@
                               success:^(id responseObject) {
                                   [self parseBowerInfoWithData: responseObject
                                                     borrowBook:^(NSMutableArray *borrowBooks) {
-                                                        borrowBook(borrowBooks);
+                                                        borrowBookStatus(borrowBooks, result);
                                                     }];
                               }
                               failure:^(NSError *error) {
@@ -193,7 +194,7 @@
                               }];
         }else{
             NSMutableArray *temp = [NSMutableArray new];
-            borrowBook(temp);
+            borrowBookStatus(temp, result);
         }
             }
                         failue:^(NSError *error) {
@@ -231,16 +232,17 @@
             }
             
         }
-        borrowBook(books);
+        
     }
+    borrowBook(books);
 }
 
-+ (void) fetchBorrowInfo: (borrowBook) borrowBook
++ (void) fetchBorrowInfo: (borrowBookStatus) borrowBookStatus
                  failure: (failure) failure
 {
     LoginManager *manager = [LoginManager sharedManager];
-    [manager fetchBorrowInfo:^(NSMutableArray *borrowBooks) {
-        borrowBook(borrowBooks);
+    [manager fetchBorrowInfo:^(NSMutableArray *borrowBooks, id result) {
+        borrowBookStatus(borrowBooks, result);
     }
                      failure:^(NSError *error) {
                          failure(error);

@@ -62,6 +62,7 @@
 {
     [super viewWillAppear: animated];
     self.navigationController.navigationBar.hidden = YES;
+//    [self.navigationController setNavigationBarHidden: YES animated: NO];
 }
 
 
@@ -69,6 +70,7 @@
 {
     [super viewWillDisappear: animated];
     self.navigationController.navigationBar.hidden = NO;
+//    [self.navigationController setNavigationBarHidden: NO animated: NO];
 }
 
 - (void)didReceiveMemoryWarning

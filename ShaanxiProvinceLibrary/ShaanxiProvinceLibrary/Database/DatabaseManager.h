@@ -16,17 +16,41 @@ typedef void(^selectSuccess)(NSMutableArray *books);
 @interface DatabaseManager : NSObject
 
 + (instancetype) sharedManager;
-+ (FMDatabase *) createAccountDatabase;
-+ (FMDatabase *) createCollectionBookDatabase;
-+ (void) createAccountTableWithName: (NSString *) tableName
-                         inDatabase: (FMDatabase *) database;
-+ (void) createCollectionBookTableWithName: (NSString *) tableName
-                                inDatabase: (FMDatabase *) database;
+/**
+ *  在 Account database 中创建 Table
+ *
+ *  @param tableName 
+ */
++ (void) createAccountTableWithName: (NSString *) tableName;
+
+/**
+ *  在 CollectionBook database 中创建 Table
+ *
+ *  @param tableName
+ */
++ (void) createCollectionBookTableWithName: (NSString *) tableName;
+
+/**
+ *  在 Account database 对应的 Table 中插入数据
+ *
+ *  @param tableName
+ *  @param borrowBooks
+ */
 + (void) insertIntoAccountTable: (NSString *) tableName
-                     inDatabase: (FMDatabase *) database
                          object: (NSMutableArray<BorrowBookModel *> *) borrowBooks;
+
+/**
+ * 从 Account database 对应的 Table 中取出数据
+ *
+ *  @param tableName
+ *  @param success
+ */
 + (void) selectFromAccountTable: (NSString *) tableName
-                     inDatabase: (FMDatabase *) database
                         success: (selectSuccess) success;
+
+
++ (void) dropAccountTable: (NSString *) tableName;
+
++ (void) dropCollectionBookTable: (NSString *) tableName;
 
 @end

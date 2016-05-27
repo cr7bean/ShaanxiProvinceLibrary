@@ -14,12 +14,27 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>CocoaLumberjack.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>FMDB.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>GVUserDefaults.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Harpy.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>HexColors.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -54,12 +69,22 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SDVersion.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SSKeychain.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>SVPullToRefresh.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>TSMessages.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -74,35 +99,45 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>iRate.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0B46262F824B78D13A83374118138C57</key>
+		<key>0228C84B7323CA17FF98DA9F11FBE3E4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>15B139C71EA0BAA2E9DBBB273C1339AB</key>
+		<key>0F5ED6DC1A7219F13A8027CD5528DB3F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>18B06256F867C7D2B71A63E339F2CBA1</key>
+		<key>18A4BA8BFD66F76A5A3AE5290D46B994</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1E7F4CAD257470C140F8EB20423215DA</key>
+		<key>1953A85184B003247DF2B68B0E83665F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>272FC9590053E8D9A5393CB3A5CEB64E</key>
+		<key>1FEBE6664700324313F09FD47874C414</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>454CF803FA0916E36D5FF8F539600414</key>
+		<key>27A1EF7CAD58077DE62D70E0460152DF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3B7509EF39A8B0EB316ECC373D6873FE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,12 +147,42 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4E46EA64774A628F7877068E9E78D9BC</key>
+		<key>54CBE2197429DC0DDAB50450D31059D1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>58704BB8FD00568BF53B92E746B239F1</key>
+		<key>6B32144C7BDC45B01269F78EDBB09682</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7BF4E5E1780F084E599B48AA446A075A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8B090755233C44E8E118A8DA48015C08</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9BC2F4E97ADE357E396FF78D60FD9AFC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9FFC62057BE7D947B48437C3E8E61E55</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A845BECF1B1948FC6080FE7BF9942A7E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BA1162A66190668E1A76327DEC3430F8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -127,22 +192,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>BF2F1A353B596EA3AEB4ED20B8D4CF15</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>D10AFCBBC3949030D56276226438BB24</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D4811978A501C40CF61DB1CC17F1DCBB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>EA3931D121EE165685E6E6C251F033C0</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F9DCD3E65BCCAED3D95E410D19DE5B79</key>
 		<dict>
 			<key>primary</key>
 			<true/>

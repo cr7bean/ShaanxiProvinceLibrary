@@ -10,8 +10,25 @@
 
 @interface NSDate (Tools)
 
++ (NSDate *) dateWithString:(NSString *) string
+                     offset: (NSInteger) days;
++ (NSString *) currentDateString;
+
+/**
+ *  把字符串格式的日期转换为 NSDate
+ *
+ */
 + (NSDate *) dateWithString: (NSString *) dateString;
-+ (NSDate *) currentDate;
+/**
+ *  给定日期和当天日期的差值
+ */
 + (NSInteger) daysFromDateString: (NSString *) dateString;
+
+/**
+ *  比给定日期早些天数的日期
+ */
+
++ (NSDate *) changeHourWithDate: (NSDate *) date
+                         byDate: (NSDate *) byDate;
 
 @end

@@ -13,7 +13,24 @@
 @dynamic libraryName;
 @dynamic libraryShortName;
 @dynamic collectionTag;
+@dynamic aheadDay;
+@dynamic remind;
+@dynamic repeat;
+@dynamic firstLogin;
+@dynamic libraryType;
 
+/**
+ *  设置初始值
+ */
+- (NSDictionary *)setupDefaults
+{
+    return @{
+             @"aheadDay": @5,
+             @"remind": @YES,
+             @"repeat": @YES,
+             @"firstLogin": @YES
+             };
+}
 
 
 @end

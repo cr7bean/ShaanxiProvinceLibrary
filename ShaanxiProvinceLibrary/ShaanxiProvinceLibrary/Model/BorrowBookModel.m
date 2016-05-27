@@ -7,7 +7,28 @@
 //
 
 #import "BorrowBookModel.h"
+#import "NSDate+Tools.h"
 
 @implementation BorrowBookModel
+
+- (NSInteger) dayOffset
+{
+    return [NSDate daysFromDateString: _returnDate];
+}
+
+- (BOOL) isEqualToBorrowBookModel: (BorrowBookModel *) book
+{
+    BOOL isEqual = [_title isEqualToString: book.title] &&
+    [_location isEqualToString: book.location] &&
+    [_borrowDate isEqualToString: book.borrowDate] &&
+    [_returnDate isEqualToString: book.returnDate] &&
+    [_location isEqualToString: book.location];
+    if (isEqual) {
+        return YES;
+    }else{
+        return NO;
+    }
+    
+}
 
 @end

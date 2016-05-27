@@ -12,9 +12,13 @@
 
 @property (nonatomic, copy) NSString *libraryName;
 @property (nonatomic, copy) NSString *libraryShortName;
-
 @property (nonatomic, strong) NSArray *collectionTag;
-
+@property (nonatomic, assign) NSInteger aheadDay;
+@property (nonatomic, assign) BOOL remind;
+@property (nonatomic, assign) BOOL repeat;
+@property (nonatomic, assign) BOOL firstLogin;
+@property (nonatomic, strong) NSMutableDictionary *libraryType;
 
 
 @end
+

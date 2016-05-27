@@ -60,14 +60,17 @@
 		FDC53A661C8957180005A0E1 /* ShowBooksMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC53A611C8957180005A0E1 /* ShowBooksMainViewController.m */; };
 		FDC53A6B1C89572B0005A0E1 /* DetailNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC53A681C89572B0005A0E1 /* DetailNewsViewController.m */; };
 		FDC53A6C1C89572B0005A0E1 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC53A6A1C89572B0005A0E1 /* NewsViewController.m */; };
+		FDE7D2371CEC13AB0090B944 /* DueNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE7D2361CEC13AB0090B944 /* DueNotificationManager.m */; settings = {ASSET_TAGS = (); }; };
 		FDEA6EDE1CDD8DC8002085B7 /* BBRSACryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEA6E881CDD8DC8002085B7 /* BBRSACryptor.m */; settings = {ASSET_TAGS = (); }; };
 		FDEA6EDF1CDD8DC8002085B7 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEA6E8B1CDD8DC8002085B7 /* GTMBase64.m */; settings = {ASSET_TAGS = (); }; };
 		FDEA6EE01CDD8DC8002085B7 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDEA6EDC1CDD8DC8002085B7 /* libcrypto.a */; settings = {ASSET_TAGS = (); }; };
 		FDEA6EE11CDD8DC8002085B7 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDEA6EDD1CDD8DC8002085B7 /* libssl.a */; settings = {ASSET_TAGS = (); }; };
-		FDECA7B61CE2DF8300A2C94C /* CollectionBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDECA7B51CE2DF8300A2C94C /* CollectionBookViewController.m */; settings = {ASSET_TAGS = (); }; };
+		FDEB4BD41CF879080000AD54 /* RemoveAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEB4BD31CF879080000AD54 /* RemoveAdViewController.m */; settings = {ASSET_TAGS = (); }; };
 		FDECA7B91CE2E62C00A2C94C /* AddAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDECA7B81CE2E62C00A2C94C /* AddAccountViewController.m */; settings = {ASSET_TAGS = (); }; };
 		FDEE09461CE7595F009E0D3F /* NSDate+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEE09451CE7595F009E0D3F /* NSDate+Tools.m */; settings = {ASSET_TAGS = (); }; };
 		FDEE5BE41BFCAA7C00AA0171 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEE5BE31BFCAA7C00AA0171 /* Helper.m */; };
+		FDEE8C011CED92BB00E46EEF /* BorrowBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEE8C001CED92BB00E46EEF /* BorrowBookViewController.m */; settings = {ASSET_TAGS = (); }; };
+		FDEE8C051CEDA05200E46EEF /* BorrowBookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEE8C041CEDA05200E46EEF /* BorrowBookCell.m */; settings = {ASSET_TAGS = (); }; };
 		FDF0734E1C9D4FB600AE3577 /* LibraryNPUViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF0734D1C9D4FB600AE3577 /* LibraryNPUViewController.m */; settings = {ASSET_TAGS = (); }; };
 		FDF3A3041CE2340C00ECB101 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDF3A3031CE2340C00ECB101 /* Security.framework */; };
 		FDF4D3BB1C01A5E400C27381 /* NewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF4D3BA1C01A5E400C27381 /* NewsModel.m */; };
@@ -187,6 +190,8 @@
 		FDC53A681C89572B0005A0E1 /* DetailNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailNewsViewController.m; path = Controllers/News/DetailNewsViewController.m; sourceTree = "<group>"; };
 		FDC53A691C89572B0005A0E1 /* NewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsViewController.h; path = Controllers/News/NewsViewController.h; sourceTree = "<group>"; };
 		FDC53A6A1C89572B0005A0E1 /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsViewController.m; path = Controllers/News/NewsViewController.m; sourceTree = "<group>"; };
+		FDE7D2351CEC13AB0090B944 /* DueNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DueNotificationManager.h; sourceTree = "<group>"; };
+		FDE7D2361CEC13AB0090B944 /* DueNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DueNotificationManager.m; sourceTree = "<group>"; };
 		FDEA6E871CDD8DC8002085B7 /* BBRSACryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBRSACryptor.h; sourceTree = "<group>"; };
 		FDEA6E881CDD8DC8002085B7 /* BBRSACryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBRSACryptor.m; sourceTree = "<group>"; };
 		FDEA6E8A1CDD8DC8002085B7 /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
@@ -269,14 +274,18 @@
 		FDEA6EDA1CDD8DC8002085B7 /* x509v3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509v3.h; sourceTree = "<group>"; };
 		FDEA6EDC1CDD8DC8002085B7 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
 		FDEA6EDD1CDD8DC8002085B7 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
-		FDECA7B41CE2DF8300A2C94C /* CollectionBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionBookViewController.h; sourceTree = "<group>"; };
-		FDECA7B51CE2DF8300A2C94C /* CollectionBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionBookViewController.m; sourceTree = "<group>"; };
+		FDEB4BD21CF879080000AD54 /* RemoveAdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoveAdViewController.h; sourceTree = "<group>"; };
+		FDEB4BD31CF879080000AD54 /* RemoveAdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoveAdViewController.m; sourceTree = "<group>"; };
 		FDECA7B71CE2E62C00A2C94C /* AddAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddAccountViewController.h; sourceTree = "<group>"; };
 		FDECA7B81CE2E62C00A2C94C /* AddAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAccountViewController.m; sourceTree = "<group>"; };
 		FDEE09441CE7595F009E0D3F /* NSDate+Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+Tools.h"; path = "Helper/NSDate+Tools.h"; sourceTree = "<group>"; };
 		FDEE09451CE7595F009E0D3F /* NSDate+Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+Tools.m"; path = "Helper/NSDate+Tools.m"; sourceTree = "<group>"; };
 		FDEE5BE21BFCAA7C00AA0171 /* Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Helper.h; path = Helper/Helper.h; sourceTree = "<group>"; };
 		FDEE5BE31BFCAA7C00AA0171 /* Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Helper.m; path = Helper/Helper.m; sourceTree = "<group>"; };
+		FDEE8BFF1CED92BB00E46EEF /* BorrowBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorrowBookViewController.h; sourceTree = "<group>"; };
+		FDEE8C001CED92BB00E46EEF /* BorrowBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorrowBookViewController.m; sourceTree = "<group>"; };
+		FDEE8C031CEDA05200E46EEF /* BorrowBookCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorrowBookCell.h; sourceTree = "<group>"; };
+		FDEE8C041CEDA05200E46EEF /* BorrowBookCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorrowBookCell.m; sourceTree = "<group>"; };
 		FDF0734C1C9D4FB600AE3577 /* LibraryNPUViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryNPUViewController.h; sourceTree = "<group>"; };
 		FDF0734D1C9D4FB600AE3577 /* LibraryNPUViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryNPUViewController.m; sourceTree = "<group>"; };
 		FDF3A3031CE2340C00ECB101 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -375,10 +384,12 @@
 			children = (
 				FD1196AA1CDF5C6A006E203C /* PersonalCenterViewController.h */,
 				FD1196AB1CDF5C6A006E203C /* PersonalCenterViewController.m */,
-				FDECA7B41CE2DF8300A2C94C /* CollectionBookViewController.h */,
-				FDECA7B51CE2DF8300A2C94C /* CollectionBookViewController.m */,
 				FDECA7B71CE2E62C00A2C94C /* AddAccountViewController.h */,
 				FDECA7B81CE2E62C00A2C94C /* AddAccountViewController.m */,
+				FDEE8BFF1CED92BB00E46EEF /* BorrowBookViewController.h */,
+				FDEE8C001CED92BB00E46EEF /* BorrowBookViewController.m */,
+				FDEB4BD21CF879080000AD54 /* RemoveAdViewController.h */,
+				FDEB4BD31CF879080000AD54 /* RemoveAdViewController.m */,
 			);
 			name = PersonalCenter;
 			path = Controllers/PersonalCenter;
@@ -418,6 +429,7 @@
 		FD1A321F1BF8C57A00A8B6A7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FDEE8C021CED9F7500E46EEF /* PersonalCenter */,
 				FDF2C8B31C3361840071E241 /* BookTag */,
 				FDF2C8B21C33616F0071E241 /* SearchBooks */,
 				FDF2C8B11C33615D0071E241 /* News */,
@@ -516,6 +528,15 @@
 				FDA2D79D1C8AFAE500949D50 /* ChooseLibraryViewController.m */,
 			);
 			name = ChooseLibrary;
+			sourceTree = "<group>";
+		};
+		FDE7D2341CEC137E0090B944 /* DueNotification */ = {
+			isa = PBXGroup;
+			children = (
+				FDE7D2351CEC13AB0090B944 /* DueNotificationManager.h */,
+				FDE7D2361CEC13AB0090B944 /* DueNotificationManager.m */,
+			);
+			path = DueNotification;
 			sourceTree = "<group>";
 		};
 		FDEA6E851CDD8DC8002085B7 /* Vendor */ = {
@@ -655,6 +676,16 @@
 			path = lib;
 			sourceTree = "<group>";
 		};
+		FDEE8C021CED9F7500E46EEF /* PersonalCenter */ = {
+			isa = PBXGroup;
+			children = (
+				FDEE8C031CEDA05200E46EEF /* BorrowBookCell.h */,
+				FDEE8C041CEDA05200E46EEF /* BorrowBookCell.m */,
+			);
+			name = PersonalCenter;
+			path = View/PersonalCenter;
+			sourceTree = "<group>";
+		};
 		FDF073391C9D4D0200AE3577 /* SchoolLibrary */ = {
 			isa = PBXGroup;
 			children = (
@@ -740,6 +771,7 @@
 		FDF9CCCE1BF8708B0070907D /* ShaanxiProvinceLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				FDE7D2341CEC137E0090B944 /* DueNotification */,
 				FD2405BB1CE447E30071F2BE /* Login */,
 				FD2405BA1CE447D50071F2BE /* Database */,
 				FDEA6E851CDD8DC8002085B7 /* Vendor */,
@@ -977,8 +1009,10 @@
 				FDC53A441C8956140005A0E1 /* BookTagCollectionViewCell.m in Sources */,
 				FDF769741BFD56E300734ECA /* ParseHTML.m in Sources */,
 				FD84A74A1C970D5F009B6172 /* TagsView.m in Sources */,
+				FDEB4BD41CF879080000AD54 /* RemoveAdViewController.m in Sources */,
 				FD2947AB1CD8D75E00BF7E5B /* EmptyDataView.m in Sources */,
 				FDC53A661C8957180005A0E1 /* ShowBooksMainViewController.m in Sources */,
+				FDEE8C051CEDA05200E46EEF /* BorrowBookCell.m in Sources */,
 				FDC53A641C8957180005A0E1 /* RecommendBookChildViewController.m in Sources */,
 				FDF4D3BB1C01A5E400C27381 /* NewsModel.m in Sources */,
 				FDC53A631C8957180005A0E1 /* BookListChildViewController.m in Sources */,
@@ -991,6 +1025,7 @@
 				FD6B6AD71C2BCCC100EE517C /* DoubanBookModel.m in Sources */,
 				FDC53A3C1C8954B00005A0E1 /* NewsView.m in Sources */,
 				FD5853461C0C862500F4C5AF /* BookListModel.m in Sources */,
+				FDEE8C011CED92BB00E46EEF /* BorrowBookViewController.m in Sources */,
 				FDC53A4E1C8956260005A0E1 /* DoubanContentTableViewCell.m in Sources */,
 				FDC53A4C1C8956260005A0E1 /* BookContentTableViewCell.m in Sources */,
 				FD5853491C0C86A300F4C5AF /* RecommendedBookModel.m in Sources */,
@@ -1000,7 +1035,7 @@
 				FDC53A451C8956140005A0E1 /* BookTagSearchView.m in Sources */,
 				FDC53A3B1C8954B00005A0E1 /* NewsTableViewCell.m in Sources */,
 				FDECA7B91CE2E62C00A2C94C /* AddAccountViewController.m in Sources */,
-				FDECA7B61CE2DF8300A2C94C /* CollectionBookViewController.m in Sources */,
+				FDE7D2371CEC13AB0090B944 /* DueNotificationManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1134,8 +1169,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: RunLong Wang (BT52MSS5FQ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: RunLong Wang (BT52MSS5FQ)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ShaanxiProvinceLibrary/GoogleMobileAdsSdkiOS-7.8.1",
@@ -1167,7 +1202,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.figurewang.ShaanxiProvinceLibrary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "00bbbd54-ea88-4121-a23e-1ecec28027c2";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = /usr/include/libxml2;
 			};
 			name = Debug;
@@ -1178,8 +1213,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: RunLong Wang (BT52MSS5FQ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: RunLong Wang (BT52MSS5FQ)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ShaanxiProvinceLibrary/GoogleMobileAdsSdkiOS-7.8.1",
@@ -1211,7 +1246,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.figurewang.ShaanxiProvinceLibrary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "00bbbd54-ea88-4121-a23e-1ecec28027c2";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "${SDKROOT}/usr/include/libxml2";
 			};
 			name = Release;

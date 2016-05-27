@@ -11,6 +11,12 @@
 #import "LoginManager.h"
 #import <MBProgressHUD.h>
 #import <SSKeychain.h>
+#import "DatabaseManager.h"
+#import <FMDB.h>
+#import "BorrowBookModel.h"
+#import "DueNotificationManager.h"
+#import "Helper.h"
+#import "GVUserDefaults+library.h"
 
 # define NOTIFICATION_ACCOUNT @"accountsUpdated"
 # define SERVICE @"figureWang"
@@ -23,6 +29,9 @@
 @property (strong, nonatomic) IBOutlet UIButton *libraryButton;
 @property (nonatomic, copy) NSMutableArray *libraryNames;
 @property (strong, nonatomic) IBOutlet UIButton *loginButton;
+
+@property (nonatomic, copy) NSString *accountString;
+@property (nonatomic, copy) NSString *passwordString;
 
 @property (nonatomic, strong) PSTAlertController *actionController;
 
@@ -40,6 +49,11 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver: self name: NOTIFICATION_ACCOUNT object: nil];
 }
 
 # pragma mark - getter
@@ -88,53 +102,99 @@
 
 - (IBAction)login:(UIButton *)sender
 {
-    PSTAlertController *alertController = [PSTAlertController alertWithTitle: nil message: @"用户名或密码错误"];
-    [alertController addAction: [PSTAlertAction actionWithTitle: @"确定" style: PSTAlertActionStyleCancel handler: nil]];
-    
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo: self.view animated: YES];
-    hud.labelText = @"登录中";
-    _account.text = @"2140321246";
-    _password.text = @"908729601";
-    
-    [LoginManager fetchBorrowInfo:^(NSMutableArray *borrowBooks) {
-        hud.hidden = YES;
-    } failure:^(NSError *error) {
-        
-    }];
-    
+    // 选择图书馆
     NSInteger index = [_libraryNames indexOfObject: _libraryButton.currentTitle];
-    [LoginManager loginWithAccont: _account.text
-                         password: _password.text
-                      libraryType: index
-                          success:^(NSInteger statusCode) {
-                              hud.mode = MBProgressHUDModeText;
-                              if (statusCode == 0) {
-                                  hud.labelText = @"用户名或密码错误";
-                                  [hud hide: YES afterDelay: 1];
-                              }else{
-                                  hud.labelText = @"登录成功";
-                                  [SSKeychain setPassword: _password.text forService: SERVICE account: _account.text];
-//                                  [[NSNotificationCenter defaultCenter] postNotificationName: NOTIFICATION_ACCOUNT object: nil];
-//                                  dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 1ull*NSEC_PER_SEC);
-//                                  dispatch_after(time, dispatch_get_main_queue(), ^{
-//                                      hud.hidden = YES;
-//                                      [self dismissViewControllerAnimated: YES completion: nil];
-//                                  });
-                                  [LoginManager fetchBorrowInfo:^(NSMutableArray *borrowBooks) {
-                                      NSLog(@"%@", borrowBooks);
-                                  } failure:^(NSError *error) {
-                                      NSLog(@"%@", error);
-                                  }];
-                              }
-                              
-                              
-                          } failure:^(NSError *error) {
-                              NSLog(@"%@", error);
-                          }];
+
+    // 删除可能输入的各种空白符
+    _accountString = [Helper regexDeleteBlankCharacterInString: _account.text];
+    _passwordString = [Helper regexDeleteBlankCharacterInString: _password.text];
     
+    // 保证登录项填写完整
+    BOOL canLogin = (_accountString.length > 0) && (_passwordString.length > 0) && ([_libraryNames containsObject: _libraryButton.currentTitle]);
+    if (canLogin) {
+        
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo: self.view animated: YES];
+        hud.labelText = @"登录中";
+        
+        [LoginManager loginWithAccont: _accountString
+                             password: _passwordString
+                          libraryType: index
+                              success:^(NSString *errorMsg, id msg) {
+                                  hud.mode = MBProgressHUDModeText;
+                                  if ([msg count] > 5) {
+                                      
+                                      hud.labelText = @"登录成功";
+                                      [self insertIntoDatabaseWithBorrowBooks];
+                                  }else if([errorMsg containsString: @"用户名或密码错误"]){
+                                      hud.labelText = @"用户名或密码错误";
+                                      [hud hide: YES afterDelay: 1];
+                                  }else{
+                                      hud.labelText = @"系统出了点问题";
+                                      [hud hide: YES afterDelay: 1];
+                                  }
+                                  
+                              } failure:^(NSError *error) {
+                                  hud.labelText = @"系统出了点问题";
+                                  [hud hide: YES afterDelay: 1];
+                              }];
+    }
+    
+}
+
+/**
+ *  保存登录信息，返回个人中心页面
+ */
+- (void) saveLoginInfo
+{
+    // 保存登录信息
+    [SSKeychain setPassword: _passwordString forService: SERVICE account: _accountString];
+    [[NSNotificationCenter defaultCenter] postNotificationName: NOTIFICATION_ACCOUNT object: nil];
+    
+    // 保存帐号对应的图书馆
+    NSInteger index = [_libraryNames indexOfObject: _libraryButton.currentTitle];
+    NSMutableDictionary *libraryType = [NSMutableDictionary dictionary];
+    [libraryType setObject: @(index) forKey: _accountString];
+    [GVUserDefaults standardUserDefaults].libraryType = libraryType;
+    
+    dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 1ull*NSEC_PER_SEC);
+    dispatch_after(time, dispatch_get_main_queue(), ^{
+        [self dismissViewControllerAnimated: YES completion: nil];
+    });
 
 }
 
+/**
+ *  保存借阅书籍到数据库
+ */
+- (void) insertIntoDatabaseWithBorrowBooks
+
+{
+    [LoginManager fetchBorrowInfo:^(NSMutableArray *borrowBooks, id result) {
+        
+        NSString *msg = [NSString stringWithFormat: @"%@", result];
+        if ([msg isEqualToString: @"1"]) {
+            NSString *tableName = [self addSingleQuoteWithString: _accountString];
+            // 创建数据库，保存借阅书籍
+            [DatabaseManager createAccountTableWithName: tableName];
+            [DatabaseManager insertIntoAccountTable: tableName object: borrowBooks];
+            // 保存登录信息
+            [self saveLoginInfo];
+            // 安排通知
+            [DueNotificationManager scheduleBorrowBookNotification: borrowBooks accountName: _accountString];
+            NSLog(@"Add: %@", [[UIApplication sharedApplication] scheduledLocalNotifications]);
+        }
+    } failure:^(NSError *error) {
+        NSLog(@"%@", error.description);
+    }];
+}
+
+
+# pragma mark - helper
+
+- (NSString *) addSingleQuoteWithString: (NSString *) string
+{
+    return [NSString stringWithFormat: @"'%@'", string];
+}
 
 
 

@@ -15,5 +15,8 @@
 @property (nonatomic, copy) NSString *borrowDate;
 @property (nonatomic, copy) NSString *returnDate;
 @property (nonatomic, copy) NSString *location;
+@property (nonatomic, assign) NSInteger dayOffset;
+
+- (BOOL) isEqualToBorrowBookModel: (BorrowBookModel *) book;
 
 @end
