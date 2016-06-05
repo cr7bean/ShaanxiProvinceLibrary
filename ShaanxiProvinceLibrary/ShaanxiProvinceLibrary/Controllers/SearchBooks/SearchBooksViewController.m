@@ -13,7 +13,7 @@
 #import <PSTAlertController.h>
 #import "LibraryNPUViewController.h"
 #import "LibraryXidianViewController.h"
-#import "LibraryXAUTViewController.h"
+#import "SchoolLibraryViewController.h"
 #import "Helper.h"
 
 
@@ -24,6 +24,7 @@
 @property (strong, nonatomic) IBOutlet UISearchBar *searchbar;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, copy) NSString *searchType;
+@property (nonatomic, strong) NSDictionary *schoolLibraryInfo;
 
 @end
 
@@ -42,9 +43,10 @@
     _tableView.dataSource = self;
     _searchbar.delegate = self;
     _hotSearchingBooks = [NSMutableArray new];
+    // 更改光标颜色
+    [[UITextField appearanceWhenContainedIn: [UISearchBar class], nil] setTintColor: [UIColor colorWithRed:0/255.0 green:175/255.0 blue:240/255.0 alpha:1]];
     
     [ParseHTML parseHotSearchingBookSuccess:^(NSMutableArray *hotSearchingBooks) {
-        
         _hotSearchingBooks = hotSearchingBooks;
         [_tableView reloadData];
         
@@ -61,17 +63,11 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear: animated];
-    self.navigationController.navigationBar.hidden = YES;
-//    [self.navigationController setNavigationBarHidden: YES animated: NO];
+    self.searchbar.placeholder = [GVUserDefaults standardUserDefaults].isSchoolLibrary ? [GVUserDefaults standardUserDefaults].schoolLibraryInfo[@"schoolName"] : [GVUserDefaults standardUserDefaults].libraryName;
+    self.schoolLibraryInfo = [GVUserDefaults standardUserDefaults].schoolLibraryInfo;
+    [self.navigationController setNavigationBarHidden: YES animated: YES];
 }
 
-
-- (void) viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear: animated];
-    self.navigationController.navigationBar.hidden = NO;
-//    [self.navigationController setNavigationBarHidden: NO animated: NO];
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -99,42 +95,63 @@
 
 - (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    NSArray *typeArray = @[@"TI^TITLE^SERIES^Title Processing^题名",
-                           @"AU^AUTHOR^AUTHORS^Author Processing^著者",
-                           @"SU^SUBJECT^SUBJECTS^^主题",
-                           @"PER^PERTITLE^SERIES^Title Processing^期刊名"];
-    self.searchType = typeArray[searchBar.selectedScopeButtonIndex];
-
-    [self chooseLibrarySystem];
-    [searchBar resignFirstResponder];
-}
-
-- (void) chooseLibrarySystem
-{
     NSString *searchBookName = _searchbar.text;
     //删除特殊符号
     searchBookName = [Helper deleteSpesicalSymbolInString: searchBookName];
     
-    NSString *libraryName = [GVUserDefaults standardUserDefaults].libraryName;
-    if ([libraryName isEqualToString: @"西安理工图书馆"]) {
-      LibraryXAUTViewController *controller = [LibraryXAUTViewController searchBookWithWords: searchBookName searchType: @"title"];
-        controller.hidesBottomBarWhenPushed = YES;
-        
+    BOOL isSchoolLibrary = [GVUserDefaults standardUserDefaults].isSchoolLibrary;
+    if (isSchoolLibrary) {
+        [self schoolLibraryWithSearchWords: searchBookName];
     }else{
-        
-        NSDictionary *parameters = @{
-                                     @"srchfield1": self.searchType,
-                                     @"searchdata1": searchBookName,
-                                     @"library": [GVUserDefaults standardUserDefaults].libraryShortName,
-                                     @"sort_by": @"ANY"
-                                     };
-        ShowBooksMainViewController *controller = [[ShowBooksMainViewController alloc] initWithDictionary: parameters];
-        controller.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController: controller animated: YES];
+        [self provinceLibraryWithSearchWords: searchBookName];
     }
-    
-    
+    [searchBar resignFirstResponder];
 }
+
+
+#pragma mark - choose library
+
+- (void) provinceLibraryWithSearchWords: (NSString *) searchWords
+{
+  NSArray *typeArray = @[@"TI^TITLE^SERIES^Title Processing^题名",
+                  @"AU^AUTHOR^AUTHORS^Author Processing^著者",
+                  @"SU^SUBJECT^SUBJECTS^^主题",
+                  @"PER^PERTITLE^SERIES^Title Processing^期刊名"];
+    self.searchType = typeArray[self.searchbar.selectedScopeButtonIndex];
+    NSDictionary *parameters = @{
+                                 @"srchfield1": self.searchType,
+                                 @"searchdata1": searchWords,
+                                 @"library": [GVUserDefaults standardUserDefaults].libraryShortName,
+                                 @"sort_by": @"ANY"
+                                 };
+    ShowBooksMainViewController *controller = [[ShowBooksMainViewController alloc] initWithDictionary: parameters];
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController: controller animated: YES];
+}
+
+- (void) schoolLibraryWithSearchWords: (NSString *) searchWords
+{
+    NSArray *type = _schoolLibraryInfo[@"searchtype"];
+    NSString *xc = _schoolLibraryInfo[@"xc"];
+    if (type.count == 1) {
+        self.searchType = @"title";
+    }else{
+        self.searchType = type[self.searchbar.selectedScopeButtonIndex];
+    }
+    NSDictionary *parameters = @{@"kw": searchWords,
+                                 @"xc": xc,
+                                 @"searchtype": self.searchType};
+    
+    // test
+    
+    SchoolLibraryViewController *controller = [SchoolLibraryViewController searchBookWithParameters: parameters];
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController: controller animated: YES];
+    NSLog(@"%@", _schoolLibraryInfo);
+    NSLog(@"searchBooks %@", parameters);
+}
+
+
 
 
 #pragma mark - tableView delegate

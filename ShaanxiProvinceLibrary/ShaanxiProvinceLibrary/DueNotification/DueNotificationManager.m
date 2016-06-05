@@ -11,6 +11,7 @@
 #import "BorrowBookModel.h"
 #import <UIKit/UIKit.h>
 #import "GVUserDefaults+library.h"
+#import "Helper.h"
 
 
 @implementation DueNotificationManager
@@ -41,7 +42,7 @@
         
         NSInteger dayOffset = [NSDate daysFromDateString: dateString];
         UILocalNotification *booksDueNotification = [self configurateLocalNotification];
-        NSString *alertConent = [NSString stringWithFormat: @"帐号%@有%lu本书%@到期，请注意查看", accountName,[returnBookDic[dateString] count], dateString];
+        NSString *alertConent = [NSString stringWithFormat: @"帐号 %@ 有 %lu 本书 %@ (还有 %lu 天到期)到期，请注意查看", accountName,[returnBookDic[dateString] count], dateString, dayOffset];
         if (dayOffset > aheadDay) {
             booksDueNotification.fireDate = [NSDate dateWithString: dateString offset: aheadDay];
         }else{
@@ -50,26 +51,32 @@
                 booksDueNotification.fireDate = [NSDate dateWithString: dateString offset: dayOffset];
             }else{
                 booksDueNotification.fireDate = [NSDate dateWithString: [NSDate currentDateString] offset: 0];
-                alertConent = [NSString stringWithFormat: @"您有%lu 本书已经到期，请注意查看", [returnBookDic[keys] count]];
+                if (dayOffset == 0) {
+                    alertConent = [NSString stringWithFormat: @"帐号 %@ 有 %lu 本书今天到期，请注意查看", accountName,[returnBookDic[dateString] count]];;
+                }else{
+                    alertConent = [NSString stringWithFormat: @"帐号 %@ 有 %lu 本书已经到期(超期 %ld 天)，请注意查看", accountName,[returnBookDic[dateString] count], labs((long)dayOffset)];
+                }
             }
         }
         
         // 动态调整第一个通知的时间，就是在当前时间的后一小时.
-        booksDueNotification.fireDate = [NSDate dateWithTimeInterval: 60*10
-                                                           sinceDate: [NSDate changeHourWithDate: booksDueNotification.fireDate byDate: [NSDate date]]];
         booksDueNotification.userInfo = @{@"account": accountName};
-        
+        booksDueNotification.fireDate = [NSDate dateWithTimeInterval: 60*2
+                                                           sinceDate: [NSDate changeHourWithDate: booksDueNotification.fireDate byDate: [NSDate date]]];
         // 防止提醒时间冲突
-        NSArray *notifications = [self allNotificationWithName: accountName];
-        UILocalNotification *previousNotification  = [notifications lastObject];
-        NSDate *previousDate = previousNotification.fireDate;
-        if (previousDate) {
-            booksDueNotification.fireDate = [NSDate dateWithTimeInterval: 60*10
-                                                               sinceDate: [NSDate changeHourWithDate: booksDueNotification.fireDate byDate: previousDate]];
-        }
+//        NSArray *notifications = [self allNotificationWithName: accountName];
+//        UILocalNotification *previousNotification  = [notifications lastObject];
+//        NSDate *previousDate = previousNotification.fireDate;
+//        if (previousDate) {
+//            booksDueNotification.fireDate = [NSDate dateWithTimeInterval: 60*3
+//                                                               sinceDate: [NSDate changeHourWithDate: booksDueNotification.fireDate byDate: previousDate]];
+//        }else{
+//            booksDueNotification.fireDate = [NSDate dateWithTimeInterval: 60*3
+//                                                               sinceDate: [NSDate changeHourWithDate: booksDueNotification.fireDate byDate: [NSDate date]]];
+//        }
         // 提醒内容
         booksDueNotification.alertBody = alertConent;
-//        NSLog(@"%@", booksDueNotification);
+        NSLog(@"DurNotification:%@%@", booksDueNotification, booksDueNotification.alertBody);
     
         // 是否重复提醒
         if (repeat) {
@@ -114,7 +121,7 @@
  */
 - (NSArray *) allNotificationWithName: (NSString *) name
 {
-    NSMutableArray *array = [ NSMutableArray array];
+    NSMutableArray *array = [ NSMutableArray new];
     NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
     for (UILocalNotification *notification in notifications) {
         if ([notification.userInfo[@"account"] isEqualToString: name]) {
@@ -148,7 +155,10 @@
             [returnDays addObject: book.returnDate];
         }
         NSSet *returnDaySet = [NSSet setWithArray: returnDays];
-        for (NSString *daySet  in returnDaySet) {
+        NSArray *orderedDays = returnDaySet.allObjects;
+        orderedDays = [orderedDays sortedArrayUsingSelector: @selector(compare:options:)];
+        
+        for (NSString *daySet  in orderedDays) {
             NSMutableArray *titles = [NSMutableArray new];
             for (int i=0; i<returnDays.count; i++) {
                 if ([daySet isEqualToString: returnDays[i]]) {
@@ -160,6 +170,7 @@
     }
     return [NSDictionary dictionaryWithDictionary: returnDaysDic];
 }
+
 
 
 + (void) scheduleBorrowBookNotification: (NSMutableArray<BorrowBookModel *> *) borrowBooks

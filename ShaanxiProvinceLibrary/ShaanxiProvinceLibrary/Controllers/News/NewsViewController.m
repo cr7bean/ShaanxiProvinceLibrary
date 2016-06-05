@@ -63,8 +63,10 @@
         [hud hide: NO afterDelay: 5];
     }];
     
+    NSLog(@"%@", [[UIApplication sharedApplication] scheduledLocalNotifications]);
+    // test
     
-    
+        
 }
 
 
@@ -109,11 +111,14 @@
 
 - (void) setLibraryName
 {
-    if (![GVUserDefaults standardUserDefaults].libraryName) {
-        [GVUserDefaults standardUserDefaults].libraryName = @"陕西省图书馆";
+    NSString *title;
+    if ([GVUserDefaults standardUserDefaults].isSchoolLibrary) {
+        title = [GVUserDefaults standardUserDefaults].schoolLibraryInfo[@"schoolName"];
+    }else{
+        title = [GVUserDefaults standardUserDefaults].libraryName;
+        [GVUserDefaults standardUserDefaults].libraryShortName = [[GVUserDefaults standardUserDefaults].libraryName stringByReplacingOccurrencesOfString: @"图书" withString: @""];
     }
-    [self.chooseLibraryButton setTitle: [GVUserDefaults standardUserDefaults].libraryName forState: UIControlStateNormal];
-    [GVUserDefaults standardUserDefaults].libraryShortName = [[GVUserDefaults standardUserDefaults].libraryName stringByReplacingOccurrencesOfString: @"图书" withString: @""];
+    [self.chooseLibraryButton setTitle: title forState: UIControlStateNormal];
 }
 
 

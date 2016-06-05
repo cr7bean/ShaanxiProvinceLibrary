@@ -15,6 +15,8 @@
 #import "Helper.h"
 #import "BooklistTableViewCell.h"
 #import <MBProgressHUD.h>
+#import "GVUserDefaults+library.h"
+#import "GAdManager.h"
 
 @interface SchoolLibraryViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -27,6 +29,7 @@
 @property (nonatomic, copy) NSString *searchType;
 
 @property (nonatomic, strong) NSDictionary *parameters;
+@property (nonatomic, strong) NSDictionary *schoolLibraryInfo;
 
 @end
 
@@ -65,42 +68,49 @@
     
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden: NO animated: YES];
+}
+
 # pragma mark loadBookList
 
 // 搜索书籍列表
-- (void) loadBookListWithWords: (NSString *) searchWords
-                     pageCount: (NSUInteger) pageCount
+- (void) loadBookListWithpageCount: (NSUInteger) pageCount
 {
-    NSString *urlString = @"http://202.200.117.15:8081/search";
-    
-    NSDictionary *parameter = @{@"kw": _searchWords,
-                                @"searchtype": _searchType,
-                                @"page": [NSNumber numberWithInteger: pageCount],
-                                @"xc": @3
-                                };
-    
-    [ParseHTML bookListInXAUTLibraryWithUrl: urlString parameter: parameter success:^(NSMutableArray *bookArray, NSString *totalNumberString) {
-        [weakSelf.tableView.infiniteScrollingView stopAnimating];
-        
-        if (bookArray.count) {
-            self.hud.hidden = YES;
-            
-            self.totalNumString = totalNumberString;
-            [self.bookListArray addObjectsFromArray: bookArray];
-            [self.tableView fd_reloadDataWithoutInvalidateIndexPathHeightCache];
-        }
-        if (!_bookListArray.count) {
-            self.hud.mode = MBProgressHUDModeText;
-            self.hud.labelText = @"图书馆没有收录";
-            [self.hud hide: YES afterDelay: 1];
-        }
-
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [weakSelf.tableView.infiniteScrollingView stopAnimating];
-        self.hud.mode = MBProgressHUDModeText;
-        self.hud.labelText = @"请检查您的网络";
-        [self.hud hide: YES afterDelay: 1];
-    }];
+    NSString *urlString = _schoolLibraryInfo[@"urlString"];
+    NSMutableDictionary *urlParams = [NSMutableDictionary dictionaryWithDictionary: _parameters];
+    [urlParams setValue: [NSNumber numberWithInteger: pageCount]
+                  forKey: @"page"];
+   
+    [ParseHTML bookListInSchoolLibraryWithUrl: urlString
+                                    parameter: urlParams
+                                      success:^(NSMutableArray *bookArray, NSString *totalNumberString) {
+                                          
+                                          [weakSelf.tableView.infiniteScrollingView stopAnimating];
+                                          
+                                          if (bookArray.count) {
+                                              self.hud.hidden = YES;
+                                              
+                                              self.totalNumString = totalNumberString;
+                                              [self.bookListArray addObjectsFromArray: bookArray];
+                                              [self.tableView fd_reloadDataWithoutInvalidateIndexPathHeightCache];
+                                          }
+                                          if (!_bookListArray.count) {
+                                              self.hud.mode = MBProgressHUDModeText;
+                                              self.hud.labelText = @"图书馆没有收录";
+                                              [self.hud hide: YES afterDelay: 1];
+                                          }
+                                          
+                                      } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                          [weakSelf.tableView.infiniteScrollingView stopAnimating];
+                                          self.hud.mode = MBProgressHUDModeText;
+                                          self.hud.labelText = @"请检查您的网络";
+                                          [self.hud hide: YES afterDelay: 1];
+                                          NSLog(@"schoolLibraryError: %@", error.localizedDescription);
+                                          // bad gateway 502
+                                      }];
 }
 
 // 初次加载书籍列表
@@ -109,11 +119,13 @@
 {
     self.hud = [MBProgressHUD showHUDAddedTo: self.view animated: YES];
     self.hud.alpha = 0.5;
-    self.title = @"西安理工图书馆";
+    self.schoolLibraryInfo = [GVUserDefaults standardUserDefaults].schoolLibraryInfo;
+    self.title = _schoolLibraryInfo[@"schoolName"];
+    [GAdManager showAdOnViewController: self canOffset: NO];
     self.bookListArray = [NSMutableArray new];
     weakSelf = self;
     _pageCount = 1;
-    [self loadBookListWithWords: _searchWords pageCount: _pageCount];
+    [self loadBookListWithpageCount: _pageCount];
 }
 
 // 下拉刷新加载书籍列表
@@ -125,11 +137,8 @@
         NSInteger totalNumber = [Helper regexFindNumberInString: _totalNumString];
         float index = totalNumber / 20.0;
         index = ceilf(index);
-        
-        
         if (weakSelf.pageCount <= index) {
-            [weakSelf loadBookListWithWords: weakSelf.searchWords
-                                  pageCount: weakSelf.pageCount];
+            [weakSelf loadBookListWithpageCount: _pageCount];
         }else{
             [weakSelf.tableView.infiniteScrollingView stopAnimating];
         }

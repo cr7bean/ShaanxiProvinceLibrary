@@ -28,6 +28,7 @@
     UIColor *color = [UIColor colorWithRed:0/255.0 green:175/255.0 blue:240/255.0 alpha:1];
     _renewButton.layer.borderWidth = 1.0;
     _renewButton.layer.borderColor = color.CGColor;
+    _titleLabel.preferredMaxLayoutWidth = [UIScreen mainScreen].bounds.size.width - 15*2;
 }
 
 - (void) setBorrowBooks:(BorrowBookModel *)borrowBooks
@@ -35,7 +36,13 @@
     _titleLabel.text = [self deleteQuotationMarks: borrowBooks.title];
     _borrowDateLabel.text = borrowBooks.borrowDate;
     _returnDateLabel.text = borrowBooks.returnDate;
-    _remindLabel.text = [NSString stringWithFormat: @"%lu", (long)borrowBooks.dayOffset];
+    
+    if (borrowBooks.dayOffset >= 0) {
+        _remindLabel.text = [NSString stringWithFormat: @"%lu", (long)borrowBooks.dayOffset];
+    }else{
+        _remindLabel.text = [NSString stringWithFormat: @"已经超期%ld天",  labs((long)borrowBooks.dayOffset)];
+    }
+    
 }
 
 - (NSString *) deleteQuotationMarks: (NSString *) title

@@ -18,7 +18,7 @@
 #import "LibraryNPUViewController.h"
 #import <MBProgressHUD.h>
 #import "LibraryXidianViewController.h"
-#import "LibraryXAUTViewController.h"
+#import "SchoolLibraryViewController.h"
 
 @interface BookTagContentViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -276,8 +276,8 @@
 
 - (void) searchBookInXAUTLibrary: (NSString *) schoolName
 {
-    LibraryXAUTViewController *controller = [LibraryXAUTViewController searchBookWithWords: _bookModel.title searchType: @"title"];
-    [self.navigationController pushViewController: controller animated: YES];
+//    SchoolLibraryViewController *controller = [SchoolLibraryViewController searchBookWithWords: _bookModel.title searchType: @"title"];
+//    [self.navigationController pushViewController: controller animated: YES];
 }
 
 

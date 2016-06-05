@@ -59,7 +59,6 @@
         self.borrowBooks = [NSMutableArray new];
         self.borrowBooks = books;
         
-        
         // 获取最新的借阅书籍
         [self updateBorrowBooks];
     }];
@@ -79,13 +78,13 @@
         if ([msg isEqualToString: @"1"]) {
             [self fetchBorrowBookInfoSuccess: borrowBooks];
             
-            
         }else{
             [self fetchBorrowBookInfoFailure];
         }
         
     }
                           failure:^(NSError *error) {
+                              [self fetchBorrowBookInfoFailure];
                               NSLog(@"BorrowBookViewController:%@", error);
     }];
 }
@@ -110,11 +109,13 @@
             }else{
                 sum += 1;
             }
-            
+            if (*stop == YES) {
+            }
         }];
     }
-    if (!sum) {
-        // 书籍内容发生变化
+    
+    NSLog(@"sum: %lu", sum);
+    if (sum) {
         [self upDateDatabaseAndTableView: borrowBooks];
     }
 }
@@ -124,6 +125,7 @@
 - (void) fetchBorrowBookInfoFailure
 {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo: self.view animated: YES];
+    hud.yOffset = -32;
     hud.mode = MBProgressHUDModeText;
     hud.labelText = @"正在重新登录";
     
@@ -137,6 +139,7 @@
                                   // 登录成功，重新获取借阅书籍信息
                                   hud.labelText = @"登录成功";
                                   [hud hide: YES afterDelay: 1];
+                                  NSLog(@"重新登录成功");
                                   // 重新登录后，再获取借阅书籍
                                   [LoginManager fetchBorrowInfo:^(NSMutableArray *borrowBooks, id result) {
                                       
@@ -170,7 +173,8 @@
                               
                           }
                           failure:^(NSError *error) {
-                              
+                              hud.labelText = @"系统出了点问题";
+                              [hud hide: YES afterDelay: 1];
                           }];
 }
 

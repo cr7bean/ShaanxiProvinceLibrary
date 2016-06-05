@@ -11,6 +11,6 @@
 
 @interface GAdManager : NSObject
 
-+ (void) showAdOnViewController: (id) controller;
-
++ (void) showAdOnViewController: (id) controller
+                      canOffset: (BOOL) canOffset;
 @end

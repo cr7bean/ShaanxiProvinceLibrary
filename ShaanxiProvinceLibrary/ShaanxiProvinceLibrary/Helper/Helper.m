@@ -85,7 +85,7 @@
 // 删除字符串中的特殊字符
 + (NSString *) deleteSpesicalSymbolInString: (NSString *) string
 {
-    NSArray *symbolArray = @[@"=", @"?", @".", @"。", @"<", @">", @"《", @"》", @"，", @"+", @"*", @"!", @"@", @"#", @"-", @"——", @"_"];
+    NSArray *symbolArray = @[@"=", @"?", @".", @"。", @"<", @">", @"《", @"》", @"，", @"+", @"*", @"!", @"@", @"#", @"-", @"——", @"_", @"$", @"&", @"[", @"]"];
     for (NSString * symbol in symbolArray) {
         NSRange range = [string rangeOfString: symbol];
         if (range.length) {
@@ -234,6 +234,18 @@
     return result;
 }
 
++ (NSString *) regexDeleteBlankCharacterInString:(NSString *) checkString
+                                         pattern: (NSString *) pattern
+{
+    NSRegularExpression *expression = [NSRegularExpression regularExpressionWithPattern: pattern options: NSRegularExpressionCaseInsensitive error: nil];
+    NSString *result = [expression stringByReplacingMatchesInString: checkString options: 0 range: NSMakeRange(0, [checkString length]) withTemplate: @""];
+    return result;
+}
+
++ (NSString *) regexDeleteReturnTabAndLineFeedInString: (NSString *) checkString
+{
+    return [self regexDeleteBlankCharacterInString: checkString pattern: @"[\n\t\r]"];
+}
 
 
 

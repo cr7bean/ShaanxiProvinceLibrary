@@ -84,6 +84,11 @@
     return (long)(interVal/(60*60*24));
 }
 
++ (NSInteger) daysFromDate: (NSDate *)date
+{
+    NSInteger interVal = [[NSDate date] timeIntervalSinceDate: date];
+    return (long)(interVal/(60*60*24));
+}
 
 /**
  * 把提醒的时间精确到秒，因此这里重新设置 DateFormatter

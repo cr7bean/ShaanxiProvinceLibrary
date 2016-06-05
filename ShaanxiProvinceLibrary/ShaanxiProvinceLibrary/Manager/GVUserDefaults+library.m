@@ -18,6 +18,10 @@
 @dynamic repeat;
 @dynamic firstLogin;
 @dynamic libraryType;
+@dynamic removeAdState;
+@dynamic clickADDate;
+@dynamic isSchoolLibrary;
+@dynamic schoolLibraryInfo;
 
 /**
  *  设置初始值
@@ -28,7 +32,10 @@
              @"aheadDay": @5,
              @"remind": @YES,
              @"repeat": @YES,
-             @"firstLogin": @YES
+             @"firstLogin": @YES,
+             @"removeAdState": @0,
+             @"isSchoolLibrary": @NO,
+             @"libraryName": @"陕西省图书馆"
              };
 }
 

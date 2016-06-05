@@ -17,19 +17,18 @@
 #import <MessageUI/MessageUI.h>
 #import <SDVersion.h>
 #import "RemoveAdViewController.h"
+#import "AboutViewController.h"
 
 
 # define NOTIFICATION_ACCOUNT @"accountsUpdated"
 # define SERVICE @"figureWang"
 
-#import <StoreKit/StoreKit.h>
 
-@interface PersonalCenterViewController () <SKProductsRequestDelegate, MFMailComposeViewControllerDelegate>
+@interface PersonalCenterViewController () <MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, copy) NSMutableArray *titles;
 @property (nonatomic, copy) NSMutableArray *allAccounts;
 
-@property (nonatomic, strong) SKProductsRequest *request;
 @property (nonatomic, copy) NSString *folderSizeString;
 
 @end
@@ -43,9 +42,10 @@
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver: self
                                              selector: @selector(updateTable:)
-                                                 name: NOTIFICATION_ACCOUNT                                              object: nil];
+                                                 name: NOTIFICATION_ACCOUNT
+                                               object: nil];
     [self titles];
-    [self validateProductIndentifiers: @[@"LibraryRemoveAd0001"]];
+    
     self.folderSizeString = [self calculateCacheFolderSize];
     
 }
@@ -204,8 +204,9 @@
                 [self.navigationController pushViewController: controller animated: YES];
                 
             }else{
-                
-            }
+                AboutViewController *controller = [storyboard instantiateViewControllerWithIdentifier: @"About"];
+                [self.navigationController pushViewController: controller animated: YES];
+          }
             break;
         }
     }
@@ -321,22 +322,6 @@
     
 }
 
-
-# pragma mark - iAP
-
-- (void) validateProductIndentifiers: (NSArray *) productIndentifiers
-{
-    SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers: [NSSet setWithArray: productIndentifiers]];
-    self.request = productsRequest;
-    productsRequest.delegate = self;
-    [productsRequest start];
-}
-
-- (void) productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
-{
-    NSArray *products = response.products;
-   
-}
 
 #pragma mark - calculate cache file size
 

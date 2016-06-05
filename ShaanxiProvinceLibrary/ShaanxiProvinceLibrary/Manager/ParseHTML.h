@@ -97,4 +97,9 @@ typedef void(^requestFailurerBlock)(NSURLSessionDataTask *task, NSError *error);
                               success: (void(^)(NSMutableArray *bookArray, NSString *totalNumberString)) success
                               failure: (requestFailurerBlock) failure;
 
++ (void) bookListInSchoolLibraryWithUrl: (NSString *) urlString
+                              parameter: (NSDictionary *) parameter
+                                success: (void(^)(NSMutableArray *bookArray, NSString *totalNumberString)) success
+                                failure: (requestFailurerBlock) failure;
+
 @end

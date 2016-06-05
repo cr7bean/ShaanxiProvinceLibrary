@@ -11,6 +11,7 @@
 #import "ParseHTML.h"
 #import <Masonry.h>
 #import "Helper.h"
+#import <SDVersion.h>
 
 
 #import "BookListChildViewController.h"
@@ -54,14 +55,9 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear: animated];
-//    self.navigationController.navigationBar.hidden = YES;
+    [self.navigationController setNavigationBarHidden: NO animated: YES];
 }
 
-- (void) viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear: animated];
-    self.placeHolderView.hidden = NO;
-}
 
 #pragma mark - init
 
@@ -83,12 +79,18 @@
     if (!_placeHolderView) {
         _placeHolderView = [UIView new];
         _placeHolderView.backgroundColor = [Helper setColorWithRed:0 green:175 blue:240];
-  
+        
+        CGFloat barHeight;
+        if ([SDVersion deviceVersion] == iPhone6Plus) {
+            barHeight = 93;
+        }else{
+            barHeight = 64;
+        }
         [self.view addSubview: _placeHolderView];
         [_placeHolderView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.mas_equalTo(0);
-            make.height.mas_equalTo(64);
-            make.top.mas_equalTo(-64);
+            make.height.mas_equalTo(barHeight);
+            make.top.mas_equalTo(-barHeight);
         }];
     }
     return _placeHolderView;

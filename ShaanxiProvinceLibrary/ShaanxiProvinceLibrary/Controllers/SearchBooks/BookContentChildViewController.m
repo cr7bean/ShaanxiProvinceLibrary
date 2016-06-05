@@ -16,6 +16,7 @@
 #import <MBProgressHUD.h>
 #import "DoubanBookModel.h"
 #import "DoubanContentTableViewCell.h"
+#import "GAdManager.h"
 
 @interface BookContentChildViewController ()<UITableViewDelegate, UITableViewDataSource, ShowBooksMainViewControllerDelegate>
 
@@ -107,6 +108,7 @@
             self.DoubanTableView.contentInset = UIEdgeInsetsMake(0, 0, 64, 0);
             [self configureBookContent];
             self.DoubanTableView.hidden = YES;
+            [GAdManager showAdOnViewController: self canOffset: YES];
             
             break;
         }
@@ -125,6 +127,7 @@
                 self.bookContentDic = bookContent;
                 [self configureBookContent];
                 [self.libraryTableView reloadData];
+                [GAdManager showAdOnViewController: self canOffset: NO];
             } failure:^(NSURLSessionDataTask *task, NSError *error) {
                 
                 hud.mode = MBProgressHUDModeText;
@@ -418,8 +421,6 @@
         }
     }
 }
-
-
 
 
 @end

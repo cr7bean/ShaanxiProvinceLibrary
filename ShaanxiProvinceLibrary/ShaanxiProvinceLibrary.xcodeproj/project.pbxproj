@@ -32,10 +32,11 @@
 		FD302AF31CE873C800CF8F67 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD302AF21CE873C800CF8F67 /* MediaPlayer.framework */; };
 		FD302AF51CE873D400CF8F67 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD302AF41CE873D400CF8F67 /* MessageUI.framework */; };
 		FD302AF71CE873DB00CF8F67 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD302AF61CE873DB00CF8F67 /* StoreKit.framework */; };
-		FD54B50A1CA0175500732547 /* LibraryXAUTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD54B5091CA0175500732547 /* LibraryXAUTViewController.m */; settings = {ASSET_TAGS = (); }; };
+		FD54B50A1CA0175500732547 /* SchoolLibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD54B5091CA0175500732547 /* SchoolLibraryViewController.m */; settings = {ASSET_TAGS = (); }; };
 		FD5853461C0C862500F4C5AF /* BookListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5853451C0C862500F4C5AF /* BookListModel.m */; };
 		FD5853491C0C86A300F4C5AF /* RecommendedBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5853481C0C86A300F4C5AF /* RecommendedBookModel.m */; };
 		FD6B6AD71C2BCCC100EE517C /* DoubanBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6B6AD61C2BCCC100EE517C /* DoubanBookModel.m */; };
+		FD6BF9521CF96CBF0065866E /* RemoveAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6BF9511CF96CBF0065866E /* RemoveAdViewController.m */; settings = {ASSET_TAGS = (); }; };
 		FD767F261CCFB38900AA4BED /* UIViewController+AddView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD767F251CCFB38900AA4BED /* UIViewController+AddView.m */; settings = {ASSET_TAGS = (); }; };
 		FD767F291CCFB3D800AA4BED /* HudView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD767F281CCFB3D800AA4BED /* HudView.m */; settings = {ASSET_TAGS = (); }; };
 		FD82D3EE1CE8B63B00B659E8 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD82D3ED1CE8B63B00B659E8 /* SafariServices.framework */; };
@@ -60,12 +61,15 @@
 		FDC53A661C8957180005A0E1 /* ShowBooksMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC53A611C8957180005A0E1 /* ShowBooksMainViewController.m */; };
 		FDC53A6B1C89572B0005A0E1 /* DetailNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC53A681C89572B0005A0E1 /* DetailNewsViewController.m */; };
 		FDC53A6C1C89572B0005A0E1 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC53A6A1C89572B0005A0E1 /* NewsViewController.m */; };
+		FDDC2B131CFC630A0065E4B9 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDDC2B121CFC630A0065E4B9 /* AboutViewController.m */; settings = {ASSET_TAGS = (); }; };
+		FDDC2B1F1CFC6F910065E4B9 /* about.md in Sources */ = {isa = PBXBuildFile; fileRef = FDDC2B1E1CFC6F910065E4B9 /* about.md */; settings = {ASSET_TAGS = (); }; };
+		FDDC2B201CFC70090065E4B9 /* about.md in Resources */ = {isa = PBXBuildFile; fileRef = FDDC2B1E1CFC6F910065E4B9 /* about.md */; };
+		FDE766FD1CFAFA51005E889B /* GAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE766FC1CFAFA51005E889B /* GAdManager.m */; settings = {ASSET_TAGS = (); }; };
 		FDE7D2371CEC13AB0090B944 /* DueNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE7D2361CEC13AB0090B944 /* DueNotificationManager.m */; settings = {ASSET_TAGS = (); }; };
 		FDEA6EDE1CDD8DC8002085B7 /* BBRSACryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEA6E881CDD8DC8002085B7 /* BBRSACryptor.m */; settings = {ASSET_TAGS = (); }; };
 		FDEA6EDF1CDD8DC8002085B7 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEA6E8B1CDD8DC8002085B7 /* GTMBase64.m */; settings = {ASSET_TAGS = (); }; };
 		FDEA6EE01CDD8DC8002085B7 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDEA6EDC1CDD8DC8002085B7 /* libcrypto.a */; settings = {ASSET_TAGS = (); }; };
 		FDEA6EE11CDD8DC8002085B7 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDEA6EDD1CDD8DC8002085B7 /* libssl.a */; settings = {ASSET_TAGS = (); }; };
-		FDEB4BD41CF879080000AD54 /* RemoveAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEB4BD31CF879080000AD54 /* RemoveAdViewController.m */; settings = {ASSET_TAGS = (); }; };
 		FDECA7B91CE2E62C00A2C94C /* AddAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDECA7B81CE2E62C00A2C94C /* AddAccountViewController.m */; settings = {ASSET_TAGS = (); }; };
 		FDEE09461CE7595F009E0D3F /* NSDate+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEE09451CE7595F009E0D3F /* NSDate+Tools.m */; settings = {ASSET_TAGS = (); }; };
 		FDEE5BE41BFCAA7C00AA0171 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEE5BE31BFCAA7C00AA0171 /* Helper.m */; };
@@ -136,14 +140,16 @@
 		FD302AF21CE873C800CF8F67 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		FD302AF41CE873D400CF8F67 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		FD302AF61CE873DB00CF8F67 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		FD54B5081CA0175500732547 /* LibraryXAUTViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryXAUTViewController.h; sourceTree = "<group>"; };
-		FD54B5091CA0175500732547 /* LibraryXAUTViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryXAUTViewController.m; sourceTree = "<group>"; };
+		FD54B5081CA0175500732547 /* SchoolLibraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolLibraryViewController.h; sourceTree = "<group>"; };
+		FD54B5091CA0175500732547 /* SchoolLibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolLibraryViewController.m; sourceTree = "<group>"; };
 		FD5853441C0C862500F4C5AF /* BookListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookListModel.h; path = Model/BookListModel.h; sourceTree = "<group>"; };
 		FD5853451C0C862500F4C5AF /* BookListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookListModel.m; path = Model/BookListModel.m; sourceTree = "<group>"; };
 		FD5853471C0C86A300F4C5AF /* RecommendedBookModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecommendedBookModel.h; path = Model/RecommendedBookModel.h; sourceTree = "<group>"; };
 		FD5853481C0C86A300F4C5AF /* RecommendedBookModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecommendedBookModel.m; path = Model/RecommendedBookModel.m; sourceTree = "<group>"; };
 		FD6B6AD51C2BCCC100EE517C /* DoubanBookModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DoubanBookModel.h; path = Model/DoubanBookModel.h; sourceTree = "<group>"; };
 		FD6B6AD61C2BCCC100EE517C /* DoubanBookModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DoubanBookModel.m; path = Model/DoubanBookModel.m; sourceTree = "<group>"; };
+		FD6BF9501CF96CBF0065866E /* RemoveAdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoveAdViewController.h; sourceTree = "<group>"; };
+		FD6BF9511CF96CBF0065866E /* RemoveAdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoveAdViewController.m; sourceTree = "<group>"; };
 		FD767F241CCFB38900AA4BED /* UIViewController+AddView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+AddView.h"; path = "Helper/UIViewController+AddView.h"; sourceTree = "<group>"; };
 		FD767F251CCFB38900AA4BED /* UIViewController+AddView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+AddView.m"; path = "Helper/UIViewController+AddView.m"; sourceTree = "<group>"; };
 		FD767F271CCFB3D800AA4BED /* HudView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HudView.h; path = Helper/HudView.h; sourceTree = "<group>"; };
@@ -190,6 +196,11 @@
 		FDC53A681C89572B0005A0E1 /* DetailNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailNewsViewController.m; path = Controllers/News/DetailNewsViewController.m; sourceTree = "<group>"; };
 		FDC53A691C89572B0005A0E1 /* NewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsViewController.h; path = Controllers/News/NewsViewController.h; sourceTree = "<group>"; };
 		FDC53A6A1C89572B0005A0E1 /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsViewController.m; path = Controllers/News/NewsViewController.m; sourceTree = "<group>"; };
+		FDDC2B111CFC630A0065E4B9 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		FDDC2B121CFC630A0065E4B9 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		FDDC2B1E1CFC6F910065E4B9 /* about.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = about.md; path = Resource/about.md; sourceTree = "<group>"; };
+		FDE766FB1CFAFA51005E889B /* GAdManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAdManager.h; path = Manager/GAdManager.h; sourceTree = "<group>"; };
+		FDE766FC1CFAFA51005E889B /* GAdManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GAdManager.m; path = Manager/GAdManager.m; sourceTree = "<group>"; };
 		FDE7D2351CEC13AB0090B944 /* DueNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DueNotificationManager.h; sourceTree = "<group>"; };
 		FDE7D2361CEC13AB0090B944 /* DueNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DueNotificationManager.m; sourceTree = "<group>"; };
 		FDEA6E871CDD8DC8002085B7 /* BBRSACryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBRSACryptor.h; sourceTree = "<group>"; };
@@ -274,8 +285,6 @@
 		FDEA6EDA1CDD8DC8002085B7 /* x509v3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509v3.h; sourceTree = "<group>"; };
 		FDEA6EDC1CDD8DC8002085B7 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
 		FDEA6EDD1CDD8DC8002085B7 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
-		FDEB4BD21CF879080000AD54 /* RemoveAdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoveAdViewController.h; sourceTree = "<group>"; };
-		FDEB4BD31CF879080000AD54 /* RemoveAdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoveAdViewController.m; sourceTree = "<group>"; };
 		FDECA7B71CE2E62C00A2C94C /* AddAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddAccountViewController.h; sourceTree = "<group>"; };
 		FDECA7B81CE2E62C00A2C94C /* AddAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAccountViewController.m; sourceTree = "<group>"; };
 		FDEE09441CE7595F009E0D3F /* NSDate+Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+Tools.h"; path = "Helper/NSDate+Tools.h"; sourceTree = "<group>"; };
@@ -388,8 +397,10 @@
 				FDECA7B81CE2E62C00A2C94C /* AddAccountViewController.m */,
 				FDEE8BFF1CED92BB00E46EEF /* BorrowBookViewController.h */,
 				FDEE8C001CED92BB00E46EEF /* BorrowBookViewController.m */,
-				FDEB4BD21CF879080000AD54 /* RemoveAdViewController.h */,
-				FDEB4BD31CF879080000AD54 /* RemoveAdViewController.m */,
+				FD6BF9501CF96CBF0065866E /* RemoveAdViewController.h */,
+				FD6BF9511CF96CBF0065866E /* RemoveAdViewController.m */,
+				FDDC2B111CFC630A0065E4B9 /* AboutViewController.h */,
+				FDDC2B121CFC630A0065E4B9 /* AboutViewController.m */,
 			);
 			name = PersonalCenter;
 			path = Controllers/PersonalCenter;
@@ -444,6 +455,8 @@
 				FDF769731BFD56E300734ECA /* ParseHTML.m */,
 				FD00E6301C8C05020085E34F /* GVUserDefaults+library.h */,
 				FD00E6311C8C05020085E34F /* GVUserDefaults+library.m */,
+				FDE766FB1CFAFA51005E889B /* GAdManager.h */,
+				FDE766FC1CFAFA51005E889B /* GAdManager.m */,
 			);
 			name = Manager;
 			sourceTree = "<group>";
@@ -693,8 +706,8 @@
 				FDF0734D1C9D4FB600AE3577 /* LibraryNPUViewController.m */,
 				FD2766911C9D78AE002926CB /* LibraryXidianViewController.h */,
 				FD2766921C9D78AE002926CB /* LibraryXidianViewController.m */,
-				FD54B5081CA0175500732547 /* LibraryXAUTViewController.h */,
-				FD54B5091CA0175500732547 /* LibraryXAUTViewController.m */,
+				FD54B5081CA0175500732547 /* SchoolLibraryViewController.h */,
+				FD54B5091CA0175500732547 /* SchoolLibraryViewController.m */,
 			);
 			path = SchoolLibrary;
 			sourceTree = "<group>";
@@ -741,6 +754,7 @@
 		FDF907F61C355AE400ACC2DA /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				FDDC2B1E1CFC6F910065E4B9 /* about.md */,
 				FD2405C21CE472F50071F2BE /* schools.plist */,
 				FD00E6331C8C1FCF0085E34F /* libraries.plist */,
 				FDB434A81C3AAB500040DDE1 /* tags.plist */,
@@ -930,6 +944,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDDC2B201CFC70090065E4B9 /* about.md in Resources */,
 				FD2405C31CE472F50071F2BE /* schools.plist in Resources */,
 				FD00E6341C8C1FCF0085E34F /* libraries.plist in Resources */,
 				FDF9CCDB1BF8708B0070907D /* Main.storyboard in Resources */,
@@ -993,9 +1008,11 @@
 				FDC53A6B1C89572B0005A0E1 /* DetailNewsViewController.m in Sources */,
 				FDA2D79E1C8AFAE500949D50 /* ChooseLibraryViewController.m in Sources */,
 				FDEA6EDE1CDD8DC8002085B7 /* BBRSACryptor.m in Sources */,
+				FDDC2B1F1CFC6F910065E4B9 /* about.md in Sources */,
 				FDC53A4D1C8956260005A0E1 /* BooklistTableViewCell.m in Sources */,
 				FD767F291CCFB3D800AA4BED /* HudView.m in Sources */,
 				FD00E6321C8C05020085E34F /* GVUserDefaults+library.m in Sources */,
+				FD6BF9521CF96CBF0065866E /* RemoveAdViewController.m in Sources */,
 				FDFBB8921BFB5AF50072CC8A /* MottoModel.m in Sources */,
 				FDEE5BE41BFCAA7C00AA0171 /* Helper.m in Sources */,
 				FDC53A651C8957180005A0E1 /* SearchBooksViewController.m in Sources */,
@@ -1009,7 +1026,6 @@
 				FDC53A441C8956140005A0E1 /* BookTagCollectionViewCell.m in Sources */,
 				FDF769741BFD56E300734ECA /* ParseHTML.m in Sources */,
 				FD84A74A1C970D5F009B6172 /* TagsView.m in Sources */,
-				FDEB4BD41CF879080000AD54 /* RemoveAdViewController.m in Sources */,
 				FD2947AB1CD8D75E00BF7E5B /* EmptyDataView.m in Sources */,
 				FDC53A661C8957180005A0E1 /* ShowBooksMainViewController.m in Sources */,
 				FDEE8C051CEDA05200E46EEF /* BorrowBookCell.m in Sources */,
@@ -1024,16 +1040,18 @@
 				FDF9CCD51BF8708B0070907D /* AppDelegate.m in Sources */,
 				FD6B6AD71C2BCCC100EE517C /* DoubanBookModel.m in Sources */,
 				FDC53A3C1C8954B00005A0E1 /* NewsView.m in Sources */,
+				FDDC2B131CFC630A0065E4B9 /* AboutViewController.m in Sources */,
 				FD5853461C0C862500F4C5AF /* BookListModel.m in Sources */,
 				FDEE8C011CED92BB00E46EEF /* BorrowBookViewController.m in Sources */,
 				FDC53A4E1C8956260005A0E1 /* DoubanContentTableViewCell.m in Sources */,
 				FDC53A4C1C8956260005A0E1 /* BookContentTableViewCell.m in Sources */,
 				FD5853491C0C86A300F4C5AF /* RecommendedBookModel.m in Sources */,
 				FDC53A621C8957180005A0E1 /* BookContentChildViewController.m in Sources */,
-				FD54B50A1CA0175500732547 /* LibraryXAUTViewController.m in Sources */,
+				FD54B50A1CA0175500732547 /* SchoolLibraryViewController.m in Sources */,
 				FDF9CCD21BF8708B0070907D /* main.m in Sources */,
 				FDC53A451C8956140005A0E1 /* BookTagSearchView.m in Sources */,
 				FDC53A3B1C8954B00005A0E1 /* NewsTableViewCell.m in Sources */,
+				FDE766FD1CFAFA51005E889B /* GAdManager.m in Sources */,
 				FDECA7B91CE2E62C00A2C94C /* AddAccountViewController.m in Sources */,
 				FDE7D2371CEC13AB0090B944 /* DueNotificationManager.m in Sources */,
 			);

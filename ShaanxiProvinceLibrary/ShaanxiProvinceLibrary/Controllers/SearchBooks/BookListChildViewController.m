@@ -16,6 +16,9 @@
 
 #import "ShowBooksMainViewController.h"
 #import "BookContentChildViewController.h"
+#import "GVUserDefaults+library.h"
+#import <SDVersion.h>
+#import "GAdManager.h"
 
 
 @interface BookListChildViewController ()<UITableViewDelegate, UITableViewDataSource>
@@ -29,6 +32,7 @@
 @property (nonatomic, copy) NSString *totalNumberString;
 @property (nonatomic, assign) NSUInteger firstHitNumber;
 @property (nonatomic, assign) NSUInteger lastHitNumber;
+
 
 @end
 
@@ -48,6 +52,7 @@
     self.navigationItem.title = @"馆藏信息";
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 64, 0);
+    [self addGoogleAdView];
     [self assignWithDictionary: self.booklistDic];
 // 因为 tableView 用的是懒加载，上一个版本必须要添加如下代码。
 // 下午运行的时候第一次计算高度变成了0.5。手动刷新之后又正常。这次去掉以下代码又正常了。
@@ -216,5 +221,14 @@
         }
     }];
 }
+
+
+#pragma mark - Google Ad
+
+- (void) addGoogleAdView
+{
+    [GAdManager showAdOnViewController: self canOffset: YES];
+}
+
 
 @end

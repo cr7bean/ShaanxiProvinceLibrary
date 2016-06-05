@@ -43,17 +43,20 @@
                      success: (success) success
                      failure: (failure) failure
 {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: YES];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager GET: urlString
       parameters: parameters
         progress:^(NSProgress *downloadProgress) {
-            
+
         }
          success:^(NSURLSessionDataTask *task, id responseObject) {
+             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
              success(responseObject);
          }
          failure:^(NSURLSessionDataTask *task, NSError *error) {
+             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
              failure(error);
          }];
 }

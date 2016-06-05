@@ -29,7 +29,7 @@
 
 - (NSString *) description
 {
-    NSDictionary *dic = @{@"number": _number,
+    NSDictionary *dic = @{
                           @"callNumber": _callNumber,
                           @"date": _publicationDate,
                           @"title": _authorAndTitle,

@@ -20,9 +20,14 @@
  */
 + (NSDate *) dateWithString: (NSString *) dateString;
 /**
- *  给定日期和当天日期的差值
+ *  给定日期和当天日期(字符串形式)的差值
  */
 + (NSInteger) daysFromDateString: (NSString *) dateString;
+
+/**
+ *  给定日期和当天日期的差值
+ */
++ (NSInteger) daysFromDate: (NSDate *)date;
 
 /**
  *  比给定日期早些天数的日期

@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSArray *libraries;
 @property (nonatomic, copy) NSIndexPath *selecredIndexPath;
 @property (nonatomic, copy) NSString *selectedLibrary;
+@property (nonatomic, strong) NSArray *schools;
 
 
 
@@ -30,25 +31,33 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSMutableArray *schoolLibraries = [NSMutableArray new];
-    NSArray *schools = [NSArray arrayWithContentsOfFile: [[NSBundle mainBundle] pathForResource: @"schools" ofType: @"plist"]];
-    [schools enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (idx) {
-            [schoolLibraries addObject: obj[@"schoolName"]];
-        }
-    }];
-    NSArray *proviceLibraries = [NSArray arrayWithContentsOfFile: [[NSBundle mainBundle] pathForResource: @"libraries" ofType: @"plist"]];
-    self.libraries = @[schoolLibraries, proviceLibraries];
-    self.selectedLibrary = [GVUserDefaults standardUserDefaults].libraryName;
     
-    BOOL isContained = [proviceLibraries containsObject: self.selectedLibrary];
-    if (isContained) {
-        self.selecredIndexPath = [NSIndexPath indexPathForRow: [proviceLibraries indexOfObject: self.selectedLibrary] inSection: 1];
-    }else{
+    // 添加学校图书馆名单
+    NSRange range;
+    _schools = [NSArray arrayWithContentsOfFile: [[NSBundle mainBundle] pathForResource: @"schools" ofType: @"plist"]];
+    range.location = 1;
+    range.length = _schools.count - 1;
+    _schools = [_schools subarrayWithRange: range];
+    [_schools enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [schoolLibraries addObject: obj[@"schoolName"]];
+    }];
+    
+    // 添加省图书馆名单
+    NSArray *proviceLibraries = [NSArray arrayWithContentsOfFile: [[NSBundle mainBundle] pathForResource: @"libraries" ofType: @"plist"]];
+    
+    // 总图书馆名单
+    self.libraries = @[schoolLibraries, proviceLibraries];
+    
+    BOOL isSchoolLibrary = [GVUserDefaults standardUserDefaults].isSchoolLibrary;
+    if (isSchoolLibrary) {
+        self.selectedLibrary = [GVUserDefaults standardUserDefaults].schoolLibraryInfo[@"schoolName"];
         self.selecredIndexPath = [NSIndexPath indexPathForRow: [schoolLibraries indexOfObject: self.selectedLibrary] inSection: 0];
+    }else{
+        self.selectedLibrary = [GVUserDefaults standardUserDefaults].libraryName;
+        self.selecredIndexPath = [NSIndexPath indexPathForRow: [proviceLibraries indexOfObject: self.selectedLibrary] inSection: 1];
     }
     [self addBarItemOnNavigationbar];
     [self.tableView reloadData];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -70,7 +79,6 @@
 
 - (void) done
 {
-    [GVUserDefaults standardUserDefaults].libraryName = self.selectedLibrary;
     [self dismissViewControllerAnimated: YES completion: nil];
 }
 
@@ -126,6 +134,14 @@
 {
     self.selecredIndexPath = indexPath;
     self.selectedLibrary = [_libraries[indexPath.section] objectAtIndex: indexPath.row];
+    if (indexPath.section == 0) {
+        [GVUserDefaults standardUserDefaults].isSchoolLibrary = YES;
+        [GVUserDefaults standardUserDefaults].schoolLibraryInfo = _schools[indexPath.row];
+    }else{
+        [GVUserDefaults standardUserDefaults].isSchoolLibrary = NO;
+        [GVUserDefaults standardUserDefaults].libraryName = self.selectedLibrary;
+    }
+    NSLog(@"chooseLibrary: %d", [GVUserDefaults standardUserDefaults].isSchoolLibrary);
     [tableView reloadData];
 }
 

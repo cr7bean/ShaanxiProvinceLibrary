@@ -1,0 +1,2 @@
+/Users/LONG/Library/Developer/Xcode/DerivedData/ShaanxiProvinceLibrary-gjxfssvqqrjvekciateyobphdmya/Build/Products/Debug-iphonesimulator/ShaanxiProvinceLibrary.app
+iPhone Developer: RunLong Wang (BT52MSS5FQ)

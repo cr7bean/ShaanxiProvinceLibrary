@@ -19,7 +19,22 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>DTCoreText.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>DTFoundation.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>FMDB.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>GHMarkdownParser.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -30,11 +45,6 @@
 			<false/>
 		</dict>
 		<key>Harpy.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>HexColors.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -84,11 +94,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>TSMessages.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>UITableView+FDTemplateLayoutCell.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -107,27 +112,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0228C84B7323CA17FF98DA9F11FBE3E4</key>
+		<key>0F437B119EBE0DE894DCCCB0C24C5BED</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>0F5ED6DC1A7219F13A8027CD5528DB3F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>18A4BA8BFD66F76A5A3AE5290D46B994</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>1953A85184B003247DF2B68B0E83665F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>1FEBE6664700324313F09FD47874C414</key>
+		<key>270F20CCBC7F03AFAC3DE842D94F42F6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -137,7 +127,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3B7509EF39A8B0EB316ECC373D6873FE</key>
+		<key>318D90BF2FBCE292BB8FB088BA074461</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>35D30458A5601225445711DF2D44A3E5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -147,17 +142,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>54CBE2197429DC0DDAB50450D31059D1</key>
+		<key>4E2E354677D4B3B3AC6E7F513899F3AE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6B32144C7BDC45B01269F78EDBB09682</key>
+		<key>50A370289B7F334AF393C98E00E8C438</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7BF4E5E1780F084E599B48AA446A075A</key>
+		<key>521D9C4A73C4B63C7AFA1CDEFB48B6FF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>63EED47FEDBB6CAFD25D1615CA49CFB1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6FDF0D0FC65DA5A7094AEF0EBE92E7EF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>790DD6AF616D0AFEC43CA2D7B140D81B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -167,22 +177,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9BC2F4E97ADE357E396FF78D60FD9AFC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9FFC62057BE7D947B48437C3E8E61E55</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A845BECF1B1948FC6080FE7BF9942A7E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>BA1162A66190668E1A76327DEC3430F8</key>
+		<key>A657A63B6A95B879589763DF3AA4977E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -192,17 +187,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BF2F1A353B596EA3AEB4ED20B8D4CF15</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>D10AFCBBC3949030D56276226438BB24</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>DC4D94BD58598D94BC0AF702E097B4BD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E65E7CF39F250E2E78BB959F1552D928</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>EA3931D121EE165685E6E6C251F033C0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EC1BED3F22EE5525B2B05BA05C2343B0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F3CBF7DF7ACFD5C2C17135D85753E59B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

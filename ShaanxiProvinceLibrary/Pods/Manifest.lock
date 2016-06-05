@@ -23,12 +23,23 @@ PODS:
   - CocoaLumberjack/Extensions (2.3.0):
     - CocoaLumberjack/Default
   - CSStickyHeaderFlowLayout (0.2.10)
+  - DTCoreText (1.6.17):
+    - DTFoundation/Core (~> 1.7.5)
+    - DTFoundation/DTAnimatedGIF (~> 1.7.5)
+    - DTFoundation/DTHTMLParser (~> 1.7.5)
+    - DTFoundation/UIKit (~> 1.7.5)
+  - DTFoundation/Core (1.7.10)
+  - DTFoundation/DTAnimatedGIF (1.7.10)
+  - DTFoundation/DTHTMLParser (1.7.10):
+    - DTFoundation/Core
+  - DTFoundation/UIKit (1.7.10):
+    - DTFoundation/Core
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
+  - GHMarkdownParser (0.1.2)
   - GVUserDefaults (1.0.2)
   - Harpy (3.3.10)
-  - HexColors (2.2.1)
   - hpple (0.2.0)
   - iRate (1.11.4)
   - LTNavigationBar (2.1.2)
@@ -43,15 +54,15 @@ PODS:
   - SDVersion (2.6)
   - SSKeychain (1.4.0)
   - SVPullToRefresh (0.4.1)
-  - TSMessages (0.9.12):
-    - HexColors (~> 2.2.0)
   - UITableView+FDTemplateLayoutCell (1.4)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0.0-beta.1)
   - CocoaLumberjack (~> 2.3.0)
   - CSStickyHeaderFlowLayout (~> 0.2.10)
+  - DTCoreText (~> 1.6.17)
   - FMDB (~> 2.6.2)
+  - GHMarkdownParser (~> 0.1.2)
   - GVUserDefaults (~> 1.0.2)
   - Harpy
   - hpple (~> 0.2.0)
@@ -64,17 +75,18 @@ DEPENDENCIES:
   - SDVersion
   - SSKeychain (~> 1.4.0)
   - SVPullToRefresh (~> 0.4.1)
-  - TSMessages (~> 0.9.12)
   - UITableView+FDTemplateLayoutCell (~> 1.4.beta)
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
   CocoaLumberjack: 97fab7ee5f507fe54445cca7ea80f926729cfd15
   CSStickyHeaderFlowLayout: 5366582779d8b7c9ba9b9cc729c218cc23888776
+  DTCoreText: 3ea8bba23dd2141ba18adb227a7dd33a822df1c4
+  DTFoundation: 3b6b1b817d2a7fb02e7eaf2596c922a68145bd43
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
+  GHMarkdownParser: 14cbf59d0ab9450017d843dffd4a3ef691e5bd77
   GVUserDefaults: 52d48cf8ba578b40a1a76312b196dfc9134ba36a
   Harpy: 7cb3e32eea8a21af0e89b7f9f7bccd23f9427139
-  HexColors: abfd172e329dab59888614ccba6f216cec59289d
   hpple: 3b765f96fc2cd56ad1a49aef6f7be5cb2aa64b57
   iRate: 599ed07c854e0695f3c605d1b2a64c67d912acb7
   LTNavigationBar: bfc5fc06a83463009b9d99675f2a32dcbb631b00
@@ -85,7 +97,6 @@ SPEC CHECKSUMS:
   SDVersion: c036f7890279d188c17f5701b9feea0d93b9f8ee
   SSKeychain: c71293fa57216a40ab06c23f4085387583293de4
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
-  TSMessages: c8cc7b80f2a833af533872cd02010cac061532cc
   UITableView+FDTemplateLayoutCell: 234e1582bcc4e18461af91155123bb96538ed030
 
 COCOAPODS: 0.38.2
