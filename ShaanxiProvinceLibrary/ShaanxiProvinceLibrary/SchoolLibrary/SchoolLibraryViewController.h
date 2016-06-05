@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LibraryXAUTViewController : UIViewController
+@interface SchoolLibraryViewController : UIViewController
 
-+ (instancetype) searchBookWithWords: (NSString *) words
-                          searchType: (NSString *) type;
++ (instancetype) searchBookWithParameters: (NSDictionary *) parameters;
 
 @end

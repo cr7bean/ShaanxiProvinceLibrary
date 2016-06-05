@@ -6,7 +6,7 @@
 //  Copyright © 2016年 Long. All rights reserved.
 //
 
-#import "LibraryXAUTViewController.h"
+#import "SchoolLibraryViewController.h"
 #import <Masonry.h>
 #import <UITableView+FDTemplateLayoutCell.h>
 #import "BookListModel.h"
@@ -16,7 +16,7 @@
 #import "BooklistTableViewCell.h"
 #import <MBProgressHUD.h>
 
-@interface LibraryXAUTViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface SchoolLibraryViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *bookListArray;
@@ -26,30 +26,29 @@
 @property (nonatomic, strong) MBProgressHUD *hud;
 @property (nonatomic, copy) NSString *searchType;
 
+@property (nonatomic, strong) NSDictionary *parameters;
+
 @end
 
-@implementation LibraryXAUTViewController
+@implementation SchoolLibraryViewController
 {
-    __weak LibraryXAUTViewController *weakSelf;
+    __weak SchoolLibraryViewController *weakSelf;
 }
 
 
 # pragma mark lifeCycle
 
-- (instancetype) initWithsearchWords: (NSString *) searchWords
-                          searchType: (NSString *) searchType
+- (instancetype) initWithParameters: (NSDictionary *) parameters
 {
     if ([super init]) {
-        _searchWords = searchWords;
-        _searchType = searchType;
+        _parameters = parameters;
     }
     return self;
 }
 
-+ (instancetype) searchBookWithWords: (NSString *) words
-                          searchType: (NSString *) type
++ (instancetype) searchBookWithParameters: (NSDictionary *) parameters
 {
-    return [[self alloc] initWithsearchWords: words searchType: type];
+    return [[self alloc] initWithParameters: parameters];
 }
 
 

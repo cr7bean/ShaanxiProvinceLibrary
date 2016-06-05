@@ -1,18 +1,17 @@
 //
-//  RemoveAdViewController.m
+//  RemoveAdTableViewController.m
 //  ShaanxiProvinceLibrary
 //
-//  Created by figure2008 on 16/5/27.
+//  Created by figure2008 on 16/5/28.
 //  Copyright © 2016年 Long. All rights reserved.
 //
 
 #import "RemoveAdViewController.h"
+#import <StoreKit/StoreKit.h>
 
-@interface RemoveAdViewController ()
+@interface RemoveAdViewController ()<SKProductsRequestDelegate>
 
-@property (strong, nonatomic) IBOutlet UILabel *label;
-
-@property (strong, nonatomic) IBOutlet UIButton *button;
+@property (nonatomic, strong) SKProductsRequest *request;
 
 @end
 
@@ -21,23 +20,55 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIColor *color = [UIColor colorWithRed:0/255.0 green:175/255.0 blue:240/255.0 alpha:1];
-    self.label.layer.borderColor = color.CGColor;
-    self.label.layer.borderWidth = 1;
+    [self validateProductIndentifiers: @[@"LibraryRemoveAd0001"]];
     
 }
 
-- (void)didReceiveMemoryWarnin
+- (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    
+    // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)clickButton:(UIButton *)sender
+#pragma mark - Table view data source
+
+- (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    
+    if (section == 0) {
+        return @"您可以点击应用内的广告，2天之内不会出现广告。也可以选择内购，去除广告。";
+    }
+    return nil;
 }
 
 
+# pragma mark - iAP
+
+- (void) validateProductIndentifiers: (NSArray *) productIndentifiers
+{
+    SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers: [NSSet setWithArray: productIndentifiers]];
+    self.request = productsRequest;
+    productsRequest.delegate = self;
+    [productsRequest start];
+}
+
+// SKProductsRequest Delegate
+- (void) productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
+{
+    for (SKProduct *product in response.products) {
+       
+    }
+}
+
+
+
+- (NSString *)formattingProductPrice: (SKProduct *) product
+{
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+    [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    [numberFormatter setLocale:product.priceLocale];
+    NSString *formattedPrice = [numberFormatter stringFromNumber:product.price];
+    return formattedPrice;
+}
 
 @end
