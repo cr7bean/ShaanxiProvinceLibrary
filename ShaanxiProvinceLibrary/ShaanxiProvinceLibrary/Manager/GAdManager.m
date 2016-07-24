@@ -12,6 +12,7 @@
 #import <Masonry.h>
 #import <SDVersion.h>
 #import "NSDate+Tools.h"
+#import <Crashlytics/Crashlytics.h>
 
 #define AD_ID ca-app-pub-1347388959435581/4321619556
 
@@ -48,7 +49,6 @@
         click = NO;
     }
     NSLog(@"showAdState: purchaseState %lu\npurchase: %d\nlastclick: %@\nclik: %d", (unsigned long)[GVUserDefaults standardUserDefaults].removeAdState, purchase, lastclick, click);
-    
     if (!(purchase || click)) {
         [manager configurateBannerView: controller canOffset: canOffset];
     }

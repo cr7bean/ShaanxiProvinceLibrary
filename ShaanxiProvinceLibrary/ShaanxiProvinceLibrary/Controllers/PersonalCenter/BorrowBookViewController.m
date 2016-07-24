@@ -112,6 +112,8 @@
             if (*stop == YES) {
             }
         }];
+    }else{
+        sum = 1;
     }
     
     NSLog(@"sum: %lu", sum);

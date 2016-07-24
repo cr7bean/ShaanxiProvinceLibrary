@@ -12,6 +12,8 @@
 #import "NSDate+Tools.h"
 #import "GVUserDefaults+library.h"
 #import <SSKeychain.h>
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 # define SERVICE @"figureWang"
 
@@ -53,6 +55,8 @@
         [[UIApplication sharedApplication] cancelAllLocalNotifications];
         [GVUserDefaults standardUserDefaults].firstLogin = NO;
     }
+    
+    [Fabric with: @[[Crashlytics class]]];
     
     return YES;
 }

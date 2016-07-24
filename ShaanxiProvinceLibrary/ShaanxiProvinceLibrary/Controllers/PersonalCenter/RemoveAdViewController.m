@@ -29,7 +29,6 @@
 {
     [super viewDidLoad];
     [[SKPaymentQueue defaultQueue] addTransactionObserver: self];
-    
 }
 
 - (void)didReceiveMemoryWarning

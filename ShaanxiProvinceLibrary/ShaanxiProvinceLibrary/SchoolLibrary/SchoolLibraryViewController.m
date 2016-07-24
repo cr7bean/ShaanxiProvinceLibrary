@@ -30,6 +30,7 @@
 
 @property (nonatomic, strong) NSDictionary *parameters;
 @property (nonatomic, strong) NSDictionary *schoolLibraryInfo;
+@property (nonatomic, copy) NSString *NWUNextPage;
 
 @end
 
@@ -80,16 +81,31 @@
 - (void) loadBookListWithpageCount: (NSUInteger) pageCount
 {
     NSString *urlString = _schoolLibraryInfo[@"urlString"];
+    NSString *schoolName = _schoolLibraryInfo[@"schoolName"];
     NSMutableDictionary *urlParams = [NSMutableDictionary dictionaryWithDictionary: _parameters];
     [urlParams setValue: [NSNumber numberWithInteger: pageCount]
                   forKey: @"page"];
+    
+    // 西北大学图书馆的翻页参数有些不同
+    if ([schoolName isEqualToString: @"西北大学"] && pageCount > 1) {
+        NSRange kwRange = [_NWUNextPage rangeOfString: @"kw="];
+        NSRange pageRange = [_NWUNextPage rangeOfString: @"page="];
+        NSRange range;
+        range.location = kwRange.location + kwRange.length;
+        range.length = pageRange.location - range.location - 1;
+        NSString *kw = [_NWUNextPage substringWithRange: range];
+        
+        kw = [kw stringByReplacingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
+        [urlParams setValue: kw forKey: @"kw"];
+        [urlParams removeObjectForKey: @"searchtype"];
+    }
    
     [ParseHTML bookListInSchoolLibraryWithUrl: urlString
                                     parameter: urlParams
-                                      success:^(NSMutableArray *bookArray, NSString *totalNumberString) {
+                                      success:^(NSMutableArray *bookArray, NSString *totalNumberString, NSString *nextPage) {
                                           
                                           [weakSelf.tableView.infiniteScrollingView stopAnimating];
-                                          
+                                          self.NWUNextPage = nextPage;
                                           if (bookArray.count) {
                                               self.hud.hidden = YES;
                                               
@@ -106,9 +122,15 @@
                                       } failure:^(NSURLSessionDataTask *task, NSError *error) {
                                           [weakSelf.tableView.infiniteScrollingView stopAnimating];
                                           self.hud.mode = MBProgressHUDModeText;
-                                          self.hud.labelText = @"请检查您的网络";
-                                          [self.hud hide: YES afterDelay: 1];
-                                          NSLog(@"schoolLibraryError: %@", error.localizedDescription);
+                                          NSString *errorText;
+                                          if (error.code == -1009) {
+                                              errorText = @"请检查您的网络";
+                                          }else{
+                                              errorText = @"图书馆系统繁忙";
+                                          }
+                                          self.hud.labelText = errorText;
+                                          [self.hud hide: YES afterDelay: 2];
+                                          NSLog(@"schoolLibraryError: %@", error);
                                           // bad gateway 502
                                       }];
 }
@@ -119,6 +141,7 @@
 {
     self.hud = [MBProgressHUD showHUDAddedTo: self.view animated: YES];
     self.hud.alpha = 0.5;
+    self.hud.yOffset = -32;
     self.schoolLibraryInfo = [GVUserDefaults standardUserDefaults].schoolLibraryInfo;
     self.title = _schoolLibraryInfo[@"schoolName"];
     [GAdManager showAdOnViewController: self canOffset: NO];
@@ -146,7 +169,6 @@
 }
 
 
-
 # pragma getter
 
 - (UITableView *) tableView
@@ -160,7 +182,6 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         [_tableView registerClass: [BooklistTableViewCell class] forCellReuseIdentifier: @"booklistCell"];
-        _tableView.showsVerticalScrollIndicator = NO;
     }
     return _tableView;
 }

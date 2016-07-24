@@ -214,7 +214,6 @@
 + (NSInteger) regexFindNumberInString: (NSString *) checkString
                 
 {
-
     NSString *pattern = @"\\d{1,}";
     NSRegularExpression *expression = [NSRegularExpression regularExpressionWithPattern: pattern
       options: NSRegularExpressionCaseInsensitive error: nil];
@@ -228,6 +227,9 @@
 
 + (NSString *)regexDeleteBlankCharacterInString: (NSString *) checkString
 {
+    if (!checkString) {
+        return nil;
+    }
     NSString *pattern = @"\\s";
     NSRegularExpression *expression = [NSRegularExpression regularExpressionWithPattern: pattern options: NSRegularExpressionCaseInsensitive error: nil];
     NSString *result = [expression stringByReplacingMatchesInString: checkString options: 0 range: NSMakeRange(0, [checkString length]) withTemplate: @""];

@@ -133,22 +133,29 @@
 {
     NSArray *type = _schoolLibraryInfo[@"searchtype"];
     NSString *xc = _schoolLibraryInfo[@"xc"];
-    if (type.count == 1) {
-        self.searchType = @"title";
+    NSString *schoolName = _schoolLibraryInfo[@"schoolName"];
+    self.searchType = type[self.searchbar.selectedScopeButtonIndex];
+    NSDictionary *parameters;
+    if ([schoolName isEqualToString: @"西安电子科技大学"] || [schoolName isEqualToString: @"陕西师范大学"]) {
+//        parameters = @{@"func": @"find-b",
+//                      @"find_code": self.searchType,
+//                      @"request": searchWords
+//                      };
+        parameters = @{@"func": @"find-b",
+                       @"find_code": self.searchType,
+                       @"request": searchWords};
+        
     }else{
-        self.searchType = type[self.searchbar.selectedScopeButtonIndex];
+        parameters = @{@"kw": searchWords,
+                       @"xc": xc,
+                       @"searchtype": self.searchType};
     }
-    NSDictionary *parameters = @{@"kw": searchWords,
-                                 @"xc": xc,
-                                 @"searchtype": self.searchType};
+    
     
     // test
-    
     SchoolLibraryViewController *controller = [SchoolLibraryViewController searchBookWithParameters: parameters];
     controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController: controller animated: YES];
-    NSLog(@"%@", _schoolLibraryInfo);
-    NSLog(@"searchBooks %@", parameters);
 }
 
 
