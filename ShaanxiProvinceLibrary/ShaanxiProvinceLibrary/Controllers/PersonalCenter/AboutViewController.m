@@ -36,7 +36,7 @@
     dispatch_async(queue, ^{
         
         self.automaticallyAdjustsScrollViewInsets = NO;
-        self.textView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
+//        self.textView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
         NSString *markdown = [NSString stringWithContentsOfFile: [[NSBundle mainBundle] pathForResource: @"about.md" ofType: nil] encoding: NSUTF8StringEncoding error: nil];
         GHMarkdownParser *parse = [GHMarkdownParser new];
         parse.options = kGHMarkdownAutoLink;

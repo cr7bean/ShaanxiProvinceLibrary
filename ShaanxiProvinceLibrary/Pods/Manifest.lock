@@ -22,6 +22,8 @@ PODS:
     - CocoaLumberjack/Core
   - CocoaLumberjack/Extensions (2.3.0):
     - CocoaLumberjack/Default
+  - Crashlytics (3.7.0):
+    - Fabric (~> 1.6.3)
   - CSStickyHeaderFlowLayout (0.2.10)
   - DTCoreText (1.6.17):
     - DTFoundation/Core (~> 1.7.5)
@@ -34,6 +36,7 @@ PODS:
     - DTFoundation/Core
   - DTFoundation/UIKit (1.7.10):
     - DTFoundation/Core
+  - Fabric (1.6.7)
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
@@ -59,8 +62,10 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 3.0.0-beta.1)
   - CocoaLumberjack (~> 2.3.0)
+  - Crashlytics (~> 3.7.0)
   - CSStickyHeaderFlowLayout (~> 0.2.10)
   - DTCoreText (~> 1.6.17)
+  - Fabric (~> 1.6.7)
   - FMDB (~> 2.6.2)
   - GHMarkdownParser (~> 0.1.2)
   - GVUserDefaults (~> 1.0.2)
@@ -80,9 +85,11 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
   CocoaLumberjack: 97fab7ee5f507fe54445cca7ea80f926729cfd15
+  Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   CSStickyHeaderFlowLayout: 5366582779d8b7c9ba9b9cc729c218cc23888776
   DTCoreText: 3ea8bba23dd2141ba18adb227a7dd33a822df1c4
   DTFoundation: 3b6b1b817d2a7fb02e7eaf2596c922a68145bd43
+  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   GHMarkdownParser: 14cbf59d0ab9450017d843dffd4a3ef691e5bd77
   GVUserDefaults: 52d48cf8ba578b40a1a76312b196dfc9134ba36a
