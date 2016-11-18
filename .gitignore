@@ -1,85 +1,62 @@
-ShaanxiProvinceLibrary/Pods/Crashlytics/README.md
-ShaanxiProvinceLibrary/Pods/Crashlytics/submit
-ShaanxiProvinceLibrary/Pods/Crashlytics/Crashlytics.framework/README
-ShaanxiProvinceLibrary/Pods/Crashlytics/Crashlytics.framework/submit
-ShaanxiProvinceLibrary/Pods/Crashlytics/iOS/Crashlytics.framework/Crashlytics
-ShaanxiProvinceLibrary/Pods/Crashlytics/iOS/Crashlytics.framework/Info.plist
-ShaanxiProvinceLibrary/Pods/Crashlytics/iOS/Crashlytics.framework/run
-ShaanxiProvinceLibrary/Pods/Crashlytics/iOS/Crashlytics.framework/submit
-ShaanxiProvinceLibrary/Pods/Crashlytics/iOS/Crashlytics.framework/uploadDSYM
-ShaanxiProvinceLibrary/Pods/Crashlytics/iOS/Crashlytics.framework/Headers/ANSCompatibility.h
-ShaanxiProvinceLibrary/Pods/Crashlytics/iOS/Crashlytics.framework/Headers/Answers.h
-ShaanxiProvinceLibrary/Pods/Crashlytics/iOS/Crashlytics.framework/Headers/CLSAttributes.h
-ShaanxiProvinceLibrary/Pods/Crashlytics/iOS/Crashlytics.framework/Headers/CLSLogging.h
-ShaanxiProvinceLibrary/Pods/Crashlytics/iOS/Crashlytics.framework/Headers/CLSReport.h
-ShaanxiProvinceLibrary/Pods/Crashlytics/iOS/Crashlytics.framework/Headers/CLSStackFrame.h
-ShaanxiProvinceLibrary/Pods/Crashlytics/iOS/Crashlytics.framework/Headers/Crashlytics.h
-ShaanxiProvinceLibrary/Pods/Crashlytics/iOS/Crashlytics.framework/Modules/module.modulemap
-ShaanxiProvinceLibrary/Pods/Fabric/README.md
-ShaanxiProvinceLibrary/Pods/Fabric/run
-ShaanxiProvinceLibrary/Pods/Fabric/upload-symbols
-ShaanxiProvinceLibrary/Pods/Fabric/uploadDSYM
-ShaanxiProvinceLibrary/Pods/Fabric/Fabric.framework/README
-ShaanxiProvinceLibrary/Pods/Fabric/Fabric.framework/run
-ShaanxiProvinceLibrary/Pods/Fabric/iOS/Fabric.framework/Fabric
-ShaanxiProvinceLibrary/Pods/Fabric/iOS/Fabric.framework/Info.plist
-ShaanxiProvinceLibrary/Pods/Fabric/iOS/Fabric.framework/run
-ShaanxiProvinceLibrary/Pods/Fabric/iOS/Fabric.framework/uploadDSYM
-ShaanxiProvinceLibrary/Pods/Fabric/iOS/Fabric.framework/Headers/FABAttributes.h
-ShaanxiProvinceLibrary/Pods/Fabric/iOS/Fabric.framework/Headers/Fabric.h
-ShaanxiProvinceLibrary/Pods/Fabric/iOS/Fabric.framework/Modules/module.modulemap
-ShaanxiProvinceLibrary/Pods/Headers/Public/Crashlytics/Crashlytics/ANSCompatibility.h
-ShaanxiProvinceLibrary/Pods/Headers/Public/Crashlytics/Crashlytics/Answers.h
-ShaanxiProvinceLibrary/Pods/Headers/Public/Crashlytics/Crashlytics/CLSAttributes.h
-ShaanxiProvinceLibrary/Pods/Headers/Public/Crashlytics/Crashlytics/CLSLogging.h
-ShaanxiProvinceLibrary/Pods/Headers/Public/Crashlytics/Crashlytics/CLSReport.h
-ShaanxiProvinceLibrary/Pods/Headers/Public/Crashlytics/Crashlytics/CLSStackFrame.h
-ShaanxiProvinceLibrary/Pods/Headers/Public/Crashlytics/Crashlytics/Crashlytics.h
-ShaanxiProvinceLibrary/Pods/Headers/Public/Fabric/Fabric/FABAttributes.h
-ShaanxiProvinceLibrary/Pods/Headers/Public/Fabric/Fabric/Fabric.h
-ShaanxiProvinceLibrary/Pods/Pods.xcodeproj/xcuserdata/LONG.xcuserdatad/xcschemes/AFNetworking.xcscheme
-ShaanxiProvinceLibrary/Pods/Pods.xcodeproj/xcuserdata/LONG.xcuserdatad/xcschemes/CocoaLumberjack.xcscheme
-ShaanxiProvinceLibrary/Pods/Pods.xcodeproj/xcuserdata/LONG.xcuserdatad/xcschemes/CSStickyHeaderFlowLayout.xcscheme
-ShaanxiProvinceLibrary/Pods/Pods.xcodeproj/xcuserdata/LONG.xcuserdatad/xcschemes/DTCoreText.xcscheme
-ShaanxiProvinceLibrary/Pods/Pods.xcodeproj/xcuserdata/LONG.xcuserdatad/xcschemes/DTFoundation.xcscheme
-ShaanxiProvinceLibrary/Pods/Pods.xcodeproj/xcuserdata/LONG.xcuserdatad/xcschemes/FMDB.xcscheme
-ShaanxiProvinceLibrary/Pods/Pods.xcodeproj/xcuserdata/LONG.xcuserdatad/xcschemes/GHMarkdownParser.xcscheme
-ShaanxiProvinceLibrary/Pods/Pods.xcodeproj/xcuserdata/LONG.xcuserdatad/xcschemes/GVUserDefaults.xcscheme
-ShaanxiProvinceLibrary/Pods/Pods.xcodeproj/xcuserdata/LONG.xcuserdatad/xcschemes/Harpy.xcscheme
-ShaanxiProvinceLibrary/Pods/Pods.xcodeproj/xcuserdata/LONG.xcuserdatad/xcschemes/hpple.xcscheme
-ShaanxiProvinceLibrary/Pods/Pods.xcodeproj/xcuserdata/LONG.xcuserdatad/xcschemes/iRate.xcscheme
-ShaanxiProvinceLibrary/Pods/Pods.xcodeproj/xcuserdata/LONG.xcuserdatad/xcschemes/LTNavigationBar.xcscheme
-ShaanxiProvinceLibrary/Pods/Pods.xcodeproj/xcuserdata/LONG.xcuserdatad/xcschemes/Masonry.xcscheme
-ShaanxiProvinceLibrary/Pods/Pods.xcodeproj/xcuserdata/LONG.xcuserdatad/xcschemes/MBProgressHUD.xcscheme
-ShaanxiProvinceLibrary/Pods/Pods.xcodeproj/xcuserdata/LONG.xcuserdatad/xcschemes/NJKWebViewProgress.xcscheme
-ShaanxiProvinceLibrary/Pods/Pods.xcodeproj/xcuserdata/LONG.xcuserdatad/xcschemes/Pods.xcscheme
-ShaanxiProvinceLibrary/Pods/Pods.xcodeproj/xcuserdata/LONG.xcuserdatad/xcschemes/PSTAlertController.xcscheme
-ShaanxiProvinceLibrary/Pods/Pods.xcodeproj/xcuserdata/LONG.xcuserdatad/xcschemes/SDVersion.xcscheme
-ShaanxiProvinceLibrary/Pods/Pods.xcodeproj/xcuserdata/LONG.xcuserdatad/xcschemes/SSKeychain.xcscheme
-ShaanxiProvinceLibrary/Pods/Pods.xcodeproj/xcuserdata/LONG.xcuserdatad/xcschemes/SVPullToRefresh.xcscheme
-ShaanxiProvinceLibrary/Pods/Pods.xcodeproj/xcuserdata/LONG.xcuserdatad/xcschemes/UITableView+FDTemplateLayoutCell.xcscheme
-ShaanxiProvinceLibrary/Pods/Pods.xcodeproj/xcuserdata/LONG.xcuserdatad/xcschemes/xcschememanagement.plist
-ShaanxiProvinceLibrary/Pods/Target Support Files/AFNetworking/AFNetworking-Private.xcconfig
-ShaanxiProvinceLibrary/Pods/Target Support Files/CocoaLumberjack/CocoaLumberjack-Private.xcconfig
-ShaanxiProvinceLibrary/Pods/Target Support Files/CSStickyHeaderFlowLayout/CSStickyHeaderFlowLayout-Private.xcconfig
-ShaanxiProvinceLibrary/Pods/Target Support Files/DTCoreText/DTCoreText-Private.xcconfig
-ShaanxiProvinceLibrary/Pods/Target Support Files/DTFoundation/DTFoundation-Private.xcconfig
-ShaanxiProvinceLibrary/Pods/Target Support Files/FMDB/FMDB-Private.xcconfig
-ShaanxiProvinceLibrary/Pods/Target Support Files/GHMarkdownParser/GHMarkdownParser-Private.xcconfig
-ShaanxiProvinceLibrary/Pods/Target Support Files/GVUserDefaults/GVUserDefaults-Private.xcconfig
-ShaanxiProvinceLibrary/Pods/Target Support Files/Harpy/Harpy-Private.xcconfig
-ShaanxiProvinceLibrary/Pods/Target Support Files/hpple/hpple-Private.xcconfig
-ShaanxiProvinceLibrary/Pods/Target Support Files/iRate/iRate-Private.xcconfig
-ShaanxiProvinceLibrary/Pods/Target Support Files/LTNavigationBar/LTNavigationBar-Private.xcconfig
-ShaanxiProvinceLibrary/Pods/Target Support Files/Masonry/Masonry-Private.xcconfig
-ShaanxiProvinceLibrary/Pods/Target Support Files/MBProgressHUD/MBProgressHUD-Private.xcconfig
-ShaanxiProvinceLibrary/Pods/Target Support Files/NJKWebViewProgress/NJKWebViewProgress-Private.xcconfig
-ShaanxiProvinceLibrary/Pods/Target Support Files/Pods/Pods-acknowledgements.markdown
-ShaanxiProvinceLibrary/Pods/Target Support Files/Pods/Pods-acknowledgements.plist
-ShaanxiProvinceLibrary/Pods/Target Support Files/Pods/Pods.debug.xcconfig
-ShaanxiProvinceLibrary/Pods/Target Support Files/Pods/Pods.release.xcconfig
-ShaanxiProvinceLibrary/Pods/Target Support Files/PSTAlertController/PSTAlertController-Private.xcconfig
-ShaanxiProvinceLibrary/Pods/Target Support Files/SDVersion/SDVersion-Private.xcconfig
-ShaanxiProvinceLibrary/Pods/Target Support Files/SSKeychain/SSKeychain-Private.xcconfig
-ShaanxiProvinceLibrary/Pods/Target Support Files/SVPullToRefresh/SVPullToRefresh-Private.xcconfig
-ShaanxiProvinceLibrary/Pods/Target Support Files/UITableView+FDTemplateLayoutCell/UITableView+FDTemplateLayoutCell-Private.xcconfig
+# Xcode
+#
+# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
+
+## Build generated
+build/
+DerivedData/
+
+## Various settings
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+
+## Other
+*.moved-aside
+*.xcuserstate
+
+## Obj-C/Swift specific
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# CocoaPods
+#
+# We recommend against adding the Pods directory to your .gitignore. However
+# you should judge for yourself, the pros and cons are mentioned at:
+# https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
+#
+# Pods/
+
+# Carthage
+#
+# Add this line if you want to avoid checking in source code from Carthage dependencies.
+# Carthage/Checkouts
+
+Carthage/Build
+
+# fastlane
+#
+# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the 
+# screenshots whenever they are needed.
+# For more information about the recommended setup visit:
+# https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Gitignore.md
+
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# Code Injection
+#
+# After new code Injection tools there's a generated folder /iOSInjectionProject
+# https://github.com/johnno1962/injectionforxcode
+
+iOSInjectionProject/
